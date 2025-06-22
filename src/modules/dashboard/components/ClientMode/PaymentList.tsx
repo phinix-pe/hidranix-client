@@ -1,4 +1,3 @@
-
 const PaymentList = () => {
   return (
     <div>PaymentList</div>

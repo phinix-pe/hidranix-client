@@ -27,7 +27,7 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({ children, onClic
         backgroundColor: { duration: 0.3 },
         borderColor: { duration: 0.3 },
       }}
-      className="px-2 xl:px-8 py-3 xl:py-4 mx-8 xl:mx-0 justify-center font-sour-gummy uppercase flex items-center gap-2 border-2 border-transparent text-[#222] bg-slate-100  rounded-lg shadow-md cursor-pointer"
+      className="px-2 xl:px-8 py-3 xl:py-4 mx-8 xl:mx-0 justify-center font-sour-gummy uppercase flex items-center gap-2 border-2 border-transparent text-[#222] bg-white/90  rounded-lg shadow-md cursor-pointer"
       onClick={onClick}
     >
       {children}

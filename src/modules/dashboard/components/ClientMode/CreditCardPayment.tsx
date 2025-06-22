@@ -4,7 +4,6 @@ import { CardPayment } from "@mercadopago/sdk-react";
 const CreditCardPayment: React.FC = () => {
   const [isActive, _] = useState<boolean>(true);
 
-  // Usamos "any" para evitar conflictos de tipado con la firma esperada por CardPayment
   const handleOnSubmit = async (cardFormData: any, _?: any): Promise<void> => {
     try {
       const response = await fetch("http://localhost:5000/payments/process_payment", {
@@ -34,7 +33,6 @@ const CreditCardPayment: React.FC = () => {
       className={`px-2 xl:px-96 w-full md:w-full md:h-full p-6 cursor-pointer rounded-2xl transition-all duration-300 shadow-lg 
         ${isActive ? "bg-transparent backdrop-blur-md" : "bg-white/50 backdrop-blur-sm"}`}
     >
-      <h2 className="text-lg font-semibold mb-4 text-center">Credit Card (Mercado Pago)</h2>
       {isActive && (
         <CardPayment
           initialization={{

@@ -1,8 +1,7 @@
 // src/modules/landing/components/Servicios.tsx
 import { GiEnergyArrow, GiProcessor } from "react-icons/gi";
-import { AnimationComponent } from "../animation/AnimationComponent";
+import { AnimationComponent } from "../../animation/AnimationComponent";
 import { MdSettingsInputComposite } from "react-icons/md";
-// import { GiEnergyArrow, GiProcessor, IcTwotoneSettingsInputComposite } from "react-icons/";
 
 const Servicios = () => {
   const servicios = [

@@ -20,23 +20,12 @@ declare global {
 
 const DashboardPage: React.FC = () => {
   const { user } = useUser();
-  // const { signOut } = useClerk();
-  // const navigate = useNavigate();
   const [role, setRole] = useState<"CLIENT" | "ADMIN" | null>(null);
-  // const [loading, setLoading] = useState(true);
-
-  console.log("USER:", user);
-
-  // const handleSignOut = () => {
-  //   signOut();
-  //   navigate("/login");
-  // };
 
   // Petición al backend al cargar el dashboard
   useEffect(() => {
     const fetchUserRole = async () => {
       if (!user?.id) return;
-
       try {
         const userData = await getUserByClerkId(user.id);
         console.log("🔐 Usuario desde backend:", userData);
@@ -63,13 +52,7 @@ const DashboardPage: React.FC = () => {
             <h1 className="text-2xl font-semibold">
               Bienvenid@, {user?.firstName}!
             </h1>
-            <h2>{role}</h2>
-            {/* <button
-              onClick={handleSignOut}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Cerrar sesión
-            </button> */}
+            <h2 className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-4 py-2 mb-2">{role}</h2>
           </div>
 
           {/* Secciones del dashboard */}

@@ -1,16 +1,16 @@
 // src/modules/landing/components/Inicio.tsx
-import { AnimatedButton } from "../animation/AnimatedButton";
-import { AnimationComponent } from "../animation/AnimationComponent";
-import { FaFire } from "react-icons/fa";
-import HidranixLogo from "../../../assets/hidranix_logo.png";
+import { AnimatedButton } from "../../animation/AnimatedButton";
+import { AnimationComponent } from "../../animation/AnimationComponent";
+import { FaArrowRight } from "react-icons/fa";
+import HidranixLogo from "../../../../assets/hidranix_logo.svg";
 
 const Inicio = () => {
   return (
     <div
       id="inicio"
-      className="w-full overflow-hidden bg-gradient-to-b from-[#003d3f] to-[#1a7984] flex items-center justify-center min-h-screen"
+      className="bg-hero-pattern-with-opacity w-full overflow-hidden flex items-center justify-center min-h-screen"
     >
-      <div className="container mx-auto max-w-7xl w-full py-24 md:py-16 xl:py-8 flex flex-col xl:flex-row items-center justify-between gap-12 px-4 sm:px-6">
+      <div className="bg-hero-pattern-content container mx-auto max-w-7xl w-full py-24 md:py-16 xl:py-8 flex flex-col xl:flex-row items-center justify-between gap-12 px-4 sm:px-6">
         {/* Text Content */}
         <div className="text-center xl:text-left w-full space-y-8">
           <AnimationComponent
@@ -35,7 +35,7 @@ const Inicio = () => {
                 visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
               }}
             >
-              <span className="bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent font-poppins text-5xl xl:text-8xl">
+              <span className="bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent font-poppins text-5xl xl:text-8xl">
                 HIDRANIX
               </span>
             </AnimationComponent>
@@ -50,8 +50,7 @@ const Inicio = () => {
               }}
             >
               <span className="text-white py-6 block font-poppins text-lg xl:text-6xl">
-                Convertimos el Agua <br className="hidden lg:block" />
-                en Energía Limpia
+                Convertimos el Agua en Energía Limpia
               </span>
             </AnimationComponent>
           </h1>
@@ -68,7 +67,7 @@ const Inicio = () => {
             >
               <AnimatedButton href={"/hidranix"}>
                 <span className="mr-2">Descubre la Tecnología</span>
-                <FaFire className="text-xl animate-pulse" />
+                <FaArrowRight className="text-xl" />
               </AnimatedButton>
             </AnimationComponent>
           </div>

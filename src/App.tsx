@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import LoginPage from "./modules/auth/pages/LoginPage";
 import RegisterPage from "./modules/auth/pages/RegisterPage";
-import LandingPhinix from "./modules/landing/pages/LandingPhinix";
-import LandingHidranix from "./modules/landing/pages/LandingHidranix";
+import LandingPhinix from "./modules/landing/phinix/LandingPhinix";
+import LandingHidranix from "./modules/landing/hidranix/LandingHidranix";
 import DashboardPage from "./modules/dashboard/pages/DashboardPage";
 
 

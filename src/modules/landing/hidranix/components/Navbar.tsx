@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
+import AnimatedLogo from "./AnimatedLogo";
+import SimpleButton from "../../animation/SimpleButton";
+import BlurButton from "../../animation/BlurButton";
 
-// Definir los enlaces
+
 const links = [
   { name: "Inicio", path: "#inicio" },
   { name: "Nosotros", path: "#nosotros" },
   { name: "Servicios", path: "#servicios" },
-  { name: "Clientes", path: "#clientes" },
+  { name: "Novedades", path: "#novedades" },
+  { name: "Eventos", path: "#eventos" },
+  // { name: "Clientes", path: "#clientes" },
 ];
 
 const Navbar = () => {
   const location = useLocation(); // Para obtener la ruta actual
   const [isOpen, setIsOpen] = useState(false); // Para controlar la visibilidad del menú móvil
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Función para alternar el estado del menú
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -23,17 +35,32 @@ const Navbar = () => {
     section?.scrollIntoView({ behavior: "smooth", block: "start" });
 
     // Cerrar el menú cuando se haga clic en un enlace
-    if (isOpen) {
-      setIsOpen(false);
-    }
+    if (isOpen) setIsOpen(false);
   };
 
   return (
-    <nav className="bg-primary-dark text-white p-4 fixed w-full top-0 z-50">
+    <nav
+      className="p-4 fixed w-full top-0 z-50 transition-colors duration-300"
+      style={{
+        backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / 100, 1)})`,
+      }}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-xl font-bold">
-          <Link to="/">Hidranix</Link>
+        <div className="flex items-center text-xl font-bold">
+          <Link
+            to="/hidranix"
+            className={`flex items-center ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            <AnimatedLogo
+              scrollY={scrollY}
+              className="w-8 h-8 mr-2"
+              alt="Tecnología Hidranix"
+            />
+            Hidranix
+          </Link>
         </div>
 
         {/* Menú de escritorio */}
@@ -47,7 +74,8 @@ const Navbar = () => {
                 location.pathname === link.path
                   ? "text-accent border-b-2 border-accent"
                   : ""
-              } capitalize font-medium hover:text-accent transition-all`}
+              } capitalize font-medium hover:text-accent transition-all 
+              ${scrollY != 0 ? "text-primary-dark" : "text-white"} `}
             >
               {link.name}
             </Link>
@@ -55,26 +83,22 @@ const Navbar = () => {
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
-            <Link to="/login">
-              <button className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary cursor-pointer">
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button className="bg-white text-primary px-4 py-2 rounded border-2 border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
-                Register
-              </button>
-            </Link>
+            <SimpleButton to="/login" scrollY={scrollY}>Login</SimpleButton>
+            <BlurButton to="/register" scrollY={scrollY}>Register</BlurButton>
           </div>
         </div>
 
         {/* Menú móvil */}
         <div className="xl:hidden flex items-center">
+          {/* Botón móvil */}
           <button onClick={toggleMenu} className="z-20">
             {isOpen ? (
               <HiX size={30} className="text-white" />
             ) : (
-              <HiMenu size={30} className="text-white" />
+              <HiMenu
+                size={30}
+                className={scrollY > 0 ? "text-primary-dark" : "text-white"}
+              />
             )}
           </button>
         </div>

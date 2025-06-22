@@ -1,6 +1,6 @@
 // src/modules/landing/pages/LandingPhinix.tsx
 import { Link } from "react-router-dom";
-import NavbarPhinix from "../components/NavbarPhinix";
+import NavbarPhinix from "./components/NavbarPhinix";
 
 const LandingPhinix = () => {
   return (

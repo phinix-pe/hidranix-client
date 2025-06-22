@@ -110,7 +110,7 @@ const YapePayment = () => {
                  "bg-gray-200 backdrop-blur-md" : "bg-white/50 backdrop-blur-sm"}`}
       // onClick={!isActive ? onClick : undefined}
     >
-      <h2 className="text-lg font-semibold mb-4 text-center">Yape</h2>
+      <h2 className="text-lg font-semibold mb-4 text-center">Proceso de Pago Yape</h2>
         <form className="transition-all duration-300" onSubmit={handleYapePayment}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">

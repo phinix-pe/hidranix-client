@@ -4,7 +4,7 @@ import { SignIn } from "@clerk/clerk-react";
 const LoginForm = () => {
   return (
     <SignIn
-      forceRedirectUrl="/dashboard"
+      forceRedirectUrl="/dashboard/inicio" signUpUrl="/register"
     />
   );
 }
