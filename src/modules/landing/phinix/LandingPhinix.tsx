@@ -1,7 +1,8 @@
 // src/modules/landing/pages/LandingPhinix.tsx
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NavbarPhinix from "./components/NavbarPhinix";
 import Footer from "../shared/components/Footer";
+import { InicioPhinix } from "./components/InicioPhinix";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -17,7 +18,7 @@ const LandingPhinix = () => {
       <NavbarPhinix />
 
       {/* Section: Inicio */}
-      <section
+      {/* <section
         id="inicio"
         className="h-screen w-full flex items-center justify-center bg-green-100"
       >
@@ -35,8 +36,9 @@ const LandingPhinix = () => {
             Descubre Hidranix
           </Link>
         </div>
-      </section>
+      </section> */}
 
+      <InicioPhinix />
       {/* Section: Nosotros */}
       <section id="nosotros" className="h-screen w-full py-16 bg-blue-50">
         <div className="max-w-4xl mx-auto text-center">

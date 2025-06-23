@@ -1,102 +1,52 @@
 // src/modules/landing/components/NavbarPhinix.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import { IoIosArrowDown } from "react-icons/io";
+import SimpleButton from "../../animation/SimpleButton";
+import BlurButton from "../../animation/BlurButton";
 
 const NavbarPhinix = () => {
   const [isOpen, setIsOpen] = useState(false); // Para controlar el menú móvil
-  const [isSelectOpen, setIsSelectOpen] = useState(false); // Para controlar el select desglosable
 
   // Alternar el menú
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Alternar el select desglosable
-  const toggleSelect = () => setIsSelectOpen(!isSelectOpen);
+  const [scrollY, setScrollY] = useState(0);
 
-  // Función para hacer scroll suave hacia las secciones y cerrar el menú móvil
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // Cerrar el menú cuando se hace clic en un enlace
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-red-900 text-white p-4 fixed w-full top-0 z-50">
+    <nav
+      className="p-4 fixed w-full top-0 z-50"
+      style={{
+        backgroundColor: `rgba(255, 255, 255, ${Math.min(scrollY / 100, 1)})`,
+      }}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-xl font-bold">
+        <div className="text-primary-dark text-xl font-extrabold">
           <Link to="/">Phinix</Link>
         </div>
 
         {/* Menú de escritorio */}
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="text-primary-dark  hidden xl:flex items-center gap-8 font-bold">
           {/* Enlaces de productos */}
-          <Link to="/hidranix" className="hover:text-gray-300">
-            Hidranix
-          </Link>
-          <Link to="/srrobot" className="hover:text-gray-300">
-            SrRobot
-          </Link>
-          <Link to="/mangora" className="hover:text-gray-300">
-            Mangora
-          </Link>
-
-          {/* Select desglosable para las secciones de la landing */}
-          <div className="relative">
-            <button
-              onClick={toggleSelect}
-              className="hover:text-gray-300 capitalize font-medium flex items-center"
-            >
-              Secciones
-              <IoIosArrowDown className="ml-2" />
-            </button>
-            {isSelectOpen && (
-              <div className="absolute bg-red-900 w-40 mt-2 rounded-md shadow-lg">
-                <button
-                  onClick={() => scrollToSection("inicio")}
-                  className="block w-full text-white py-2 text-center hover:bg-red-400 hover:text-slate-800 cursor-pointer"
-                >
-                  Inicio
-                </button>
-                <button
-                  onClick={() => scrollToSection("nosotros")}
-                  className="block w-full text-white py-2 text-center hover:bg-red-400 hover:text-slate-800 cursor-pointer"
-                >
-                  Nosotros
-                </button>
-                <button
-                  onClick={() => scrollToSection("servicios")}
-                  className="block w-full text-white py-2 text-center hover:bg-red-400 hover:text-slate-800 cursor-pointer"
-                >
-                  Servicios
-                </button>
-                <button
-                  onClick={() => scrollToSection("clientes")}
-                  className="block w-full text-white py-2 text-center hover:bg-red-400 hover:text-slate-800 cursor-pointer"
-                >
-                  Clientes
-                </button>
-              </div>
-            )}
-          </div>
+          <Link to="/hidranix">Hidranix</Link>
+          <Link to="/srrobot">SrRobot</Link>
+          <Link to="/mangora">Mangora</Link>
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
-            <Link to="/login">
-              <button className="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer">
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button className="bg-white text-red-900 px-4 py-2 rounded border-2 border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
-                Register
-              </button>
-            </Link>
+            <SimpleButton to="/login" scrollY={1}>
+              Iniciar sesión
+            </SimpleButton>
+            <BlurButton to="/register" scrollY={1}>
+              Registrarse
+            </BlurButton>
           </div>
         </div>
 
@@ -106,7 +56,7 @@ const NavbarPhinix = () => {
             {isOpen ? (
               <HiX size={30} className="text-white" />
             ) : (
-              <HiMenu size={30} className="text-white" />
+              <HiMenu size={30} className="text-primary" />
             )}
           </button>
         </div>
@@ -114,7 +64,7 @@ const NavbarPhinix = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-10 bg-red-900 bg-opacity-90 transform transition-all duration-300 ease-in-out ${
+        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -139,41 +89,15 @@ const NavbarPhinix = () => {
             Mangora
           </Link>
 
-          {/* Secciones */}
-          <button
-            onClick={() => scrollToSection("inicio")}
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >
-            Inicio
-          </button>
-          <button
-            onClick={() => scrollToSection("nosotros")}
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >
-            Nosotros
-          </button>
-          <button
-            onClick={() => scrollToSection("servicios")}
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >
-            Servicios
-          </button>
-          <button
-            onClick={() => scrollToSection("clientes")}
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >
-            Clientes
-          </button>
-
           {/* Botones de Login y Register en Mobile */}
           <div className="mt-8 flex space-x-4">
             <Link to="/login">
-              <button className="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-500">
+              <button className="bg-primary-dark text-white px-4 py-2 rounded hover:bg-red-500">
                 Login
               </button>
             </Link>
             <Link to="/register">
-              <button className="bg-white text-red-900 px-4 py-2 rounded border-2 border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
+              <button className="bg-white text-primary-dark px-4 py-2 rounded border-2 border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
                 Register
               </button>
             </Link>
