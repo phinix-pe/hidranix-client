@@ -15,6 +15,7 @@ import phinixDiaMadre from "../../../assets/eventos/phinix_dia_madre.jpg";
 import phinixCongresoInternacional from "../../../assets/eventos/phinix_congreso_internacional.jpg";
 import phinixDiaTrabajador from "../../../assets/eventos/phinix_trabajador.jpg";
 import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
+import { GridCard } from "./components/GridCard";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -192,6 +193,19 @@ const LandingPhinix = () => {
           </p>
         </div>
       </section>
+
+      <GridCard
+        title="Eventos"
+        subTitle="Conoce más de nuestros eventos"
+        key={"events"}
+        cards={eventos}
+      />
+      <GridCard
+        title="Novedades"
+        subTitle="Entérate de nuestras últimas novedades"
+        key={"news"}
+        cards={novedades}
+      />
 
       {/* Footer */}
       <Footer
