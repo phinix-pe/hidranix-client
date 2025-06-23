@@ -30,7 +30,7 @@ export const GridCard = ({ title, subTitle, cards }: Props) => {
         <AnimationComponent
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.3, duration: 0.8 } },
+            visible: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
           }}
         >
           <p className="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto mb-16 px-4">

@@ -197,13 +197,13 @@ const LandingPhinix = () => {
       <GridCard
         title="Eventos"
         subTitle="Conoce más de nuestros eventos"
-        key={"events"}
+        key="events"
         cards={eventos}
       />
       <GridCard
         title="Novedades"
         subTitle="Entérate de nuestras últimas novedades"
-        key={"news"}
+        key="news"
         cards={novedades}
       />
 
