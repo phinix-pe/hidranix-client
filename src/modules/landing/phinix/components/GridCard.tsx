@@ -6,9 +6,10 @@ interface Props {
   title: string;
   subTitle: string;
   cards: CardItemContent[];
+  isClickable?: boolean; // Prop opcional para controlar si es clickeable
 }
 
-export const GridCard = ({ title, subTitle, cards }: Props) => {
+export const GridCard = ({ title, subTitle, cards, isClickable }: Props) => {
   return (
     <section className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,6 +45,7 @@ export const GridCard = ({ title, subTitle, cards }: Props) => {
               key={index}
               item={item}
               animationDelay={0.5 + index * 0.2}
+              isClickable={isClickable}
             />
           ))}
         </div>

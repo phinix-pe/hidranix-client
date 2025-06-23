@@ -7,6 +7,7 @@ import { motion } from "framer-motion"; // Importa motion para la animación
 
 interface Props {
   item: CardItemContent;
+  isClickable?: boolean; // Prop opcional para controlar si es clickeable
   animationDelay: number;
 }
 
@@ -20,15 +21,22 @@ const modalVariants = {
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.2 } },
 };
 
-export const GridCardItem = ({ item, animationDelay }: Props) => {
+export const GridCardItem = ({
+  item,
+  animationDelay,
+  isClickable = true,
+}: Props) => {
   const { date, description, imgSrc, title, chipContent } = item;
 
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const descriptionToShow = description.slice(0, 100);
+  const descriptionToShow = isClickable
+    ? description.slice(0, 100)
+    : description;
 
   const handleOpenModal = () => {
-    setIsOpen(true);
+    // setIsOpen(true && isClickable);
+    setIsOpen(isClickable);
   };
 
   const handleCloseModal = () => {
@@ -53,8 +61,8 @@ export const GridCardItem = ({ item, animationDelay }: Props) => {
           },
         }}
         className={`bg-white rounded-lg shadow-md overflow-hidden ${
-          isHovered ? "scale-105 transition-transform duration-300" : ""
-        } cursor-pointer`}
+          isHovered ? "scale-105 transition-transform duration-300 " : ""
+        } ${isClickable ? "cursor-pointer" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleOpenModal} // Abrir al hacer click en la tarjeta también
@@ -75,18 +83,21 @@ export const GridCardItem = ({ item, animationDelay }: Props) => {
           <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
           <p className="relative text-gray-700">
             {descriptionToShow}
-            {description.length > 100 && (
+            {description.length > 100 && isClickable && (
               <span className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent"></span>
             )}
           </p>
-          <div className="flex justify-center mt-4">
-            <button
-              className="bg-primary-light text-white cursor-pointer rounded-full p-2 focus:outline-none focus:ring focus:ring-primary-dark"
-              onClick={handleOpenModal}
-            >
-              <IoIosArrowUp className="text-xl" />
-            </button>
-          </div>
+
+          {isClickable && (
+            <div className="flex justify-center mt-4">
+              <button
+                className="bg-primary-light text-white cursor-pointer rounded-full p-2 focus:outline-none focus:ring focus:ring-primary-dark"
+                onClick={handleOpenModal}
+              >
+                <IoIosArrowUp className="text-xl" />
+              </button>
+            </div>
+          )}
         </div>
       </AnimationComponent>
 
@@ -120,7 +131,7 @@ export const GridCardItem = ({ item, animationDelay }: Props) => {
                 <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                   {title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-2">{date}</p>
+                {date && <p className="text-gray-600 text-sm mb-2">{date}</p>}
                 {chipContent && (
                   <span className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-3 py-1 mb-4">
                     {chipContent}
