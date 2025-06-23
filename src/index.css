@@ -52,3 +52,9 @@
   background-size: cover;
   background-position: center;
 }
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text; /* Para soporte en navegadores antiguos */
+  color: transparent;
+}
