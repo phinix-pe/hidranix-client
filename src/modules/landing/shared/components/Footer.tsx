@@ -6,23 +6,39 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 
-const Footer = () => {
+interface Props {
+  pageName: string;
+  slogan: string;
+  facebookUrl: string;
+  instagramUrl: string;
+  linkedinUrl: string;
+  tiktokUrl: string;
+}
+
+const Footer = ({
+  facebookUrl,
+  instagramUrl,
+  linkedinUrl,
+  tiktokUrl,
+  pageName,
+  slogan,
+}: Props) => {
   const socialLinks = [
     {
       icon: <FaFacebookF className="text-xl" />,
-      url: "https://www.facebook.com/profile.php?id=61553013520190",
+      url: facebookUrl,
     },
     {
       icon: <FaInstagram className="text-xl" />,
-      url: "https://www.instagram.com/phinix.hidranix",
+      url: instagramUrl,
     },
     {
       icon: <FaLinkedinIn className="text-xl" />,
-      url: "https://linkedin.com/company/hidranix",
+      url: linkedinUrl,
     },
     {
       icon: <FaTiktok className="text-xl" />,
-      url: "https://www.tiktok.com/@phinix.hidranix",
+      url: tiktokUrl,
     },
   ];
 
@@ -38,10 +54,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Sección Información */}
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold mb-4">Hidranix</h3>
-            <p className="text-gray-300">
-              Soluciones innovadoras en hidráulica
-            </p>
+            <h3 className="text-2xl font-bold mb-4">{pageName}</h3>
+            <p className="text-gray-300">{slogan}</p>
           </div>
 
           {/* Sección Redes Sociales */}
@@ -61,7 +75,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Sección Legal */}
           <div className="text-center md:text-right">
             <h4 className="text-lg font-semibold mb-4">Legal</h4>
@@ -82,7 +96,7 @@ const Footer = () => {
         {/* Derechos de autor */}
         <div className="border-t border-white/10 pt-8 mt-8">
           <p className="text-center text-sm text-gray-300">
-            © {new Date().getFullYear()} Hidranix. Todos los derechos
+            © {new Date().getFullYear()} {pageName}. Todos los derechos
             reservados.
           </p>
         </div>
