@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import SimpleButton from "../../animation/SimpleButton";
 import BlurButton from "../../animation/BlurButton";
+import phinixLogo from "../../../../assets/phinix_logo.png";
 
 const NavbarPhinix = () => {
   const [isOpen, setIsOpen] = useState(false); // Para controlar el menú móvil
@@ -29,7 +30,14 @@ const NavbarPhinix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-primary-dark text-xl font-extrabold">
-          <Link to="/">Phinix</Link>
+          <Link to="/">
+            <img
+              src={phinixLogo}
+              alt="Phinix Logo"
+              className="w-8 h-8 inline-block mr-2"
+            />
+            Phinix
+          </Link>
         </div>
 
         {/* Menú de escritorio */}

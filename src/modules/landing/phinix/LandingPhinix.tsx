@@ -16,9 +16,9 @@ import phinixDiaMadre from "../../../assets/eventos/phinix_dia_madre.jpg";
 import phinixCongresoInternacional from "../../../assets/eventos/phinix_congreso_internacional.jpg";
 import phinixDiaTrabajador from "../../../assets/eventos/phinix_trabajador.jpg";
 import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
-import phinixIa from "../../../assets/phinix_ia.jpg";
-import phinixCleanEnergy from "../../../assets/phinix_clean_energy.jpg";
-import phinixAutomation from "../../../assets/phinix_automation.jpg";
+import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
+import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
+import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -109,22 +109,22 @@ const novedades: CardItemContent[] = [
 
 const servicios: CardItemContent[] = [
   {
-    title: "Energía Limpia",
+    title: "Pozo a Tierra + Certificado",
     description:
-      "Ofrecemos soluciones avanzadas en energía renovable para hogares y empresas, ayudándote a reducir costos y cuidar el medio ambiente con la última tecnología.",
-    imgSrc: phinixCleanEnergy,
+      "Protege a tus equipos y colaboradores de accidentes eléctricos, cumple con las normativas vigentes y evita posibles sanciones. Con nuestra instalación técnica especializada, medición precisa con telurómetro y un completo reporte técnico, obtendrás un certificado oficial que garantiza la seguridad de tu infraestructura.",
+    imgSrc: phinixPozoTierra,
   },
   {
-    title: "Automatización",
+    title: "Mantenimiento Eléctrico para Empresas y PYMEs",
     description:
-      "Integramos sistemas inteligentes de automatización y monitoreo en tiempo real mediante IoT, optimizando procesos, aumentando la productividad y garantizando un control total de tus operaciones.",
-    imgSrc: phinixAutomation,
+      "Asegura el correcto funcionamiento de tus instalaciones eléctricas, evitando fallas que puedan generar paradas operativas, recalentamientos o incendios. Realizamos una inspección exhaustiva de tus tableros eléctricos, limpieza técnica y reapriete de conexiones, entregándote un informe técnico con recomendaciones para mantener tus sistemas siempre a punto.",
+    imgSrc: phinixMantenimientoElectrico,
   },
   {
-    title: "Inteligencia Artificial",
+    title: "Automatización Domótica",
     description:
-      "Aplicamos inteligencia artificial para analizar datos, optimizar recursos y mejorar la eficiencia energética, permitiendo una toma de decisiones más precisa y rentable para tu negocio.",
-    imgSrc: phinixIa,
+      "Transforma tu espacio en un entorno más cómodo, seguro y eficiente con la automatización domótica. Controla las luces y dispositivos desde tu smartphone o mediante asistentes virtuales como Alexa o Google Home. Además, con sensores de movimiento y cámaras de seguridad, lograrás un ahorro energético y una modernización total de tu hogar o empresa.",
+    imgSrc: phinixSmartHome,
   },
 ];
 
@@ -134,92 +134,11 @@ const LandingPhinix = () => {
       {/* Navbar */}
       <NavbarPhinix />
 
-      {/* Section: Inicio */}
-      {/* <section
-        id="inicio"
-        className="h-screen w-full flex items-center justify-center bg-green-100"
-      >
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-red-900">
-            Bienvenido a Phinix
-          </h1>
-          <p className="py-4 px-4 my-4 text-xl text-gray-700">
-            Innovación, sostenibilidad y tecnología avanzada para el futuro.
-          </p>
-          <Link
-            to={"/hidranix"}
-            className="bg-red-900 text-white px-6 py-3 mt-6 rounded hover:bg-red-900"
-          >
-            Descubre Hidranix
-          </Link>
-        </div>
-      </section> */}
-
       <InicioPhinix />
-      {/* Section: Nosotros */}
-      {/* <section id="nosotros" className="h-screen w-full py-16 bg-blue-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-red-900">Nosotros</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            Somos una empresa innovadora comprometida con soluciones
-            tecnológicas de vanguardia para el futuro.
-          </p>
-        </div>
-      </section> */}
 
-      {/* Section: Servicios */}
-      {/* <section id="servicios" className="h-screen w-full py-16 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-red-900">Servicios</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            Ofrecemos soluciones tecnológicas en energía limpia, automatización,
-            e inteligencia artificial.
-          </p>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-green-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-red-900">
-                Energía Limpia
-              </h3>
-              <p className="mt-2 text-gray-700">
-                Soluciones energéticas limpias para el hogar y la industria con
-                tecnología avanzada.
-              </p>
-            </div>
-            <div className="bg-green-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-red-900">
-                Automatización
-              </h3>
-              <p className="mt-2 text-gray-700">
-                Tecnología IoT para automatizar procesos y monitoreo en tiempo
-                real.
-              </p>
-            </div>
-            <div className="bg-green-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-red-900">
-                Inteligencia Artificial
-              </h3>
-              <p className="mt-2 text-gray-700">
-                Implementación de IA para optimizar procesos y mejorar la
-                eficiencia energética.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Section: Clientes */}
-      {/* <section id="clientes" className="h-screen w-full py-16 bg-red-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-red-900">Nuestros Clientes</h2>
-          <p className="mt-4 text-lg text-gray-700">
-            Empresas y hogares que ya confían en nuestras soluciones
-            tecnológicas.
-          </p>
-        </div>
-      </section> */}
       <GridCard
         title="Servicios"
-        subTitle="Ofrecemos soluciones tecnológicas en energía limpia, automatización, e inteligencia artificial."
+        subTitle="Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas."
         key="services"
         cards={servicios}
         isClickable={false} // No clickable for services

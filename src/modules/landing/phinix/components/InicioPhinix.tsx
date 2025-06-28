@@ -1,10 +1,11 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
+import phinixLogo from "../../../../assets/phinix_logo.png";
 
 export const InicioPhinix = () => {
   return (
-    <div className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center min-h-screen bg-cover bg-center">
+    <div className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap">
       <AnimationComponent
-        className="text-center max-w-2xl px-4 -mt-40"
+        className="text-center max-w-2xl px-4  md:-mt-40"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: {
@@ -28,6 +29,23 @@ export const InicioPhinix = () => {
           </span>
         </p>
         {/* </div> */}
+      </AnimationComponent>
+      <AnimationComponent
+        className="md:-mt-20 -mt-40 md:ml-20"
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { delay: 0.6, duration: 1 },
+          },
+        }}
+      >
+        <img
+          src={phinixLogo}
+          alt="Phinix Logo"
+          className="w-64 md:w-80 transition-transform transform hover:scale-105"
+        />
       </AnimationComponent>
     </div>
   );
