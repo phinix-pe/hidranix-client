@@ -22,9 +22,9 @@ import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-e
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 
 const phinixSocialLinks = {
-  facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
-  instagramUrl: "https://www.instagram.com/phinix.hidranix",
-  linkedinUrl: "https://linkedin.com/company/hidranix",
+  facebookUrl: "https://www.facebook.com/phinix.sac",
+  instagramUrl: "https://www.instagram.com/phinix.sac",
+  linkedinUrl: "https://www.linkedin.com/company/phinix-sac/",
   tiktokUrl: "https://www.tiktok.com/@phinix.hidranix",
 };
 
