@@ -3,7 +3,7 @@
 import NavbarPhinix from "./components/NavbarPhinix";
 import Footer from "../shared/components/Footer";
 import { InicioPhinix } from "./components/InicioPhinix";
-import { CardItemContent } from "../shared/interfaces";
+import { CardItemContent, Contact } from "../shared/interfaces";
 import { GridCard } from "./components/GridCard";
 
 // images
@@ -19,6 +19,7 @@ import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
 import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
 import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
 import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
+import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -127,6 +128,18 @@ const servicios: CardItemContent[] = [
     imgSrc: phinixSmartHome,
   },
 ];
+const customContacts: Contact[] = [
+  {
+    name: "Ventas",
+    number: "+51916699070",
+    message: "Hola, me gustaría solicitar una cotización",
+  },
+  {
+    name: "Soporte Técnico",
+    number: "+51989563108",
+    message: "Hola, necesito ayuda técnica",
+  },
+];
 
 const LandingPhinix = () => {
   return (
@@ -162,6 +175,7 @@ const LandingPhinix = () => {
         slogan="Unidos para optimizar el ahorro, fomentar descarbonización,usando Energías Renovables con Hidrógeno Verde."
         pageName="Phinix"
       />
+      <WhatsAppCTAMultiple contacts={customContacts} />
     </div>
   );
 };
