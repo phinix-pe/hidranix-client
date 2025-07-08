@@ -130,15 +130,15 @@ const servicios: CardItemContent[] = [
 ];
 const customContacts: Contact[] = [
   {
-    name: "Ventas",
+    name: "Asesor de ventas",
     number: "+51916699070",
-    message: "Hola, me gustaría solicitar una cotización",
+    message: "Hola, me gustaría solicitar una cotización de ...",
   },
-  {
-    name: "Soporte Técnico",
-    number: "+51989563108",
-    message: "Hola, necesito ayuda técnica",
-  },
+  // {
+  //   name: "Soporte Técnico",
+  //   number: "+51989563108",
+  //   message: "Hola, necesito ayuda técnica",
+  // },
 ];
 
 const LandingPhinix = () => {
