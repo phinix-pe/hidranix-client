@@ -58,3 +58,7 @@
   -webkit-background-clip: text; /* Para soporte en navegadores antiguos */
   color: transparent;
 }
+
+html {
+  scroll-behavior: smooth;
+}

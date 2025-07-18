@@ -1,4 +1,3 @@
-// src/modules/landing/components/NavbarPhinix.tsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -8,11 +7,13 @@ import phinixLogo from "../../../../assets/phinix_logo.png";
 
 const NavbarPhinix = () => {
   const [isOpen, setIsOpen] = useState(false); // Para controlar el menú móvil
+  const [scrollY, setScrollY] = useState(0);
 
   // Alternar el menú
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const [scrollY, setScrollY] = useState(0);
+  // Función para cerrar el menú en móviles cuando se hace clic en un enlace
+  const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -41,11 +42,13 @@ const NavbarPhinix = () => {
         </div>
 
         {/* Menú de escritorio */}
-        <div className="text-primary-dark  hidden xl:flex items-center gap-8 font-bold">
+        <div className="text-primary-dark hidden xl:flex items-center gap-8 font-bold">
           {/* Enlaces de productos */}
           <Link to="/hidranix">Hidranix</Link>
-          <Link to="/srrobot">SrRobot</Link>
-          <Link to="/mangora">Mangora</Link>
+          <Link to="/srrobot">Sr.Robot</Link>
+          <Link to="/maguna">Maguna</Link>
+          {/* Enlace al Consultoría */}
+          <a href="#consultory">Consultoria</a>
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
@@ -81,31 +84,42 @@ const NavbarPhinix = () => {
           <Link
             to="/hidranix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+            onClick={closeMenu} // Cerrar el menú al hacer clic
           >
             Hidranix
           </Link>
           <Link
             to="/srrobot"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+            onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            SrRobot
+            Sr.Robot
           </Link>
           <Link
-            to="/mangora"
+            to="/maguna"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+            onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            Mangora
+            Maguna
           </Link>
+          {/* Enlace al Consultoría en versión móvil */}
+          <a
+            href="#consultory"
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+            onClick={closeMenu} // Cerrar el menú al hacer clic
+          >
+            Consultoria
+          </a>
 
           {/* Botones de Login y Register en Mobile */}
           <div className="mt-8 flex space-x-4">
             <Link to="/login">
-              <button className="bg-primary-dark text-white px-4 py-2 rounded hover:bg-red-500">
+              <button className="border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-primary-dark transition-colors duration-300">
                 Login
               </button>
             </Link>
             <Link to="/register">
-              <button className="bg-white text-primary-dark px-4 py-2 rounded border-2 border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
+              <button className="bg-white text-primary-dark px-4 py-2 rounded border-none border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
                 Register
               </button>
             </Link>

@@ -34,7 +34,7 @@ export const WhatsAppCTAMultiple: React.FC<WhatsAppCTAMultipleProps> = ({
         }
       `}
       >
-        <div className="p-4 bg-green-500 text-white">
+        <div className="p-4 bg-primary-light text-white">
           <h3 className="font-bold text-lg">Cotiza Ahora</h3>
           <p className="text-sm opacity-90">Selecciona un departamento</p>
         </div>
@@ -61,7 +61,7 @@ export const WhatsAppCTAMultiple: React.FC<WhatsAppCTAMultipleProps> = ({
                 group-hover:bg-green-200 transition-colors
               "
               >
-                <FaPhone size={18} className="text-green-600" />
+                <FaPhone size={18} className="text-primary" />
               </div>
               <div className="text-left flex-1">
                 <p className="font-semibold text-gray-800">{contact.name}</p>
@@ -69,7 +69,7 @@ export const WhatsAppCTAMultiple: React.FC<WhatsAppCTAMultipleProps> = ({
               </div>
               <FaChevronRight
                 size={20}
-                className="text-gray-400 group-hover:text-green-500 transition-colors"
+                className="text-gray-400 group-hover:text-primary transition-colors"
               />
             </button>
           ))}
@@ -80,6 +80,7 @@ export const WhatsAppCTAMultiple: React.FC<WhatsAppCTAMultipleProps> = ({
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
+          hover:cursor-pointer
           relative group
           transition-all duration-300
           ${isOpen ? "rotate-180" : ""}
@@ -88,14 +89,14 @@ export const WhatsAppCTAMultiple: React.FC<WhatsAppCTAMultipleProps> = ({
       >
         {/* Efecto de pulso cuando está cerrado */}
         {!isOpen && (
-          <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75"></div>
+          <div className="absolute inset-0 rounded-full bg-primary-light animate-ping opacity-75"></div>
         )}
 
         {/* Botón */}
         <div
           className={`
           relative flex items-center justify-center
-          w-16 h-16 bg-green-500 hover:bg-green-600
+          w-16 h-16 bg-primary-light hover:bg-primary
           text-white rounded-full shadow-lg
           transition-all duration-300
           hover:scale-110 hover:shadow-2xl

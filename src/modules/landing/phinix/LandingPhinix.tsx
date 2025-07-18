@@ -20,6 +20,7 @@ import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
 import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
 import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
+import ConsultarySection from "./components/ConsultarySection";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
@@ -168,6 +169,9 @@ const LandingPhinix = () => {
         key="news"
         cards={novedades}
       />
+
+      {/* Consultoría Form */}
+      <ConsultarySection />
 
       {/* Footer */}
       <Footer
