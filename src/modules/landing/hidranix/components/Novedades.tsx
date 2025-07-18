@@ -1,9 +1,9 @@
-import { AnimationComponent } from "../../animation/AnimationComponent";
-import NovedadItem from "./NovedadItem";
+import { motion } from "framer-motion"; // Usamos motion para la animación
 
 import imagen1 from '../../../../assets/novedades/1may2025.jpeg';
 import imagen2 from '../../../../assets/novedades/24abr2025.jpeg';
 import imagen3 from '../../../../assets/novedades/21abr2025.jpeg';
+import NovedadItem from "./NovedadItem";
 
 interface Post {
   title: string;
@@ -39,37 +39,64 @@ const companyPosts: Post[] = [
 
 const Novedades = () => {
   return (
-    <section id="novedades" className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden">
+    <section
+      id="novedades"
+      className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden"
+    >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimationComponent
+        <motion.div
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.3 }, // Acelerar animación de aparición
+            },
           }}
+          initial="hidden"
+          whileInView="visible"
+          className="text-center"
         >
-          <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-primary-light to-slate-900 bg-clip-text text-transparent">
-                Novedades
-              </span>
-            </h2>
-          </div>
-        </AnimationComponent>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-primary-light to-slate-900 bg-clip-text text-transparent">
+              Novedades
+            </span>
+          </h2>
+        </motion.div>
 
-        <AnimationComponent
+        <motion.div
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.3, duration: 0.8 } }
+            visible: {
+              opacity: 1,
+              transition: { delay: 0.1, duration: 0.3 }, // Acelerar aparición del subtítulo
+            },
           }}
+          initial="hidden"
+          whileInView="visible"
         >
           <p className="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto mb-16 px-4">
-            Actualízate con nuestras noticias y publicaciones más recientes.  
+            Actualízate con nuestras noticias y publicaciones más recientes.
           </p>
-        </AnimationComponent>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
           {companyPosts.map((post, index) => (
-            <NovedadItem key={index} post={post} animationDelay={0.5 + index * 0.2} />
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.2 + index * 0.1, duration: 0.3 }, // Reducir el delay para las tarjetas
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+            >
+              <NovedadItem key={index} post={post} animationDelay={0.1 + index * 0.2} />
+            </motion.div>
           ))}
         </div>
       </div>

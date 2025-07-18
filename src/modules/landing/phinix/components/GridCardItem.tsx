@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { AnimationComponent } from "../../animation/AnimationComponent";
-import { CardItemContent } from "../../shared/interfaces";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { motion } from "framer-motion"; // Importa motion para la animación
+import { motion } from "framer-motion"; // Usamos motion para la animación
+import { CardItemContent } from "../../shared/interfaces";
 
 interface Props {
   item: CardItemContent;
@@ -16,7 +15,7 @@ const modalVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { type: "spring", duration: 0.4, damping: 12 },
+    transition: { type: "spring", duration: 0.2, damping: 12 }, // Acelerar la animación del modal
   },
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.2 } },
 };
@@ -35,7 +34,6 @@ export const GridCardItem = ({
     : description;
 
   const handleOpenModal = () => {
-    // setIsOpen(true && isClickable);
     setIsOpen(isClickable);
   };
 
@@ -45,7 +43,7 @@ export const GridCardItem = ({
 
   return (
     <>
-      <AnimationComponent
+      <motion.div
         variants={{
           hidden: { opacity: 0, x: 100 },
           visible: {
@@ -53,10 +51,10 @@ export const GridCardItem = ({
             x: 0,
             transition: {
               type: "spring",
-              delay: animationDelay,
-              stiffness: 20,
-              damping: 10,
-              duration: 0.6,
+              delay: animationDelay, // Reducir el delay para acelerar la aparición
+              stiffness: 25, // Acelerar la animación
+              damping: 8, // Reducir el damping para una animación más rápida
+              duration: 0.3, // Acelerar la animación de la tarjeta
             },
           },
         }}
@@ -66,6 +64,9 @@ export const GridCardItem = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleOpenModal} // Abrir al hacer click en la tarjeta también
+        whileInView="visible" // Esto hace que la animación comience tan pronto como entre en la vista
+        initial="hidden" // Estado inicial de la animación
+        viewport={{ once: false }} // Esto asegura que la animación se repita cada vez que entra en la vista
       >
         {imgSrc && (
           <img
@@ -99,7 +100,7 @@ export const GridCardItem = ({
             </div>
           )}
         </div>
-      </AnimationComponent>
+      </motion.div>
 
       {/* Modal/Ventana */}
       {isOpen && (

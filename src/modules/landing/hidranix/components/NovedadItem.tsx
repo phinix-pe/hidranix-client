@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AnimationComponent } from "../../animation/AnimationComponent";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { motion } from 'framer-motion'; // Importa motion para la animación
@@ -17,7 +16,7 @@ interface PostProps {
 
 const modalVariants = {
   initial: { scale: 0.8, opacity: 0 },
-  animate: { scale: 1, opacity: 1, transition: { type: 'spring', duration: 0.4, damping: 12 } },
+  animate: { scale: 1, opacity: 1, transition: { type: 'spring', duration: 0.2, damping: 12 } },
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.2 } },
 };
 
@@ -36,17 +35,30 @@ const NovedadItem: React.FC<PostProps> = ({ post, animationDelay }) => {
 
   return (
     <>
-      <AnimationComponent
+      <motion.div
         variants={{
           hidden: { opacity: 0, x: 100 },
-          visible: { opacity: 1, x: 0, transition: { type: 'spring', delay: animationDelay, stiffness: 20, damping: 10, duration: 0.6 } },
+          visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+              type: 'spring',
+              delay: animationDelay, // Reducir el delay para que aparezcan más rápido
+              stiffness: 25, // Acelerar la animación
+              damping: 8, // Reducir el damping para una animación más rápida
+              duration: 0.3, // Acelerar la animación
+            },
+          },
         }}
+        initial="hidden"
+        whileInView="visible" // Empieza la animación cuando entra en la vista
+        viewport={{ once: false }} // Hace que la animación ocurra cada vez que el componente entra en la vista
         className={`bg-white rounded-lg shadow-md overflow-hidden ${
           isHovered ? 'scale-105 transition-transform duration-300' : ''
         } cursor-pointer`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={handleOpenModal} // Abrir al hacer click en la tarjeta también
+        onClick={handleOpenModal}
       >
         {post.image && (
           <img
@@ -73,7 +85,7 @@ const NovedadItem: React.FC<PostProps> = ({ post, animationDelay }) => {
             </button>
           </div>
         </div>
-      </AnimationComponent>
+      </motion.div>
 
       {/* Modal/Ventana */}
       {isOpen && (

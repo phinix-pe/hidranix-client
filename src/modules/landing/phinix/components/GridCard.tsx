@@ -16,7 +16,7 @@ export const GridCard = ({ title, subTitle, cards, isClickable }: Props) => {
         <AnimationComponent
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }, // Reducir la duración para acelerar la animación
           }}
         >
           <div className="text-center">
@@ -31,7 +31,7 @@ export const GridCard = ({ title, subTitle, cards, isClickable }: Props) => {
         <AnimationComponent
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.2, duration: 0.5 } },
+            visible: { opacity: 1, transition: { delay: 0.1, duration: 0.25 } }, // Acelerar aparición de subtítulo
           }}
         >
           <p className="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto mb-16 px-4">
@@ -44,7 +44,7 @@ export const GridCard = ({ title, subTitle, cards, isClickable }: Props) => {
             <GridCardItem
               key={index}
               item={item}
-              animationDelay={0.5 + index * 0.2}
+              animationDelay={0.25 + index * 0.1} // Reducir el delay para acelerar la animación de las tarjetas
               isClickable={isClickable}
             />
           ))}
@@ -53,3 +53,4 @@ export const GridCard = ({ title, subTitle, cards, isClickable }: Props) => {
     </section>
   );
 };
+
