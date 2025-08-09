@@ -47,6 +47,7 @@ const NavbarPhinix = () => {
           <Link to="/hidranix">Hidranix</Link>
           <Link to="/srrobot">Sr.Robot</Link>
           <Link to="/maguna">Maguna</Link>
+          <Link to="/econix">Econix</Link>
           {/* Enlace al Consultoría */}
           <a href="#consultory">Consultoria</a>
 

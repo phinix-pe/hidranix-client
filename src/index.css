@@ -21,6 +21,7 @@
   /* image */
   --bg-hero-pattern: url("/src/assets/h2_background.webp");
   --bg-hero-pattern-phinix: url("/src/assets/background-phinix.webp");
+  --bg-hero-pattern-econix: url("/src/assets/background-econix.jpg");
 }
 
 .bg-hero-pattern-with-opacity {
@@ -53,6 +54,23 @@
   background-position: center;
 }
 
+.bg-hero-pattern-with-opacity-econix {
+  position: relative; /* Necesario para posicionar el pseudo-elemento */
+  background-image: var(--bg-hero-pattern-econix);
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-hero-pattern-with-opacity-econix::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2459611e;
+  opacity: 0.8;
+}
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text; /* Para soporte en navegadores antiguos */
