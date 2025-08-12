@@ -3,7 +3,10 @@ import logoEconix from "../../../../assets/Logo_Econix.png";
 
 export const InicioEconix = () => {
   return (
-    <div className="bg-hero-pattern-with-opacity-econix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap">
+    <div
+      id="inicio"
+      className="bg-hero-pattern-with-opacity-econix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap"
+    >
       <AnimationComponent
         className="text-center max-w-2xl px-4  md:-mt-40"
         variants={{

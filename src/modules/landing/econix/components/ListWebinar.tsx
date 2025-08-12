@@ -1,20 +1,20 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
-import { CardItemContent } from "../../shared/interfaces";
-import { GridCardItem } from "./GridCardItem";
+import { WebinarItemContent } from "../../shared/interfaces";
+import { WebinarListItem } from "./WebinarListItem";
 
 interface Props {
   id?: string;
   title: string;
   subTitle: string;
-  cards: CardItemContent[];
-  isClickable?: boolean; // Prop opcional para controlar si es clickeable
+  webinars: WebinarItemContent[];
+  isClickable?: boolean;
 }
 
-export const GridCard = ({
+export const ListWebinar = ({
   id,
   title,
   subTitle,
-  cards,
+  webinars,
   isClickable,
 }: Props) => {
   return (
@@ -22,11 +22,11 @@ export const GridCard = ({
       id={id}
       className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimationComponent
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }, // Reducir la duración para acelerar la animación
+            visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
           }}
         >
           <div className="text-center">
@@ -41,7 +41,7 @@ export const GridCard = ({
         <AnimationComponent
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.1, duration: 0.25 } }, // Acelerar aparición de subtítulo
+            visible: { opacity: 1, transition: { delay: 0.1, duration: 0.25 } },
           }}
         >
           <p className="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto mb-16 px-4">
@@ -49,12 +49,12 @@ export const GridCard = ({
           </p>
         </AnimationComponent>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
-          {cards.map((item, index) => (
-            <GridCardItem
+        <div className="flex flex-col gap-8">
+          {webinars.map((item, index) => (
+            <WebinarListItem
               key={index}
               item={item}
-              animationDelay={0.25 + index * 0.1} // Reducir el delay para acelerar la animación de las tarjetas
+              animationDelay={0.25 + index * 0.1}
               isClickable={isClickable}
             />
           ))}
