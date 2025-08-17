@@ -2,11 +2,16 @@ import { useEffect } from "react";
 import { InicioEconix } from "./components/InicioEconix";
 import { NavBarEconix } from "./components/NavBarEconix";
 import { NosotrosEconix } from "./components/NosotrosEconix";
-import { Contact, WebinarItemContent } from "../shared/interfaces";
+import {
+  Contact,
+  CourseItemContent,
+  WebinarItemContent,
+} from "../shared/interfaces";
 import Footer from "../shared/components/Footer";
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 import { ListWebinar } from "./components/ListWebinar";
 import webinar1 from "../../../assets/webinar1.jpg";
+import { ListCourse } from "./components/ListCourse";
 
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
@@ -45,6 +50,18 @@ const customContacts: Contact[] = [
   },
 ];
 
+const courses: CourseItemContent[] = [
+  {
+    name: "Hidrógeno Verde: Generación y Almacenamiento para Aplicaciones Energéticas Sostenibles",
+    startDate: "02/09/2025",
+    endDate: "09/10/2025",
+    duration: "36 horas",
+    modality: "Online",
+    schedule: "Martes y jueves 7:00 p.m. - 8:30 p.m.",
+    moreInfoPath:
+      "/econix/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles",
+  },
+];
 export const LandingEconix = () => {
   useEffect(() => {
     document.title = "Econix - Phinix";
@@ -59,6 +76,12 @@ export const LandingEconix = () => {
         webinars={webinars}
         title="Webinars"
         subTitle="Únete a nuestros webinars"
+      />
+      <ListCourse
+        id="cursos"
+        title="Nuestros Cursos"
+        subTitle="Capacítate con nuestros programas especializados"
+        courses={courses}
       />
       {/* Footer */}
       <Footer
