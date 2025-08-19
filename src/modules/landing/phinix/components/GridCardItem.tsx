@@ -4,11 +4,15 @@ import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion"; // Usamos motion para la animación
 import { CardItemContent } from "../../shared/interfaces";
 
+
 interface Props {
   item: CardItemContent;
   isClickable?: boolean; // Prop opcional para controlar si es clickeable
   animationDelay: number;
+  minWidth?: number; // ancho mínimo en px
+  equalHeight?: boolean; // Prop opcional para igualar alturas
 }
+
 
 const modalVariants = {
   initial: { scale: 0.8, opacity: 0 },
@@ -20,26 +24,41 @@ const modalVariants = {
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.2 } },
 };
 
+
+
+
+
+
 export const GridCardItem = ({
   item,
   animationDelay,
   isClickable = true,
+  minWidth , // Ancho mínimo por defecto
+  equalHeight = false, // Igualar alturas por defecto
 }: Props) => {
   const { date, description, imgSrc, title, chipContent } = item;
 
+
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+ 
+  const safeDescription = description ?? "";
+
+
   const descriptionToShow = isClickable
-    ? description.slice(0, 100)
-    : description;
+    ? safeDescription.slice(0, 100)
+    : safeDescription;
+
 
   const handleOpenModal = () => {
     setIsOpen(isClickable);
   };
 
+
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
 
   return (
     <>
@@ -58,9 +77,10 @@ export const GridCardItem = ({
             },
           },
         }}
-        className={`bg-white rounded-lg shadow-md overflow-hidden ${
+        className={` bg-white rounded-lg shadow-md overflow-hidden ${
           isHovered ? "scale-105 transition-transform duration-300 " : ""
         } ${isClickable ? "cursor-pointer" : ""}`}
+        style={{ minWidth: minWidth}} //
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleOpenModal} // Abrir al hacer click en la tarjeta también
@@ -75,19 +95,39 @@ export const GridCardItem = ({
             className="w-full h-auto object-cover aspect-video"
           />
         )}
-        <div className="p-6">
+        <div className={`p-6 flex-grow ${equalHeight ? "flex flex-col" : ""}`}>
           {chipContent && (
             <span className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-3 py-1 mb-2">
               {chipContent}
             </span>
           )}
           <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
-          <p className="relative text-gray-700">
-            {descriptionToShow}
-            {description.length > 100 && isClickable && (
-              <span className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent"></span>
+
+
+          {/*INICIO Cammbios dos columnas */}
+           {/* CONTENIDO DE DESCRIPCIÓN (CON TODAS LAS FUNCIONALIDADES) */}
+          <div className={`text-gray-700 ${item.twoColumns ? "grid grid-cols-2 gap-6" : ""}`}>
+            {item.twoColumns && item.descriptionCol1 && item.descriptionCol2 ? (
+              <>
+                <div className="whitespace-pre-line">{item.descriptionCol1}</div>
+                <div className="whitespace-pre-line">{item.descriptionCol2}</div>
+              </>
+            ) : item.description?.includes('<') ? (
+              <div
+                className="whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
+            ) : (
+              <p className="whitespace-pre-line">
+                {descriptionToShow}
+                {safeDescription.length > 100 && isClickable && (
+                  <span className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent"></span>
+                )}
+              </p>
             )}
-          </p>
+          </div>
+          {/* FIN Cammbios dos columnas */}
+
 
           {isClickable && (
             <div className="flex justify-center mt-4">
@@ -101,6 +141,7 @@ export const GridCardItem = ({
           )}
         </div>
       </motion.div>
+
 
       {/* Modal/Ventana */}
       {isOpen && (
@@ -147,3 +188,6 @@ export const GridCardItem = ({
     </>
   );
 };
+
+
+

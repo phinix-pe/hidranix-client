@@ -19,9 +19,13 @@ import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
 import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
 import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
 import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
+import phinixContacto from "../../../assets/phinix_contacto.png";
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 import ConsultarySection from "./components/ConsultarySection";
-
+import iconoLinkedin from "../../../assets/icons/linkedin.svg";
+import iconoFacebook from "../../../assets/icons/facebook.svg";
+import iconoInstagram from "../../../assets/icons/instagram.svg";
+import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -142,6 +146,68 @@ const customContacts: Contact[] = [
   // },
 ];
 
+// Servicios Agregados phinix
+const presentacion: CardItemContent[] = [
+  {
+    title: "SOBRE NOSOTROS",
+    description:
+      `Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas.`,
+  },
+  
+  {
+    title: "MISIÓN Y VISIÓN",
+    descriptionCol1: `Desarrollar e implementar
+                      soluciones tecnológicas
+                      innovadoras en energía,
+                      automatización y sostenibilidad,
+                      contribuyendo al desarrollo de
+                      una sociedad más eficiente,
+                      limpia y consciente.
+                      Nos enfocamos en la
+                      excelencia operativa, el
+                      compromiso con nuestros
+                      clientes y el impacto positivo en
+                      las comunidades donde
+                      operamos.`,
+    descriptionCol2: `Ser una empresa
+                      referente en América
+                      Latina en soluciones
+                      integrales de energía
+                      renovable,
+                      automatización y
+                      sostenibilidad,
+                      liderando la
+                      transformación
+                      tecnológica hacia un
+                      futuro más verde,
+                      inteligente e inclusivo.`,
+    
+    twoColumns: true,
+  },
+  {
+    title: "NUESTROS VALORES",
+    descriptionCol1: `• Innovación continua: Buscamos constantemente nuevas ideas y tecnologías...\n
+                      • Compromiso con la sostenibilidad: Actuamos con responsabilidad ambiental...\n
+                      • Excelencia técnica: Garantizamos calidad, precisión y seguridad en cada proyecto.`,
+    descriptionCol2: `• Ética y transparencia: Mantenemos relaciones honestas y responsables...\n
+                      • Cercanía y servicio al cliente: Escuchamos, entendemos y acompañamos...\n
+                      • Impacto social: Promovemos el desarrollo local y la inclusión...\n
+                      • Sostenibilidad: Buscamos equilibrio entre economía, medio ambiente y sociedad.`,
+    
+    twoColumns: true,
+  },
+  {
+    title: "CONTACTO",
+    description: `
+    Contáctanos
+    <img src="${iconoLinkedin}" alt="LinkedIn" class="inline-icon" /> PHINIX S.A.C.
+    <img src="${iconoFacebook}" alt="Facebook" class="inline-icon" /> PHINIX S.A.C.
+    <img src="${iconoInstagram}" alt="Instagram" class="inline-icon" /> phinix.sac
+    <img src="${iconoWhatsapp}" alt="WhatsApp" class="inline-icon" /> +51 916 699 070
+    `,
+    imgSrc: phinixContacto,
+  },
+]
 const LandingPhinix = () => {
   return (
     <div>
@@ -149,6 +215,18 @@ const LandingPhinix = () => {
       <NavbarPhinix />
 
       <InicioPhinix />
+      {/* Agregando cambios phinix */}
+      <GridCard
+        title="Presentación de PHINIX S.A.C."
+        subTitle=""
+        key="presentacion"
+        cards={presentacion}
+        isClickable={false} // No clickable for services
+        minWidth={380}
+        equalHeight={true} // Igualar alturas para presentación
+      />
+
+      {/* Fin de cambios phinix */}
 
       <GridCard
         title="Servicios"
