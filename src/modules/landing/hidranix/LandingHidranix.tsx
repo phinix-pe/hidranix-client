@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Nosotros from "./components/Nosotros";
 import Novedades from "./components/Novedades";
 import Servicios from "./components/Servicios";
+import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
+import { Contact } from "../shared/interfaces";
 
 const hidranixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -13,6 +15,14 @@ const hidranixSocialLinks = {
   linkedinUrl: "https://linkedin.com/company/hidranix",
   tiktokUrl: "https://www.tiktok.com/@phinix.hidranix",
 };
+
+const customContacts: Contact[] = [
+  {
+    name: "Asesor Hidranix",
+    number: "+51916699070",
+    message: "Hola, me gustaría saber mas informacion del producto Hidranix...",
+  },
+];
 
 const LandingHidranix = () => {
   return (
@@ -30,6 +40,7 @@ const LandingHidranix = () => {
         slogan="Soluciones innovadoras en hidráulica"
         pageName="Hidranix"
       />
+      <WhatsAppCTAMultiple contacts={customContacts} />
     </div>
   );
 };
