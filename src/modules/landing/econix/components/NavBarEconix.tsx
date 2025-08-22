@@ -4,6 +4,7 @@ import SimpleButton from "../../animation/SimpleButton";
 import BlurButton from "../../animation/BlurButton";
 import { HiMenu, HiX } from "react-icons/hi";
 import logoEconix from "../../../../assets/Logo_Econix.png";
+import logoEconixWhite from "../../../../assets/Logo_Econix_white.png";
 
 const links = [
   { name: "Inicio", path: "#inicio" },
@@ -13,7 +14,15 @@ const links = [
   // { name: "Clientes", path: "#clientes" },
 ];
 
-export const NavBarEconix = () => {
+export const NavBarEconix = ({
+  variantColor = false,
+  showTitle = false,
+  title = "Curso...",
+}: {
+  variantColor?: boolean;
+  showTitle?: boolean;
+  title?: string;
+}) => {
   const location = useLocation(); // Para obtener la ruta actual
   const [isOpen, setIsOpen] = useState(false); // Para controlar la visibilidad del menú móvil
   const [scrollY, setScrollY] = useState(0);
@@ -35,6 +44,7 @@ export const NavBarEconix = () => {
     // Cerrar el menú cuando se haga clic en un enlace
     if (isOpen) setIsOpen(false);
   };
+
   return (
     <nav
       className="p-4 fixed w-full top-0 z-50 transition-colors duration-300"
@@ -45,9 +55,24 @@ export const NavBarEconix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center text-xl font-bold">
-          <Link to="/econix" className={`flex items-center text-primary-dark`}>
+          <Link
+            to="/econix"
+            className={`flex items-center ${
+              variantColor
+                ? scrollY > 0
+                  ? "text-primary-dark"
+                  : "text-white"
+                : "text-primary-dark"
+            }`}
+          >
             <img
-              src={logoEconix}
+              src={
+                variantColor
+                  ? scrollY === 0
+                    ? logoEconixWhite
+                    : logoEconix
+                  : logoEconix
+              }
               alt="Logo Econix"
               className="w-8 h-8 inline-block mr-2"
             />
@@ -57,21 +82,43 @@ export const NavBarEconix = () => {
 
         {/* Menú de escritorio */}
         <div className="text-primary-dark hidden xl:flex items-center gap-8 font-bold">
-          {links.map((link, index) => (
-            <Link
-              key={index}
-              to={link.path}
-              onClick={() => scrollToSection(link.path.slice(1))}
-              className={`${
-                location.pathname === link.path
-                  ? "text-accent border-b-2 border-accent"
-                  : ""
-              } capitalize hover:text-accent transition-all 
-              text-primary-dark`}
+          {showTitle ? (
+            <span
+              className={` -mr-10 ${
+                variantColor
+                  ? scrollY != 0
+                    ? "text-primary-dark"
+                    : "text-white"
+                  : "text-primary-dark"
+              }`}
             >
-              {link.name}
-            </Link>
-          ))}
+              {title}
+            </span>
+          ) : (
+            <>
+              {links.map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.path}
+                  onClick={() => scrollToSection(link.path.slice(1))}
+                  className={`${
+                    location.pathname === link.path
+                      ? "text-accent border-b-2 border-accent"
+                      : ""
+                  } capitalize hover:text-accent transition-all 
+              ${
+                variantColor
+                  ? scrollY != 0
+                    ? "text-primary-dark"
+                    : "text-white"
+                  : "text-primary-dark"
+              } `}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </>
+          )}
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
@@ -91,7 +138,16 @@ export const NavBarEconix = () => {
             {isOpen ? (
               <HiX size={30} className="text-white" />
             ) : (
-              <HiMenu size={30} className={"text-primary-dark"} />
+              <HiMenu
+                size={30}
+                className={
+                  variantColor
+                    ? scrollY > 0
+                      ? "text-primary-dark"
+                      : "text-white"
+                    : "text-primary-dark"
+                }
+              />
             )}
           </button>
         </div>

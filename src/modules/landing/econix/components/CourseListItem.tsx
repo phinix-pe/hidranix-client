@@ -38,6 +38,7 @@ export const CourseListItem = ({ item, animationDelay = 0 }: Props) => {
         <div className="mt-4">
           <Link
             to={item.moreInfoPath}
+            target="_blank"
             className="inline-block bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors"
           >
             Más información

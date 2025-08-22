@@ -11,6 +11,7 @@ import LandingPhinix from "./modules/landing/phinix/LandingPhinix";
 import LandingHidranix from "./modules/landing/hidranix/LandingHidranix";
 import DashboardPage from "./modules/dashboard/pages/DashboardPage";
 import { LandingEconix } from "./modules/landing/econix/LandingEconix";
+import { CourseH2V002 } from "./modules/landing/econix/cursos/curso-H2V002/CourseH2V002";
 
 export default function App() {
   return (
@@ -20,6 +21,11 @@ export default function App() {
         <Route path="/" element={<LandingPhinix />} />
         <Route path="/hidranix" element={<LandingHidranix />} />
         <Route path="/econix" element={<LandingEconix />} />
+
+        <Route
+          path="/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles"
+          element={<CourseH2V002 />}
+        />
 
         {/* Páginas de autenticación */}
         <Route path="/login" element={<LoginPage />} />

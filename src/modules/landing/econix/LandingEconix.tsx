@@ -59,7 +59,7 @@ const courses: CourseItemContent[] = [
     modality: "Online",
     schedule: "Martes y jueves 7:00 p.m. - 8:30 p.m.",
     moreInfoPath:
-      "/econix/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles",
+      "/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles",
   },
 ];
 export const LandingEconix = () => {
