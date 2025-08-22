@@ -15,21 +15,23 @@ const NavbarPhinix = () => {
   // Función para cerrar el menú en móviles cuando se hace clic en un enlace
   const closeMenu = () => setIsOpen(false);
 
+
+  // Función para hacer scroll suave hacia las secciones y cerrar el menú móvil
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Cerrar el menú cuando se haga clic en un enlace
+    if (isOpen) setIsOpen(false);
+  };
+
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const servicios = [
-    { name: "Hidranix", path: "/hidranix" },
-    { name: "Econix", path: "/econix" },
-    { name: "Pozo a Tierra", path: "/pozo-a-tierra" },
-    { name: "Mantenimiento Eléctrico", path: "/mantenimiento-electrico" },
-    { name: "Automatización Domótica", path: "/domotica" },
-    { name: "Servicios HVAC", path: "/hvac" },
-    { name: "Impresiones 3D", path: "/impresiones-3d" },
-  ];
   const servicios_link = [
     { name: "Hidranix", path: "/hidranix" },
     { name: "Econix", path: "/econix" },
@@ -53,26 +55,35 @@ const NavbarPhinix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-primary-dark text-xl font-extrabold">
-          <Link to="/">
+          <Link to="/" className={`flex items-center ${
+              scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
+            }`}>
             <img
               src={phinixLogo}
               alt="Phinix Logo"
-              className="w-8 h-8 inline-block mr-2"
+              className="w-8 h-8 inline-block mr-2"              
             />
             Phinix
           </Link>
         </div>
 
         {/* Menú de escritorio */}
-        <div className="text-primary-dark hidden xl:flex items-center gap-8 font-bold">
-          {/* Enlaces de productos */}
-          <Link to="/">Inicio</Link>
-          <Link to="/">Nosotros</Link>
-          {/* <Link to="/srrobot">Sr.Robot</Link>
-          <Link to="/maguna">Maguna</Link> */}
-          {/* Dropdown dinámico de Servicios href */}
+        <div className="hidden xl:flex items-center gap-8 font-bold">
+          {/* Enlaces de secciones dentro de la pagina */}
+          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Inicio</Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#nosotros".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Nosotros</Link>
+          {/* Enlaces dentro de servicios */}
           <div className="relative group">
-            <button className="cursor-pointer">
+            <button className={`cursor-pointer flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`} >
               Servicios ▾
             </button>
             <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
@@ -98,8 +109,12 @@ const NavbarPhinix = () => {
             </div>
           </div>
 
-          <Link to="/">Contacto</Link>
-
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#contacto".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Contacto</Link>
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">

@@ -62,7 +62,10 @@ const ConsultarySection = () => {
       }}
       className="min-h-screen bg-white py-20 pt-32"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        id="contacto"
+        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col xl:flex-row gap-[30px] justify-center items-center">
           {/* form */}
           <div className="xl:w-[54%] order-2 xl:order-none">
@@ -103,7 +106,7 @@ const ConsultarySection = () => {
                   onChange={handleChange}
                   className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-dark"
                 >
-                  <option value="" disabled selected>Asunto</option>
+                  <option value="" disabled>Asunto</option>
                   <option value="consulta">Consulta</option>
                   <option value="soporte">Soporte</option>
                   <option value="colaboracion">Cotización</option>

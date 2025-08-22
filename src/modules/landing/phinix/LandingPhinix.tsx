@@ -273,6 +273,7 @@ const LandingPhinix = () => {
       <InicioPhinix />
       {/* Agregando cambios phinix */}
       <GridCard
+        id="nosotros"
         title="Presentación de PHINIX S.A.C."
         subTitle=""
         key="presentacion"

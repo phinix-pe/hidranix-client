@@ -1,4 +1,3 @@
-import React from "react";
 import { AnimationComponent } from "../../animation/AnimationComponent";
 import { FaLeaf, FaRegLightbulb, FaRocket } from "react-icons/fa";
 
