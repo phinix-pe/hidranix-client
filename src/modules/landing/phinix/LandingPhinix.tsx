@@ -19,9 +19,15 @@ import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
 import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
 import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
 import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
+import phinixContacto from "../../../assets/phinix_contacto.png";
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 import ConsultarySection from "./components/ConsultarySection";
-
+import iconoLinkedin from "../../../assets/icons/linkedin.svg";
+import iconoFacebook from "../../../assets/icons/facebook.svg";
+import iconoInstagram from "../../../assets/icons/instagram.svg";
+import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
+import phinixServiciosHVAC from "../../../assets/phinix_servicios_hvac.png";
+import phinixImpresiones3D from "../../../assets/phinix_impresiones_3d.png";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -111,22 +117,75 @@ const novedades: CardItemContent[] = [
 
 const servicios: CardItemContent[] = [
   {
+    id: "pozo-a-tierra",
     title: "Pozo a Tierra + Certificado",
-    description:
-      "Protege a tus equipos y colaboradores de accidentes eléctricos, cumple con las normativas vigentes y evita posibles sanciones. Con nuestra instalación técnica especializada, medición precisa con telurómetro y un completo reporte técnico, obtendrás un certificado oficial que garantiza la seguridad de tu infraestructura.",
+    descriptionCol1: `Beneficios clave
+    • Previene accidentes eléctricos.
+    • Evita sanciones normativas.
+    • Protege equipos y personas.`,
+    descriptionCol2: `Incluye
+    • Instalación técnica especializada.
+    • Medición con telurémetro.
+    • Reporte Técnico y planos.
+    • Certificadooficial.`,
+    twoColumns: true,
     imgSrc: phinixPozoTierra,
   },
   {
+    id: "mantenimiento-electrico",
     title: "Mantenimiento Eléctrico para Empresas y PYMEs",
-    description:
-      "Asegura el correcto funcionamiento de tus instalaciones eléctricas, evitando fallas que puedan generar paradas operativas, recalentamientos o incendios. Realizamos una inspección exhaustiva de tus tableros eléctricos, limpieza técnica y reapriete de conexiones, entregándote un informe técnico con recomendaciones para mantener tus sistemas siempre a punto.",
+    descriptionCol1: `Beneficios clave
+    • Previene fallas eléctricas.
+    • Evita apradas operativas, recalentamientos o incendios.
+    • Cumple con estándares de seguridad.`,
+    descriptionCol2: `Incluye
+    • Inspección de tableros eléctricos.
+    • Limpieza técnica y reaprite de conexiones.
+    • Informe técnico con recomendaciones.`,
+    twoColumns: true,
     imgSrc: phinixMantenimientoElectrico,
   },
   {
-    title: "Automatización Domótica",
-    description:
-      "Transforma tu espacio en un entorno más cómodo, seguro y eficiente con la automatización domótica. Controla las luces y dispositivos desde tu smartphone o mediante asistentes virtuales como Alexa o Google Home. Además, con sensores de movimiento y cámaras de seguridad, lograrás un ahorro energético y una modernización total de tu hogar o empresa.",
+    id: "automatizacion-domotica",
+    title: "Automatización Domótica (Smart Home)",
+    descriptionCol1: `Beneficios clave
+    • Mejora la comodidad y seguridad de tu espacio.
+    • Control remoto desde app o asistentes virtuales.
+    • Ahorro energético y modernización del ambiente`,
+    descriptionCol2: `Incluye
+    • Instalación de control de luces por app o voz.
+    • Sensores de movimiento y cámaras.
+    • Compataibilidad con Alexa y Google Home.`,
+    twoColumns: true,
     imgSrc: phinixSmartHome,
+  },
+  {
+    id: "servicios-hvac",
+    title: "Servicios HVAC",
+    descriptionCol1: `Beneficios clave
+    • Mejora el confort térmico.
+    • Optimiza el consumo energético.
+    • Reduce el riesgo de fallas y sobrecargas.`,
+    descriptionCol2: `Incluye
+    • Instalación y mantenimiento de equipos HVAC.
+    • Soluciones de ventilación, calefaccción y aire acondicionado.
+    • Diagnóstico técnico y recomendaciones.`,
+    twoColumns: true,
+    imgSrc: phinixServiciosHVAC,
+  },
+  {
+    id: "impresiones-3d",
+    title: "Impresiones 3D en Resina",
+    descriptionCol1: `Beneficios clave
+    • Prototipado preciso y rápido.
+    • Alta resolución y acabados.
+    • Adaptable a multiples industrias.`,
+    descriptionCol2: `Incluye
+    • Prototipado preciso y rápido.
+    • Alta resolución y acabados profesionales.
+    • Adaptable a multiples industrias.`,
+    twoColumns: true,
+    imgSrc: phinixImpresiones3D,
   },
 ];
 const customContacts: Contact[] = [
@@ -141,7 +200,70 @@ const customContacts: Contact[] = [
   //   message: "Hola, necesito ayuda técnica",
   // },
 ];
-
+// #088c9c rgb(8,140,156)
+// Servicios Agregados phinix
+const presentacion: CardItemContent[] = [
+  {
+    title: "SOBRE NOSOTROS",
+    description:
+      `Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas.`,
+  },
+  
+  {
+    title: "MISIÓN Y VISIÓN",
+    descriptionCol1: `Desarrollar e implementar
+                      soluciones tecnológicas
+                      innovadoras en energía,
+                      automatización y sostenibilidad,
+                      contribuyendo al desarrollo de
+                      una sociedad más eficiente,
+                      limpia y consciente.
+                      Nos enfocamos en la
+                      excelencia operativa, el
+                      compromiso con nuestros
+                      clientes y el impacto positivo en
+                      las comunidades donde
+                      operamos.`,
+    descriptionCol2: `Ser una empresa
+                      referente en América
+                      Latina en soluciones
+                      integrales de energía
+                      renovable,
+                      automatización y
+                      sostenibilidad,
+                      liderando la
+                      transformación
+                      tecnológica hacia un
+                      futuro más verde,
+                      inteligente e inclusivo.`,
+    
+    twoColumns: true,
+  },
+  {
+    title: "NUESTROS VALORES",
+    descriptionCol1: `• Innovación continua: Buscamos constantemente nuevas ideas y tecnologías que nos permitan mejorar nuestros productos y servicios.\n
+                      • Compromiso con la sostenibilidad: Actuamos con responsabilidad ambiental y promovemos el uso eficiente de los recursos.\n
+                      • Excelencia técnica: Garantizamos calidad, precisión y seguridad en cada proyecto que desarrollamos.\n
+                      • Ética y transparencia: Mantenemos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.`,
+    descriptionCol2: `• Cercanía y servicio al cliente: Escuchamos, entendemos y acompañamos a nuestros clientes para brindar soluciones a la medida\n
+                      • Colaboración: Fomentamos el trabajo en equipo y las aliaanzas estratégicas para crecer juntos.\n
+                      • Impacto social: Promovemos el desarrollo local y la inclusión a travez de nuestras iniciativas tecnológicas y educativas.\n
+                      • Sostenibilidad: Buscamos equilibrio en tres aspectos clave el crecimeinto económico, la protección del medio ambiente y el binestarsocial`,
+    
+    twoColumns: true,
+  },
+  {
+    title: "CONTACTO",
+    description: `
+    Contáctanos
+    <img src="${iconoLinkedin}" alt="LinkedIn" class="inline-icon" /> PHINIX S.A.C.
+    <img src="${iconoFacebook}" alt="Facebook" class="inline-icon" /> PHINIX S.A.C.
+    <img src="${iconoInstagram}" alt="Instagram" class="inline-icon" /> phinix.sac
+    <img src="${iconoWhatsapp}" alt="WhatsApp" class="inline-icon" /> +51 916 699 070
+    `,
+    imgSrc: phinixContacto,
+  },
+]
 const LandingPhinix = () => {
   return (
     <div>
@@ -149,13 +271,26 @@ const LandingPhinix = () => {
       <NavbarPhinix />
 
       <InicioPhinix />
+      {/* Agregando cambios phinix */}
+      <GridCard
+        title="Presentación de PHINIX S.A.C."
+        subTitle=""
+        key="presentacion"
+        cards={presentacion}
+        isClickable={false} // No clickable for services
+        minWidth={380}
+        equalHeight={true} // Igualar alturas para presentación
+      />
+
+      {/* Fin de cambios phinix */}
 
       <GridCard
         title="Servicios"
-        subTitle="Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas."
+        subTitle="Dirigido a Empresas, viviendas, locales, etc. Que requieren cumplir normas eléctricas o mejorar su seguridad"
         key="services"
         cards={servicios}
         isClickable={false} // No clickable for services
+        equalHeight={true} // Igualar alturas para servicios
       />
       <GridCard
         title="Eventos"

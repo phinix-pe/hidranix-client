@@ -21,6 +21,28 @@ const NavbarPhinix = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+    const servicios = [
+    { name: "Hidranix", path: "/hidranix" },
+    { name: "Econix", path: "/econix" },
+    { name: "Pozo a Tierra", path: "/pozo-a-tierra" },
+    { name: "Mantenimiento Eléctrico", path: "/mantenimiento-electrico" },
+    { name: "Automatización Domótica", path: "/domotica" },
+    { name: "Servicios HVAC", path: "/hvac" },
+    { name: "Impresiones 3D", path: "/impresiones-3d" },
+  ];
+    const servicios_link = [
+    { name: "Hidranix", path: "/hidranix" },
+    { name: "Econix", path: "/econix" },
+  ];
+    const servicios_ref = [
+    { name: "Pozo a Tierra", id: "pozo-a-tierra" },
+    { name: "Mantenimiento Eléctrico", id: "mantenimiento-electrico" },
+    { name: "Automatización Domótica", id: "automatizacion-domotica" },
+    { name: "Servicios HVAC", id: "servicios-hvac" },
+    { name: "Impresiones 3D", id: "impresiones-3d" },
+    { name: "Consultoría", id: "consultory" },
+  ];
+
   return (
     <nav
       className="p-4 fixed w-full top-0 z-50"
@@ -47,9 +69,54 @@ const NavbarPhinix = () => {
           <Link to="/hidranix">Hidranix</Link>
           <Link to="/srrobot">Sr.Robot</Link>
           <Link to="/maguna">Maguna</Link>
-          <Link to="/econix">Econix</Link>
-          {/* Enlace al Consultoría */}
-          <a href="#consultory">Consultoria</a>
+          {/* Dropdown dinámico de Servicios href */}
+          <div className="relative group">
+          <button className="cursor-pointer">
+            Servicios ▾
+          </button>
+          <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
+            {servicios_link.map((servicios_link, index) => (
+                <Link
+                  key={index}
+                  to={servicios_link.path}
+                  className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                >
+                  {servicios_link.name}
+                </Link>
+              ))}
+            {servicios_ref.map((servicios_ref, index) => (
+              <a
+                key={index}
+                href={`#${servicios_ref.id}`} // 👈 Scroll hacia el id en la landing
+                className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                onClick={closeMenu} // opcional: cerrar menú si estás en mobile
+              >
+                {servicios_ref.name}
+              </a>
+            ))}
+          </div>
+        </div>
+          {/* Dropdown de Servicios */}
+
+          {/* Dropdown dinámico de Servicios */}
+          {/*
+          <div className="relative group">
+            <button className="cursor-pointer">
+              Servicios ▾
+            </button>
+            <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
+              {servicios.map((servicio, index) => (
+                <Link
+                  key={index}
+                  to={servicio.path}
+                  className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                >
+                  {servicio.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+          */}
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">

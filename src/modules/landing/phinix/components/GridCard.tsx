@@ -2,21 +2,19 @@ import { AnimationComponent } from "../../animation/AnimationComponent";
 import { CardItemContent } from "../../shared/interfaces";
 import { GridCardItem } from "./GridCardItem";
 
+
 interface Props {
   id?: string;
   title: string;
   subTitle: string;
   cards: CardItemContent[];
   isClickable?: boolean; // Prop opcional para controlar si es clickeable
+  minWidth?: number; // ancho mínimo en px
+  equalHeight?: boolean; // Prop opcional para igualar alturas
 }
 
-export const GridCard = ({
-  id,
-  title,
-  subTitle,
-  cards,
-  isClickable,
-}: Props) => {
+
+export const GridCard = ({ title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false}: Props) => {
   return (
     <section
       id={id}
@@ -38,6 +36,7 @@ export const GridCard = ({
           </div>
         </AnimationComponent>
 
+
         <AnimationComponent
           variants={{
             hidden: { opacity: 0 },
@@ -49,16 +48,32 @@ export const GridCard = ({
           </p>
         </AnimationComponent>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
+
+        <div
+          className="grid gap-8 lg:gap-12 w-full"
+          style={{display: "grid",
+                  gridAutoFlow: "row",
+                  gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 0.5fr))` ,
+                  alignItems: equalHeight ? "stretch" : "start"   }}
+        >
           {cards.map((item, index) => (
             <GridCardItem
               key={index}
               item={item}
-              animationDelay={0.25 + index * 0.1} // Reducir el delay para acelerar la animación de las tarjetas
+              animationDelay={0.25 + index * 0.1}
               isClickable={isClickable}
+              minWidth={minWidth}
+              equalHeight={equalHeight} // Pasar la prop para igualar alturas
+              
             />
           ))}
+          <div>
+            {/* Espacio para el último elemento si es necesario */}
+          </div>
         </div>
+        
+        
+
       </div>
     </section>
   );
