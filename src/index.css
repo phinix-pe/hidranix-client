@@ -7,6 +7,7 @@
   --color-primary: #006a78;
   --color-primary-light: #1a7984;
   --color-primary-dark: #043c42;
+  --color-phinix-teal: #008080;
 
   /* Fonts */
   --font-sans: "Inter", sans-serif;
@@ -61,4 +62,12 @@
 
 html {
   scroll-behavior: smooth;
+}
+/* En tu archivo CSS global */
+.inline-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 4px;
 }
