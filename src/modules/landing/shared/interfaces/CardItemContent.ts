@@ -1,4 +1,5 @@
 export interface CardItemContent {
+  id?: string;
   title: string;
   chipContent?: string;
   description?: string;

@@ -63,6 +63,7 @@ export const GridCardItem = ({
   return (
     <>
       <motion.div
+        id={item.id}
         variants={{
           hidden: { opacity: 0, x: 100 },
           visible: {
@@ -101,7 +102,7 @@ export const GridCardItem = ({
               {chipContent}
             </span>
           )}
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
+          <h3 className="text-xl font-semibold text-phinix-teal mb-2">{title}</h3>
 
 
           {/*INICIO Cammbios dos columnas */}

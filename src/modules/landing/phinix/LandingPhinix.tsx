@@ -26,6 +26,8 @@ import iconoLinkedin from "../../../assets/icons/linkedin.svg";
 import iconoFacebook from "../../../assets/icons/facebook.svg";
 import iconoInstagram from "../../../assets/icons/instagram.svg";
 import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
+import phinixServiciosHVAC from "../../../assets/phinix_servicios_hvac.png";
+import phinixImpresiones3D from "../../../assets/phinix_impresiones_3d.png";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -115,22 +117,75 @@ const novedades: CardItemContent[] = [
 
 const servicios: CardItemContent[] = [
   {
+    id: "pozo-a-tierra",
     title: "Pozo a Tierra + Certificado",
-    description:
-      "Protege a tus equipos y colaboradores de accidentes eléctricos, cumple con las normativas vigentes y evita posibles sanciones. Con nuestra instalación técnica especializada, medición precisa con telurómetro y un completo reporte técnico, obtendrás un certificado oficial que garantiza la seguridad de tu infraestructura.",
+    descriptionCol1: `Beneficios clave
+    • Previene accidentes eléctricos.
+    • Evita sanciones normativas.
+    • Protege equipos y personas.`,
+    descriptionCol2: `Incluye
+    • Instalación técnica especializada.
+    • Medición con telurémetro.
+    • Reporte Técnico y planos.
+    • Certificadooficial.`,
+    twoColumns: true,
     imgSrc: phinixPozoTierra,
   },
   {
+    id: "mantenimiento-electrico",
     title: "Mantenimiento Eléctrico para Empresas y PYMEs",
-    description:
-      "Asegura el correcto funcionamiento de tus instalaciones eléctricas, evitando fallas que puedan generar paradas operativas, recalentamientos o incendios. Realizamos una inspección exhaustiva de tus tableros eléctricos, limpieza técnica y reapriete de conexiones, entregándote un informe técnico con recomendaciones para mantener tus sistemas siempre a punto.",
+    descriptionCol1: `Beneficios clave
+    • Previene fallas eléctricas.
+    • Evita apradas operativas, recalentamientos o incendios.
+    • Cumple con estándares de seguridad.`,
+    descriptionCol2: `Incluye
+    • Inspección de tableros eléctricos.
+    • Limpieza técnica y reaprite de conexiones.
+    • Informe técnico con recomendaciones.`,
+    twoColumns: true,
     imgSrc: phinixMantenimientoElectrico,
   },
   {
-    title: "Automatización Domótica",
-    description:
-      "Transforma tu espacio en un entorno más cómodo, seguro y eficiente con la automatización domótica. Controla las luces y dispositivos desde tu smartphone o mediante asistentes virtuales como Alexa o Google Home. Además, con sensores de movimiento y cámaras de seguridad, lograrás un ahorro energético y una modernización total de tu hogar o empresa.",
+    id: "automatizacion-domotica",
+    title: "Automatización Domótica (Smart Home)",
+    descriptionCol1: `Beneficios clave
+    • Mejora la comodidad y seguridad de tu espacio.
+    • Control remoto desde app o asistentes virtuales.
+    • Ahorro energético y modernización del ambiente`,
+    descriptionCol2: `Incluye
+    • Instalación de control de luces por app o voz.
+    • Sensores de movimiento y cámaras.
+    • Compataibilidad con Alexa y Google Home.`,
+    twoColumns: true,
     imgSrc: phinixSmartHome,
+  },
+  {
+    id: "servicios-hvac",
+    title: "Servicios HVAC",
+    descriptionCol1: `Beneficios clave
+    • Mejora el confort térmico.
+    • Optimiza el consumo energético.
+    • Reduce el riesgo de fallas y sobrecargas.`,
+    descriptionCol2: `Incluye
+    • Instalación y mantenimiento de equipos HVAC.
+    • Soluciones de ventilación, calefaccción y aire acondicionado.
+    • Diagnóstico técnico y recomendaciones.`,
+    twoColumns: true,
+    imgSrc: phinixServiciosHVAC,
+  },
+  {
+    id: "impresiones-3d",
+    title: "Impresiones 3D en Resina",
+    descriptionCol1: `Beneficios clave
+    • Prototipado preciso y rápido.
+    • Alta resolución y acabados.
+    • Adaptable a multiples industrias.`,
+    descriptionCol2: `Incluye
+    • Prototipado preciso y rápido.
+    • Alta resolución y acabados profesionales.
+    • Adaptable a multiples industrias.`,
+    twoColumns: true,
+    imgSrc: phinixImpresiones3D,
   },
 ];
 const customContacts: Contact[] = [
@@ -145,7 +200,7 @@ const customContacts: Contact[] = [
   //   message: "Hola, necesito ayuda técnica",
   // },
 ];
-
+// #088c9c rgb(8,140,156)
 // Servicios Agregados phinix
 const presentacion: CardItemContent[] = [
   {
@@ -186,13 +241,14 @@ const presentacion: CardItemContent[] = [
   },
   {
     title: "NUESTROS VALORES",
-    descriptionCol1: `• Innovación continua: Buscamos constantemente nuevas ideas y tecnologías...\n
-                      • Compromiso con la sostenibilidad: Actuamos con responsabilidad ambiental...\n
-                      • Excelencia técnica: Garantizamos calidad, precisión y seguridad en cada proyecto.`,
-    descriptionCol2: `• Ética y transparencia: Mantenemos relaciones honestas y responsables...\n
-                      • Cercanía y servicio al cliente: Escuchamos, entendemos y acompañamos...\n
-                      • Impacto social: Promovemos el desarrollo local y la inclusión...\n
-                      • Sostenibilidad: Buscamos equilibrio entre economía, medio ambiente y sociedad.`,
+    descriptionCol1: `• Innovación continua: Buscamos constantemente nuevas ideas y tecnologías que nos permitan mejorar nuestros productos y servicios.\n
+                      • Compromiso con la sostenibilidad: Actuamos con responsabilidad ambiental y promovemos el uso eficiente de los recursos.\n
+                      • Excelencia técnica: Garantizamos calidad, precisión y seguridad en cada proyecto que desarrollamos.\n
+                      • Ética y transparencia: Mantenemos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.`,
+    descriptionCol2: `• Cercanía y servicio al cliente: Escuchamos, entendemos y acompañamos a nuestros clientes para brindar soluciones a la medida\n
+                      • Colaboración: Fomentamos el trabajo en equipo y las aliaanzas estratégicas para crecer juntos.\n
+                      • Impacto social: Promovemos el desarrollo local y la inclusión a travez de nuestras iniciativas tecnológicas y educativas.\n
+                      • Sostenibilidad: Buscamos equilibrio en tres aspectos clave el crecimeinto económico, la protección del medio ambiente y el binestarsocial`,
     
     twoColumns: true,
   },
@@ -230,10 +286,11 @@ const LandingPhinix = () => {
 
       <GridCard
         title="Servicios"
-        subTitle="Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas."
+        subTitle="Dirigido a Empresas, viviendas, locales, etc. Que requieren cumplir normas eléctricas o mejorar su seguridad"
         key="services"
         cards={servicios}
         isClickable={false} // No clickable for services
+        equalHeight={true} // Igualar alturas para servicios
       />
       <GridCard
         title="Eventos"
