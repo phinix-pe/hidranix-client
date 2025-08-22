@@ -4,6 +4,7 @@ import { GridCardItem } from "./GridCardItem";
 
 
 interface Props {
+  id?: string;
   title: string;
   subTitle: string;
   cards: CardItemContent[];
@@ -15,7 +16,10 @@ interface Props {
 
 export const GridCard = ({ title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false}: Props) => {
   return (
-    <section className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden">
+    <section
+      id={id}
+      className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden"
+    >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimationComponent
           variants={{
@@ -74,8 +78,3 @@ export const GridCard = ({ title, subTitle, cards, isClickable ,minWidth = 300,e
     </section>
   );
 };
-
-
-
-
-
