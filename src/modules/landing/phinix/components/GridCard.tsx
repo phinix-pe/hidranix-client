@@ -14,7 +14,7 @@ interface Props {
 }
 
 
-export const GridCard = ({ title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false}: Props) => {
+export const GridCard = ({ id, title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false}: Props) => {
   return (
     <section
       id={id}

@@ -21,7 +21,7 @@ const NavbarPhinix = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-    const servicios = [
+  const servicios = [
     { name: "Hidranix", path: "/hidranix" },
     { name: "Econix", path: "/econix" },
     { name: "Pozo a Tierra", path: "/pozo-a-tierra" },
@@ -30,11 +30,11 @@ const NavbarPhinix = () => {
     { name: "Servicios HVAC", path: "/hvac" },
     { name: "Impresiones 3D", path: "/impresiones-3d" },
   ];
-    const servicios_link = [
+  const servicios_link = [
     { name: "Hidranix", path: "/hidranix" },
     { name: "Econix", path: "/econix" },
   ];
-    const servicios_ref = [
+  const servicios_ref = [
     { name: "Pozo a Tierra", id: "pozo-a-tierra" },
     { name: "Mantenimiento Eléctrico", id: "mantenimiento-electrico" },
     { name: "Automatización Domótica", id: "automatizacion-domotica" },
@@ -66,16 +66,17 @@ const NavbarPhinix = () => {
         {/* Menú de escritorio */}
         <div className="text-primary-dark hidden xl:flex items-center gap-8 font-bold">
           {/* Enlaces de productos */}
-          <Link to="/hidranix">Hidranix</Link>
-          <Link to="/srrobot">Sr.Robot</Link>
-          <Link to="/maguna">Maguna</Link>
+          <Link to="/">Inicio</Link>
+          <Link to="/">Nosotros</Link>
+          {/* <Link to="/srrobot">Sr.Robot</Link>
+          <Link to="/maguna">Maguna</Link> */}
           {/* Dropdown dinámico de Servicios href */}
           <div className="relative group">
-          <button className="cursor-pointer">
-            Servicios ▾
-          </button>
-          <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
-            {servicios_link.map((servicios_link, index) => (
+            <button className="cursor-pointer">
+              Servicios ▾
+            </button>
+            <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
+              {servicios_link.map((servicios_link, index) => (
                 <Link
                   key={index}
                   to={servicios_link.path}
@@ -84,39 +85,21 @@ const NavbarPhinix = () => {
                   {servicios_link.name}
                 </Link>
               ))}
-            {servicios_ref.map((servicios_ref, index) => (
-              <a
-                key={index}
-                href={`#${servicios_ref.id}`} // 👈 Scroll hacia el id en la landing
-                className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
-                onClick={closeMenu} // opcional: cerrar menú si estás en mobile
-              >
-                {servicios_ref.name}
-              </a>
-            ))}
-          </div>
-        </div>
-          {/* Dropdown de Servicios */}
-
-          {/* Dropdown dinámico de Servicios */}
-          {/*
-          <div className="relative group">
-            <button className="cursor-pointer">
-              Servicios ▾
-            </button>
-            <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300 z-50">
-              {servicios.map((servicio, index) => (
-                <Link
+              {servicios_ref.map((servicios_ref, index) => (
+                <a
                   key={index}
-                  to={servicio.path}
+                  href={`#${servicios_ref.id}`} // 👈 Scroll hacia el id en la landing
                   className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                  onClick={closeMenu} // opcional: cerrar menú si estás en mobile
                 >
-                  {servicio.name}
-                </Link>
+                  {servicios_ref.name}
+                </a>
               ))}
             </div>
           </div>
-          */}
+
+          <Link to="/">Contacto</Link>
+
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
@@ -143,9 +126,8 @@ const NavbarPhinix = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex flex-col items-center justify-center h-full">
           {/* Enlaces de productos */}
