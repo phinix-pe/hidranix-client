@@ -9,13 +9,17 @@ const Nosotros = () => {
   const equipo = [
     {
       nombre: "Keneth Perez",
-      rol: "CEO",
+      rol: "Fundador y CEO de PHINIX y HIDRANIX",
       foto: kenethImage,
+      descripcion:
+        "Ingeniero Eléctrico, especialista en hidrógeno verde y energías renovables",
     },
     {
       nombre: "Lucero Castro",
-      rol: "COO",
+      rol: "Cofundadora y COO de PHINIX y HIDRANIX",
       foto: luceroImage,
+      descripcion:
+        "Ingeniera Industrial con experiencia en gestión de proyectos e innovación",
     },
   ];
 
@@ -76,6 +80,7 @@ const Nosotros = () => {
                 </div>
                 <h4 className="text-[#003d3f] font-bold text-lg">{miembro.nombre}</h4>
                 <p className="text-gray-700 font-semibold mb-6">{miembro.rol}</p>
+                <p className="text-gray-700 font-semibold mb-6">{miembro.descripcion}</p>
               </div>
             ))}
           </div>
@@ -97,12 +102,18 @@ const Nosotros = () => {
               El gas tradicional enferma y contamina
             </p>
             <ul className="text-gray-700 leading-relaxed space-y-3 list-disc pl-5">
-              <li>El 67% de las pérdidas económicas en hogares peruanos se deben al alto costo del gas GLP (INEI, 2022).</li>
-              <li>21% de niños menores de 5 años sufren de neumonía.</li>
-              <li>26% de mujeres padecen asma.</li>
+              <li>
+                El <span className="text-primary font-bold">67%</span> de las pérdidas económicas en hogares peruanos se deben al alto costo del gas GLP (INEI, 2022).
+              </li>
+              <li>
+                <span className="text-primary font-bold">21%</span> de niños menores de 5 años sufren de neumonía.
+              </li>
+              <li>
+                <span className="text-primary font-bold">26%</span> de mujeres padecen asma.
+              </li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-4">
-              El GLP es responsable del 60% de la contaminación del aire urbano y contribuye en un 33% al calentamiento global.
+              El GLP es responsable del <span className="text-primary font-bold">60%</span> de la contaminación del aire urbano y contribuye en un <span className="text-primary font-bold">33%</span> al calentamiento global.
             </p>
           </div>
         </AnimationComponent>
@@ -155,13 +166,14 @@ const Nosotros = () => {
             </div>
             <div>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Ofrecemos un <strong>30% de aumento en eficiencia de cocción</strong> y un 
-                <strong> 60% de ahorro</strong>, con garantía de <strong>emisiones de CO₂ nulas</strong>.
+                Ofrecemos un <span className="text-primary font-bold">30% de aumento en eficiencia de cocción</span> y un 
+                <span className="text-primary font-bold"> 60% de ahorro</span>, con garantía de <span className="text-primary font-bold">
+                emisiones de CO₂ nulas.</span>
               </p>
               <p className="text-gray-700 leading-relaxed">
                 Proponemos reducir los costos del gas de cocina mediante el uso de energías 
                 renovables, impulsando así la descarbonización y contribuyendo al cumplimiento 
-                de los <strong>ODS 7 y 13</strong>.
+                de los <span className="text-primary font-bold">ODS 7 y 13.</span>
               </p>
             </div>
           </div>

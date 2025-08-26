@@ -56,7 +56,7 @@ const Navbar = () => {
           >
             <AnimatedLogo
               scrollY={scrollY}
-              className="w-8 h-8 mr-2"
+              className="w-16 h-16 mr-2"
               alt="Tecnología Hidranix"
             />
             Hidranix

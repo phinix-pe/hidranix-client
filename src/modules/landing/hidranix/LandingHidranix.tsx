@@ -27,7 +27,7 @@ const LandingHidranix = () => {
       {/* Section: Clientes */}
       <Footer
         {...hidranixSocialLinks}
-        slogan="Soluciones innovadoras en hidráulica"
+        slogan="Soluciones innovadoras con hidrógeno verde"
         pageName="Hidranix"
       />
     </div>

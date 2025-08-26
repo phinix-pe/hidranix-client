@@ -133,11 +133,11 @@ const Servicios = () => {
               <h4 className="text-xl font-bold text-[#003d3f] mb-4 text-center">Competencia</h4>
               <p className="text-gray-700 leading-relaxed">
                 A nivel nacional, nos enfrentamos a actores destacados como 
-                <strong> Cocinas Record</strong> y <strong>Batech Energy</strong>. 
+                Cocinas Record y Batech Energy. 
                 A diferencia de ellas, nuestro enfoque se centra en ofrecer 
                 una eficiencia superior en la cocción, aunque con un costo competitivo.  
                 Nos enorgullece garantizar el uso exclusivo de energía renovable, 
-                lo que resulta en <strong>emisiones de CO₂ nulas</strong>.
+                lo que resulta en emisiones de CO₂ nulas.
               </p>
             </div>
 
@@ -211,7 +211,7 @@ const Servicios = () => {
             </div>
             <div>
               <h4 className="text-2xl font-bold text-[#003d3f] mb-4 text-center">Ventaja competitiva</h4>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed">
               Generación independiente de hidrógeno y oxígeno, eliminando cualquier riesgo de detonación. 
               El combustible hidrógeno tiene el triple de energía calorífica que el GLP.  
               El CEO de Hidranix es un ingeniero multidisciplinario en electricidad, mecánica automotriz, 
