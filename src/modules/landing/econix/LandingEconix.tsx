@@ -53,11 +53,11 @@ const customContacts: Contact[] = [
 const courses: CourseItemContent[] = [
   {
     name: "Hidrógeno Verde: Generación y Almacenamiento para Aplicaciones Energéticas Sostenibles",
-    startDate: "02/09/2025",
-    endDate: "09/10/2025",
+    startDate: "16/09/2025",
+    endDate: "28/10/2025",
     duration: "36 horas",
     modality: "Online",
-    schedule: "Martes y jueves 7:00 p.m. - 8:30 p.m.",
+    schedule: "Martes y jueves 7:30 p.m. - 10:00 p.m.",
     moreInfoPath:
       "/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles",
   },
