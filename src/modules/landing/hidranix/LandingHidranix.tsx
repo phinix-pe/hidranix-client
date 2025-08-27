@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Nosotros from "./components/Nosotros";
 import Novedades from "./components/Novedades";
 import Servicios from "./components/Servicios";
+import { Contact } from "../shared/interfaces";
+import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 
 const hidranixSocialLinks = {
   facebookUrl: "https://www.facebook.com/profile.php?id=61553013520190",
@@ -13,6 +15,14 @@ const hidranixSocialLinks = {
   linkedinUrl: "https://linkedin.com/company/hidranix",
   tiktokUrl: "https://www.tiktok.com/@phinix.hidranix",
 };
+
+const customContacts: Contact[] = [
+  {
+    name: "Asesor de ventas",
+    number: "+51916699070",
+    message: "Hola, me gustaría solicitar una cotización de ...",
+  },
+];
 
 const LandingHidranix = () => {
   return (
@@ -30,6 +40,7 @@ const LandingHidranix = () => {
         slogan="Soluciones innovadoras con hidrógeno verde"
         pageName="Hidranix"
       />
+      <WhatsAppCTAMultiple contacts={customContacts} />
     </div>
   );
 };

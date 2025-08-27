@@ -1,5 +1,5 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
-import { FaExclamationTriangle } from "react-icons/fa";
+import { FaExclamationTriangle, FaCogs, FaHandshake } from "react-icons/fa";
 import solucionImage from "../../../../assets/hidranix/solucion.png";
 import promesaImage from "../../../../assets/hidranix/promesa.png";
 import kenethImage from "../../../../assets/hidranix/keneth.png";
@@ -9,14 +9,22 @@ const Nosotros = () => {
   const equipo = [
     {
       nombre: "Keneth Perez",
-      rol: "Fundador y CEO de PHINIX y HIDRANIX",
+      rol: (
+      <>
+        Fundador y <span className="text-primary font-bold text-xl">CEO</span> de PHINIX y HIDRANIX
+      </>
+      ),
       foto: kenethImage,
       descripcion:
         "Ingeniero Eléctrico, especialista en hidrógeno verde y energías renovables",
     },
     {
       nombre: "Lucero Castro",
-      rol: "Cofundadora y COO de PHINIX y HIDRANIX",
+      rol: (
+      <>
+        Cofundadora y <span className="text-primary font-bold text-xl">COO</span> de PHINIX y HIDRANIX
+      </>
+      ),
       foto: luceroImage,
       descripcion:
         "Ingeniera Industrial con experiencia en gestión de proyectos e innovación",
@@ -127,6 +135,10 @@ const Nosotros = () => {
         >
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg mx-2 grid md:grid-cols-2 gap-8 items-center">
             <div>
+              <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
+                <FaCogs className="w-8 h-8 mr-3 text-primary-light" />
+                Solución
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 Hidranix presenta una solución energética integral que transforma agua en 
                 hidrógeno verde mediante electrólisis alimentada por energía solar. Este se almacena 
@@ -165,6 +177,10 @@ const Nosotros = () => {
               />
             </div>
             <div>
+              <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
+                <FaHandshake className="w-8 h-8 mr-3 text-primary-light" />
+                Promesa de valor
+              </h3>
               <p className="text-gray-700 leading-relaxed mb-4">
                 Ofrecemos un <span className="text-primary font-bold">30% de aumento en eficiencia de cocción</span> y un 
                 <span className="text-primary font-bold"> 60% de ahorro</span>, con garantía de <span className="text-primary font-bold">
