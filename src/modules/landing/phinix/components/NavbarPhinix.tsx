@@ -33,8 +33,8 @@ const NavbarPhinix = () => {
   }, []);
 
   const servicios_link = [
-    { name: "Hidranix", path: "/hidranix" },
-    { name: "Econix", path: "/econix" },
+    { name: "Hidranix: Cocina con Agua", path: "/hidranix" },
+    { name: "Econix: Educación y consultorías", path: "/econix" },
   ];
   const servicios_ref = [
     { name: "Pozo a Tierra", id: "pozo-a-tierra" },
@@ -55,13 +55,12 @@ const NavbarPhinix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-primary-dark text-xl font-extrabold">
-          <Link to="/" className={`flex items-center ${
-              scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
+          <Link to="/" className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
             }`}>
             <img
               src={phinixLogo}
               alt="Phinix Logo"
-              className="w-8 h-8 inline-block mr-2"              
+              className="w-8 h-8 inline-block mr-2"
             />
             Phinix
           </Link>
@@ -146,6 +145,15 @@ const NavbarPhinix = () => {
       >
         <div className="flex flex-col items-center justify-center h-full">
           {/* Enlaces de productos */}
+
+          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >Inicio</Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#nosotros".slice(1))}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >Nosotros</Link>
           <Link
             to="/hidranix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
@@ -154,26 +162,19 @@ const NavbarPhinix = () => {
             Hidranix
           </Link>
           <Link
-            to="/srrobot"
+            to="/econix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
             onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            Sr.Robot
-          </Link>
-          <Link
-            to="/maguna"
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-            onClick={closeMenu} // Cerrar el menú al hacer clic
-          >
-            Maguna
+            Econix
           </Link>
           {/* Enlace al Consultoría en versión móvil */}
           <a
-            href="#consultory"
+            href="#contacto"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
             onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            Consultoria
+            Contacto
           </a>
 
           {/* Botones de Login y Register en Mobile */}
