@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 
 import { Module } from "../../../shared/interfaces";
 import {
@@ -137,7 +138,9 @@ export const CourseModules = ({ modules }: Props) => {
             <h3 className="text-2xl font-bold mb-6 text-center">
               Cronograma del Curso
             </h3>
-            <div className="grid md:grid-cols-5 gap-4">
+            <div
+              className={clsx("grid gap-4", `md:grid-cols-${modules.length}`)}
+            >
               {modules.map((module, index) => (
                 <div key={index} className="text-center">
                   <div className="bg-white/20 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">

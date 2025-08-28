@@ -54,8 +54,8 @@ export const WebinarListItem = ({
           <p className="text-xs text-gray-500 mt-2">{item.extraNotes}</p>
         )}
       </div>
-      <div className=" w-[60rem] pr-4">
-        <img src={item.imgSrc} className="bg-cover" />
+      <div className="pr-4">
+        <img src={item.imgSrc} className="w-[24rem] max-w-none" />
       </div>
     </AnimationComponent>
   );

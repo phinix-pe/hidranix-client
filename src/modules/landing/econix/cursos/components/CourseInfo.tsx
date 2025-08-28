@@ -101,7 +101,9 @@ export const CourseInfo = ({ courseData }: Props) => {
               <p className="text-gray-600">Horas/Semana</p>
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-              <div className="text-3xl font-bold text-primary-dark mb-2">5</div>
+              <div className="text-3xl font-bold text-primary-dark mb-2">
+                {courseData.modules.length}
+              </div>
               <p className="text-gray-600">Módulos</p>
             </div>
           </div>

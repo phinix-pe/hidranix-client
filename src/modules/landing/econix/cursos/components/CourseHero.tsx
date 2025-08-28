@@ -38,7 +38,7 @@ export const CourseHero = ({ courseData }: Props) => {
             </div>
 
             {/* Quick Info Cards */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                 <div className="flex items-center space-x-3">
                   <FaCalendar className="w-6 h-6 text-white" />
@@ -141,7 +141,9 @@ export const CourseHero = ({ courseData }: Props) => {
                     <p className="text-white/80 text-sm">Semanas</p>
                   </div>
                   <div className="bg-white/10 rounded-xl p-4">
-                    <p className="text-2xl font-bold text-white">5</p>
+                    <p className="text-2xl font-bold text-white">
+                      {courseData.modules.length}
+                    </p>
                     <p className="text-white/80 text-sm">Módulos</p>
                   </div>
                 </div>

@@ -27,8 +27,8 @@ export const InicioEconix = () => {
 
         <p className="text-xl md:text-2xl font-semibold">
           <span className="text-white drop-shadow-lg">
-            Educación especializada en hidrógeno verde y tecnologías sostenibles
-            con Econix
+            Educación, consultoría y oportunidades de nuevas innovaciones
+            exitosas
           </span>
         </p>
         {/* </div> */}

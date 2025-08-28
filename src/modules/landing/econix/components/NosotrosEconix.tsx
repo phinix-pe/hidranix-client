@@ -90,10 +90,11 @@ export const NosotrosEconix = () => {
           <div className="bg-primary-dark p-6 sm:p-8 rounded-2xl text-center max-w-4xl mx-auto flex items-center justify-center">
             <FaLeaf className="hidden md:block w-12 h-12 mr-4 text-primary-light" />
             <p className="text-white text-lg md:text-xl italic">
-              "Implementamos programas educativos que promueven soluciones
-              climáticas reales, reduciendo la huella de carbono desde la
-              formación técnica y científica, y generando un impacto positivo y
-              medible en la lucha contra el cambio climático."
+              "Implementamos programas educativos dirigidos a estudiantes,
+              ingenieros, empresarios y la sociedad en general, que promueven
+              soluciones climáticas reales, reduciendo la huella de carbono
+              desde la formación técnica y científica, y generando un impacto
+              positivo y medible en la lucha contra el cambio climático."
             </p>
           </div>
         </AnimationComponent>
