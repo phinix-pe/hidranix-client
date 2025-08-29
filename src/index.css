@@ -104,3 +104,36 @@ html {
   vertical-align: middle;
   margin: 0 4px;
 }
+
+
+/* PAGINA PHINIX ESTILOS  */
+.custom-values-list {
+  list-style: none;
+  counter-reset: custom-counter;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-values-list li {
+  counter-increment: custom-counter;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  position: relative;
+  line-height: 1.;
+}
+
+.custom-values-list li:before {
+  /*content: counter(custom-counter) ".";*/
+  position: absolute;
+  left: 0;
+  color: #088c9c; /* Color corporativo de PHINIX */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.custom-values-list strong {
+  color: #088c9c; /* Color corporativo de PHINIX */
+  display: flex;
+  margin-bottom: 0px;
+}
+

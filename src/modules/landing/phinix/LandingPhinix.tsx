@@ -28,6 +28,13 @@ import iconoInstagram from "../../../assets/icons/instagram.svg";
 import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
 import phinixServiciosHVAC from "../../../assets/phinix_servicios_hvac.png";
 import phinixImpresiones3D from "../../../assets/phinix_impresiones_3d.png";
+import phinixVision from "../../../assets/phinix_vision.png";
+import phinixSponsorUnsa from "../../../assets/phinix_sponsor_unsa.jpg";
+import phinixSponsorEnergizatePeru from "../../../assets/phinix_sponsor_energizate_peru.jpg";
+import phinixSponsorPeruEnergia from "../../../assets/phinix_sponsor_peru_energia.jpg";
+import phinixSponsorFlit from "../../../assets/phinix_sponsor_flit.jpg";
+import phinixSponsorGaiaSpePeru from "../../../assets/phinix_sponsor_gaia_spe_peru.jpg";
+import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.jpg";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -119,11 +126,11 @@ const servicios: CardItemContent[] = [
   {
     id: "pozo-a-tierra",
     title: "Pozo a Tierra + Certificado",
-    descriptionCol1: `Beneficios clave
+    descriptionCol1: `<strong>Beneficios clave</strong>
     • Previene accidentes eléctricos.
     • Evita sanciones normativas.
     • Protege equipos y personas.`,
-    descriptionCol2: `Incluye
+    descriptionCol2: `<strong>Incluye</strong>
     • Instalación técnica especializada.
     • Medición con telurémetro.
     • Reporte Técnico y planos.
@@ -134,11 +141,11 @@ const servicios: CardItemContent[] = [
   {
     id: "mantenimiento-electrico",
     title: "Mantenimiento Eléctrico para Empresas y PYMEs",
-    descriptionCol1: `Beneficios clave
+    descriptionCol1: `<strong>Beneficios clave</strong>
     • Previene fallas eléctricas.
     • Evita apradas operativas, recalentamientos o incendios.
     • Cumple con estándares de seguridad.`,
-    descriptionCol2: `Incluye
+    descriptionCol2: `<strong>Incluye</strong>
     • Inspección de tableros eléctricos.
     • Limpieza técnica y reaprite de conexiones.
     • Informe técnico con recomendaciones.`,
@@ -148,11 +155,11 @@ const servicios: CardItemContent[] = [
   {
     id: "automatizacion-domotica",
     title: "Automatización Domótica (Smart Home)",
-    descriptionCol1: `Beneficios clave
+    descriptionCol1: `<strong>Beneficios clave</strong>
     • Mejora la comodidad y seguridad de tu espacio.
     • Control remoto desde app o asistentes virtuales.
     • Ahorro energético y modernización del ambiente`,
-    descriptionCol2: `Incluye
+    descriptionCol2: `<strong>Incluye</strong>
     • Instalación de control de luces por app o voz.
     • Sensores de movimiento y cámaras.
     • Compataibilidad con Alexa y Google Home.`,
@@ -162,11 +169,11 @@ const servicios: CardItemContent[] = [
   {
     id: "servicios-hvac",
     title: "Servicios HVAC",
-    descriptionCol1: `Beneficios clave
+    descriptionCol1: `<strong>Beneficios clave</strong>
     • Mejora el confort térmico.
     • Optimiza el consumo energético.
     • Reduce el riesgo de fallas y sobrecargas.`,
-    descriptionCol2: `Incluye
+    descriptionCol2: `<strong>Incluye</strong>
     • Instalación y mantenimiento de equipos HVAC.
     • Soluciones de ventilación, calefaccción y aire acondicionado.
     • Diagnóstico técnico y recomendaciones.`,
@@ -176,11 +183,11 @@ const servicios: CardItemContent[] = [
   {
     id: "impresiones-3d",
     title: "Impresiones 3D en Resina",
-    descriptionCol1: `Beneficios clave
+    descriptionCol1: `<strong>Beneficios clave</strong>
     • Prototipado preciso y rápido.
     • Alta resolución y acabados.
     • Adaptable a multiples industrias.`,
-    descriptionCol2: `Incluye
+    descriptionCol2: `<strong>Incluye</strong>
     • Prototipado preciso y rápido.
     • Alta resolución y acabados profesionales.
     • Adaptable a multiples industrias.`,
@@ -204,66 +211,83 @@ const customContacts: Contact[] = [
 // Servicios Agregados phinix
 const presentacion: CardItemContent[] = [
   {
-    title: "SOBRE NOSOTROS",
+    title: "MISIÓN",
     description:
-      `Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas.`,
-  },
-  
-  {
-    title: "MISIÓN Y VISIÓN",
-    descriptionCol1: `Desarrollar e implementar
-                      soluciones tecnológicas
-                      innovadoras en energía,
-                      automatización y sostenibilidad,
-                      contribuyendo al desarrollo de
-                      una sociedad más eficiente,
-                      limpia y consciente.
-                      Nos enfocamos en la
-                      excelencia operativa, el
-                      compromiso con nuestros
-                      clientes y el impacto positivo en
-                      las comunidades donde
-                      operamos.`,
-    descriptionCol2: `Ser una empresa
-                      referente en América
-                      Latina en soluciones
-                      integrales de energía
-                      renovable,
-                      automatización y
-                      sostenibilidad,
-                      liderando la
-                      transformación
-                      tecnológica hacia un
-                      futuro más verde,
-                      inteligente e inclusivo.`,
-    
-    twoColumns: true,
+      `Desarrollar e implementar soluciones tecnológicas innovadoras en energía, automatización y sostenibilidad, contribuyendo al desarrollo de una sociedad más eficiente, limpia y consciente. Nos enfocamos en la excelencia operativa, el compromiso con nuestros clientes y el impacto positivo en las comunidades donde operamos.`,
   },
   {
-    title: "NUESTROS VALORES",
-    descriptionCol1: `• Innovación continua: Buscamos constantemente nuevas ideas y tecnologías que nos permitan mejorar nuestros productos y servicios.\n
-                      • Compromiso con la sostenibilidad: Actuamos con responsabilidad ambiental y promovemos el uso eficiente de los recursos.\n
-                      • Excelencia técnica: Garantizamos calidad, precisión y seguridad en cada proyecto que desarrollamos.\n
-                      • Ética y transparencia: Mantenemos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.`,
-    descriptionCol2: `• Cercanía y servicio al cliente: Escuchamos, entendemos y acompañamos a nuestros clientes para brindar soluciones a la medida\n
-                      • Colaboración: Fomentamos el trabajo en equipo y las aliaanzas estratégicas para crecer juntos.\n
-                      • Impacto social: Promovemos el desarrollo local y la inclusión a travez de nuestras iniciativas tecnológicas y educativas.\n
-                      • Sostenibilidad: Buscamos equilibrio en tres aspectos clave el crecimeinto económico, la protección del medio ambiente y el binestarsocial`,
+    title: "VISIÓN",
+    description:
+      `Ser una empresa referente en América Latina en soluciones integrales de energía renovable, automatización y sostenibilidad, liderando la transformación tecnológica hacia un futuro más verde, inteligente e inclusivo.`,
     
-    twoColumns: true,
   },
+  {
+  title: "NUESTROS VALORES",
+  descriptionCol1: `
+    <ol class="custom-values-list">
+      <li><strong>Innovación continua:</strong> Buscamos constantemente nuevas ideas y tecnologías que nos permitan mejorar nuestros productos y servicios.</li>
+      <li><strong>Compromiso con la sostenibilidad:</strong> Actuamos con responsabilidad ambiental y promovemos el uso eficiente de los recursos.</li>
+      <li><strong>Excelencia técnica:</strong> Garantizamos calidad, precisión y seguridad en cada proyecto que desarrollamos.</li>
+      <li><strong>Ética y transparencia:</strong> Mantenemos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.</li>
+    </ol>
+  `,
+  descriptionCol2: `
+    <ol class="custom-values-list" start="5">
+      <li><strong>Cercanía y servicio al cliente:</strong> Escuchamos, entendemos y acompañamos a nuestros clientes para brindar soluciones a la medida.</li>
+      <li><strong>Colaboración:</strong> Fomentamos el trabajo en equipo y las alianzas estratégicas para crecer juntos.</li>
+      <li><strong>Impacto social:</strong> Promovemos el desarrollo local y la inclusión a través de nuestras iniciativas tecnológicas y educativas.</li>
+      <li><strong>Sostenibilidad:</strong> Buscamos equilibrio en tres aspectos clave: el crecimiento económico, la protección del medio ambiente y el bienestar social.</li>
+    </ol>
+  `,
+  twoColumns: true,
+},
   {
     title: "CONTACTO",
     description: `
-    Contáctanos
+    <strong>Contáctanos</strong>
     <img src="${iconoLinkedin}" alt="LinkedIn" class="inline-icon" /> PHINIX S.A.C.
     <img src="${iconoFacebook}" alt="Facebook" class="inline-icon" /> PHINIX S.A.C.
     <img src="${iconoInstagram}" alt="Instagram" class="inline-icon" /> phinix.sac
     <img src="${iconoWhatsapp}" alt="WhatsApp" class="inline-icon" /> +51 916 699 070
+    <img src="${iconoWhatsapp}" alt="WhatsApp" class="inline-icon" /> +51 989 563 108
+    
     `,
     imgSrc: phinixContacto,
   },
 ]
+
+const sponsors  : CardItemContent[] = [
+  { 
+    title: "UNSA", 
+    imgSrc: phinixSponsorUnsa , 
+    description: "Arequipa, Peru"},
+  { 
+    title: "Energízate Perú", 
+    imgSrc: phinixSponsorEnergizatePeru , 
+    description: "Arequipa, Peru"
+  },
+  { 
+    title: "Perú Energía", 
+    imgSrc: phinixSponsorPeruEnergia , 
+    description: "Arequipa, Peru"
+  },
+  { 
+    title: "Flit", 
+    imgSrc: phinixSponsorFlit , 
+    description: "Arequipa, Peru"
+  },
+  { 
+    title: "Gaia SPE Perú", 
+    imgSrc: phinixSponsorGaiaSpePeru , 
+    description: "Arequipa, Peru"
+  },
+  { 
+    title: "Perumin", 
+    imgSrc: phinixSponsorPerumin , 
+    description: "Arequipa, Peru"
+  },
+  
+  ]
 const LandingPhinix = () => {
   return (
     <div>
@@ -275,11 +299,11 @@ const LandingPhinix = () => {
       <GridCard
         id="nosotros"
         title="Presentación de PHINIX S.A.C."
-        subTitle=""
+        subTitle="Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas."
         key="presentacion"
         cards={presentacion}
         isClickable={false} // No clickable for services
-        minWidth={380}
+        minWidth={390}
         equalHeight={true} // Igualar alturas para presentación
       />
 
@@ -292,6 +316,7 @@ const LandingPhinix = () => {
         cards={servicios}
         isClickable={false} // No clickable for services
         equalHeight={true} // Igualar alturas para servicios
+        minWidth={380}
       />
       <GridCard
         title="Eventos"
@@ -304,6 +329,17 @@ const LandingPhinix = () => {
         subTitle="Entérate de nuestras últimas novedades"
         key="news"
         cards={novedades}
+      />
+
+      <GridCard
+        id="sponsors"
+        title="Nuestras startups"
+        subTitle="Conoce más de nuestras startups"
+        key="sponsors"
+        cards={sponsors}
+        isClickable={false} // No clickable for services
+        minWidth={160}
+        equalHeight={true} // Igualar alturas para presentación
       />
 
       {/* Consultoría Form */}
