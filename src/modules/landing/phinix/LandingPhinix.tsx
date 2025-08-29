@@ -34,6 +34,7 @@ import phinixSponsorPeruEnergia from "../../../assets/phinix_sponsor_peru_energi
 import phinixSponsorFlit from "../../../assets/phinix_sponsor_flit.jpg";
 import phinixSponsorGaiaSpePeru from "../../../assets/phinix_sponsor_gaia_spe_peru.jpg";
 import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.jpg";
+import { SponsorsCircle } from "./components/SponsorsCircle";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -330,16 +331,19 @@ const LandingPhinix = () => {
         cards={novedades}
       />
 
-      <GridCard
+      {/* <GridCard
         id="sponsors"
-        title="Nuestros Colaboradores"
+        title="Nuestros Patrocinadores"
         subTitle="Conoce más de nuestros principales sponsor"
         key="sponsors"
         cards={sponsors}
         isClickable={false} // No clickable for services
         minWidth={160}
         equalHeight={true} // Igualar alturas para presentación
-      />
+      /> */}
+
+      <SponsorsCircle sponsors={sponsors} />
+
 
       {/* Consultoría Form */}
       <ConsultarySection />
