@@ -4,10 +4,6 @@ import { HiMenu, HiX } from "react-icons/hi";
 import AnimatedLogo from "./AnimatedLogo";
 import SimpleButton from "../../animation/SimpleButton";
 import BlurButton from "../../animation/BlurButton";
-import produccionImage from "../../../../assets/ministerio_de_la_produccion_logo.png";
-import proinnovateImage from "../../../../assets/proinnovate_logo.png";
-import unsaImage from "../../../../assets/unsa_logo.png";
-import jakuImage from "../../../../assets/jaku_logo.png";
 
 const links = [
   { name: "Inicio", path: "#inicio" },
@@ -64,25 +60,6 @@ const Navbar = () => {
             />
             Hidranix
           </Link>
-
-          <div className="flex items-center ml-4 gap-3">
-            <img
-              src={produccionImage}
-              className="h-10 w-auto"
-            />
-            <img
-              src={proinnovateImage}
-              className="h-6 w-auto"
-            />
-            <img
-              src={unsaImage}
-              className="h-6 w-auto"
-            />
-            <img
-              src={jakuImage}
-              className="h-6 w-auto"
-            />
-          </div>
         </div>
 
         {/* Menú de escritorio */}

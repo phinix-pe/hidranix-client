@@ -1,6 +1,7 @@
 // src/modules/landing/components/Servicios.tsx
-import { GiEnergyArrow, GiProcessor } from "react-icons/gi";
+import { GiEnergyArrow, GiProcessor, GiRegeneration } from "react-icons/gi";
 import { MdSettingsInputComposite } from "react-icons/md";
+import { RiFocus2Fill } from "react-icons/ri";
 import { motion } from "framer-motion"; // Usamos motion para la animación
 import validacionImage from "../../../../assets/hidranix/validacion.png";
 import modeloImage from "../../../../assets/hidranix/modelo.png";
@@ -130,7 +131,10 @@ const Servicios = () => {
         >
           <div className="grid md:grid-cols-2 gap-8 items-start mb-12">
             <div className="bg-white p-6 rounded-xl shadow-lg border border-blue-100 h-full">
-              <h4 className="text-xl font-bold text-[#003d3f] mb-4 text-center">Competencia</h4>
+              <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
+                <RiFocus2Fill className="w-8 h-8 mr-3 text-primary-light" />
+                Competencia
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 A nivel nacional, nos enfrentamos a actores destacados como 
                 Cocinas Record y Batech Energy. 
@@ -210,7 +214,10 @@ const Servicios = () => {
               />
             </div>
             <div>
-              <h4 className="text-2xl font-bold text-[#003d3f] mb-4 text-center">Ventaja competitiva</h4>
+              <h3 className="text-2xl font-bold text-primary mb-4 flex items-center">
+                <GiRegeneration className="w-8 h-8 mr-3 text-primary-light" />
+                Ventaja competitiva
+              </h3>
               <p className="text-gray-700 leading-relaxed">
               Generación independiente de hidrógeno y oxígeno, eliminando cualquier riesgo de detonación. 
               El combustible hidrógeno tiene el triple de energía calorífica que el GLP.  
