@@ -28,12 +28,12 @@ import iconoInstagram from "../../../assets/icons/instagram.svg";
 import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
 import phinixServiciosHVAC from "../../../assets/phinix_servicios_hvac.png";
 import phinixImpresiones3D from "../../../assets/phinix_impresiones_3d.png";
-import phinixSponsorUnsa from "../../../assets/phinix_sponsor_unsa.jpg";
+import phinixSponsorUnsa from "../../../assets/333.png";
 import phinixSponsorEnergizatePeru from "../../../assets/phinix_sponsor_energizate_peru.jpg";
-import phinixSponsorPeruEnergia from "../../../assets/phinix_sponsor_peru_energia.jpg";
+import phinixSponsorPeruEnergia from "../../../assets/111.jpg";
 import phinixSponsorFlit from "../../../assets/phinix_sponsor_flit.jpg";
-import phinixSponsorGaiaSpePeru from "../../../assets/phinix_sponsor_gaia_spe_peru.jpg";
-import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.jpg";
+import phinixSponsorGaiaSpePeru from "../../../assets/222.png";
+import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.png";
 import { SponsorsCircle } from "./components/SponsorsCircle";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
@@ -282,7 +282,7 @@ const sponsors  : CardItemContent[] = [
     description: "Arequipa, Peru"
   },
   { 
-    title: "Perumin", 
+    title: "Perumin Hub", 
     imgSrc: phinixSponsorPerumin , 
     description: "Arequipa, Peru"
   },

@@ -44,7 +44,7 @@ export const SponsorsCircle = ({ sponsors }: Props) => {
               transition={{ delay: index * 0.1, duration: 0.4 }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden shadow-lg border-2 border-primary-light group-hover:scale-110 transition-transform duration-300">
+              <div className="w-36 h-20 sm:w-40 sm:h-20 rounded-2xl overflow-hidden shadow-lg border-2 border-primary-light group-hover:scale-110 transition-transform duration-300">
                 <img
                   src={sponsor.imgSrc}
                   alt={sponsor.title}
