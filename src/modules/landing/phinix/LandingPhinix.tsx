@@ -34,6 +34,8 @@ import phinixSponsorPeruEnergia from "../../../assets/111.jpg";
 import phinixSponsorFlit from "../../../assets/phinix_sponsor_flit.jpg";
 import phinixSponsorGaiaSpePeru from "../../../assets/222.png";
 import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.png";
+import phinixServiciosTerceros from "../../../assets/phinix_servicios_terceros.png";
+import phinixInoxSoldadura from "../../../assets/phinix_inox_soldadura.png";
 import { SponsorsCircle } from "./components/SponsorsCircle";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
@@ -193,6 +195,34 @@ const servicios: CardItemContent[] = [
     • Adaptable a multiples industrias.`,
     twoColumns: true,
     imgSrc: phinixImpresiones3D,
+  },
+  {
+    id: "servicios-terceros",
+    title: "Servicios de Terceros (Soldadura, etc.)",
+    descriptionCol1: `<strong>Beneficios clave</strong>
+    • Ahorra tiempo y esfuerzo delegando tares.
+    • Mejora la calidad y seguridad de tus instalaciones.
+    • Flexibilidad para proyectos pequeños o de gran escala.`,
+    descriptionCol2: `<strong>Incluye</strong>
+    • Soldadura, pintura técnica, montaje estructural y más.
+    • Mano de obra calificada y herramientas especializadas.
+    • Supervisión técnica y cumplimiento normativo.`,
+    twoColumns: true,
+    imgSrc: phinixServiciosTerceros,
+  },
+  {
+    id: "inox-soldadura",
+    title: "Trabajos en Torno de Inox y Soldadura",
+    descriptionCol1: `<strong>Beneficios clave</strong>
+    • Alta precisión para piezas únicas o seriadas.
+    • Acabados limpios y resistentes a la corrosión.
+    • Ideal para aplicaciones industriales, sanitarias o decorativas.`,
+    descriptionCol2: `<strong>Incluye</strong>
+    • Torneado de acero inoxidable (ejes, pernos, casquillos, adaptadores, etc).
+    • Fabricación de piezas especiales bajo plano o muestra.
+    • Equipos calibrados y operados por técnicos expertos.`,
+    twoColumns: true,
+    imgSrc: phinixInoxSoldadura,  
   },
 ];
 const customContacts: Contact[] = [

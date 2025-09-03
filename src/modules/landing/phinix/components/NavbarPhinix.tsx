@@ -42,6 +42,8 @@ const NavbarPhinix = () => {
     { name: "Automatización Domótica", id: "automatizacion-domotica" },
     { name: "Servicios HVAC", id: "servicios-hvac" },
     { name: "Impresiones 3D", id: "impresiones-3d" },
+    { name: "Servicios a Terceros", id: "servicios-terceros" },
+    { name: "Inox y Soldadura", id: "inox-soldadura" },
   ];
   const [openServicios, setOpenServicios] = useState(false);
 
