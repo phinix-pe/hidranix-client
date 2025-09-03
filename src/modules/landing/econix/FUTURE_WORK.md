@@ -272,11 +272,12 @@ Instructors ||--o{ Courses
   - Modificar usuarios
   - Exportar usuarios
 
-#### 5. Sistema de Notificaciones
+#### 5. Sistema de Notificaciones (considerar viabilidad, es posible que solo enviar un correo de confirmación automático sea suficiente y no realizar todo un sistema de notificaciones) 
 - **Funcionalidades:**
-  - Templates de email personalizables
   - Programación de envíos automáticos
   - Historial de notificaciones enviadas
+
+*| Nota: Realizar una definición más exacta en función al MER final definido y validado por los stakeholders principales*
 
 ## ⚡ Backend - Lineamientos de Implementación
 
@@ -341,6 +342,7 @@ GET    /api/courses/:id/students      // Lista estudiantes (admin)
 **Backend Controller (webinars.controller.js)**
 ```javascript
 // Definir de manera más exacta en función al MER final definido
+// Código de ejemplo, realizar implementación final considerando las tecnologías a usar
 const getWebinars = async (req, res) => {
   try {
     const { status = 'published', upcoming = true } = req.query;
@@ -511,7 +513,7 @@ cron.schedule('0 9 * * *', async () => {
 
 ## 🛠️ Consideraciones Técnicas
 
-### Stack Tecnológico Recomendado
+### Stack tecnológico en uso (sujeto a cambios según necesidades)
 - **Backend**: Node.js + Express.js
 - **Base de Datos**: MySQL + Sequelize ORM
 - **Jobs**: node-cron
@@ -521,6 +523,7 @@ cron.schedule('0 9 * * *', async () => {
 
 ### Uso de Gmail API
 - Para usar este servicio es necesario tener una cuenta de gmail con verificacion en 2 pasos y generar una contraseña de aplicación y estas credenciales son las que se colocan en el ENV para el su uso con NodeMailer
+- Documentaicón sobre contraseñas de aplicación: [https://support.google.com/accounts/answer/185833?hl=es-419](https://support.google.com/accounts/answer/185833?hl=es-419)
 
 ---
 *Este documento tiene como objetivo tenerlo como referencia, si existen modifcaciones requeridas se deberán de realizar en base a los nuevos requerimientos propuestos*
