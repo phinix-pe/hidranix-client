@@ -15,11 +15,36 @@ const NavbarPhinix = () => {
   // Función para cerrar el menú en móviles cuando se hace clic en un enlace
   const closeMenu = () => setIsOpen(false);
 
+
+  // Función para hacer scroll suave hacia las secciones y cerrar el menú móvil
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Cerrar el menú cuando se haga clic en un enlace
+    if (isOpen) setIsOpen(false);
+  };
+
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const servicios_link = [
+    { name: "Hidranix: Cocina con Agua", path: "/hidranix" },
+    { name: "Econix: Educación y consultorías", path: "/econix" },
+  ];
+  const servicios_ref = [
+    { name: "Pozo a Tierra", id: "pozo-a-tierra" },
+    { name: "Mantenimiento Eléctrico", id: "mantenimiento-electrico" },
+    { name: "Automatización Domótica", id: "automatizacion-domotica" },
+    { name: "Servicios HVAC", id: "servicios-hvac" },
+    { name: "Impresiones 3D", id: "impresiones-3d" },
+  ];
+  const [openServicios, setOpenServicios] = useState(false);
+
 
   return (
     <nav
@@ -31,7 +56,8 @@ const NavbarPhinix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-primary-dark text-xl font-extrabold">
-          <Link to="/">
+          <Link to="/" className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
+            }`}>
             <img
               src={phinixLogo}
               alt="Phinix Logo"
@@ -42,13 +68,67 @@ const NavbarPhinix = () => {
         </div>
 
         {/* Menú de escritorio */}
-        <div className="text-primary-dark hidden xl:flex items-center gap-8 font-bold">
-          {/* Enlaces de productos */}
-          <Link to="/hidranix">Hidranix</Link>
-          <Link to="/srrobot">Sr.Robot</Link>
-          <Link to="/maguna">Maguna</Link>
-          {/* Enlace al Consultoría */}
-          <a href="#consultory">Consultoria</a>
+        <div className="hidden xl:flex items-center gap-8 font-bold">
+          {/* Enlaces de secciones dentro de la pagina */}
+          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Inicio</Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#nosotros".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Nosotros</Link>
+          {/* Dropdown Servicios */}
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenServicios(true)}  // al entrar en el div padre (botón o menú), abrir
+            onMouseLeave={() => setOpenServicios(false)} // 
+          >
+            <button
+              className={`cursor-pointer flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+                }`}
+            >
+              Servicios ▾
+            </button>
+
+            {openServicios && (
+              <div className={`absolute left-0 top-full ${openServicios ? "block" : "hidden"}`}>
+                {/* Aquí ya puedes poner el "espacio visual" sin crear hueco de hover */}
+                <div className="pt-2">
+                  <div className="w-56 bg-white shadow-lg rounded-md z-50">
+                    {servicios_link.map((item, i) => (
+                      <Link
+                        key={i}
+                        to={item.path}
+                        className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                        onClick={() => setOpenServicios(false)} // cerrar al elegir
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                    {servicios_ref.map((item, i) => (
+                      <a
+                        key={i}
+                        href={`#${item.id}`}
+                        className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
+                        onClick={() => setOpenServicios(false)}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#contacto".slice(1))}
+            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
+          >Contacto</Link>
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
@@ -75,12 +155,20 @@ const NavbarPhinix = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex flex-col items-center justify-center h-full">
           {/* Enlaces de productos */}
+
+          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >Inicio</Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#nosotros".slice(1))}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >Nosotros</Link>
           <Link
             to="/hidranix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
@@ -89,26 +177,19 @@ const NavbarPhinix = () => {
             Hidranix
           </Link>
           <Link
-            to="/srrobot"
+            to="/econix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
             onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            Sr.Robot
-          </Link>
-          <Link
-            to="/maguna"
-            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-            onClick={closeMenu} // Cerrar el menú al hacer clic
-          >
-            Maguna
+            Econix
           </Link>
           {/* Enlace al Consultoría en versión móvil */}
           <a
-            href="#consultory"
+            href="#contacto"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
             onClick={closeMenu} // Cerrar el menú al hacer clic
           >
-            Consultoria
+            Contacto
           </a>
 
           {/* Botones de Login y Register en Mobile */}

@@ -48,7 +48,7 @@ const ConsultarySection = () => {
     {
       icon: <img src={MailIcon} alt="Mail" className="w-[30px] h-[30px] text-primary-dark" />, // Icono de correo
       title: "Correo",
-      description: "contacto@phinix.com",
+      description: "hidranix.phinix@gmail.com",
     },
   ];
 
@@ -62,12 +62,15 @@ const ConsultarySection = () => {
       }}
       className="min-h-screen bg-white py-20 pt-32"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        id="contacto"
+        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
         <div className="flex flex-col xl:flex-row gap-[30px] justify-center items-center">
           {/* form */}
           <div className="xl:w-[54%] order-2 xl:order-none">
             <form className="flex flex-col gap-6 p-10 bg-white rounded-xl border border-gray-300" onSubmit={handleSubmit}>
-              <h3 className="text-4xl text-primary-dark text-center">Consultoría</h3>
+              <h3 className="text-4xl text-primary text-center font-bold">Consultoría</h3>
               <p className="text-gray-600 text-center">
                 ¿Necesitas nuestra ayuda? Escríbenos.
               </p>
@@ -103,7 +106,7 @@ const ConsultarySection = () => {
                   onChange={handleChange}
                   className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-dark"
                 >
-                  <option value="" disabled selected>Asunto</option>
+                  <option value="" disabled>Asunto</option>
                   <option value="consulta">Consulta</option>
                   <option value="soporte">Soporte</option>
                   <option value="colaboracion">Cotización</option>

@@ -18,9 +18,10 @@ const hidranixSocialLinks = {
 
 const customContacts: Contact[] = [
   {
-    name: "Asesor de ventas",
+
+    name: "Asesor Hidranix",
     number: "+51916699070",
-    message: "Hola, me gustaría solicitar una cotización de ...",
+    message: "Hola, me gustaría saber mas informacion del producto Hidranix...",
   },
 ];
 
