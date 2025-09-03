@@ -396,11 +396,6 @@ export const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY 
 
 De esta manera, las variables se pueden importar desde cualquier componente o servicio del frontend sin exponer datos sensibles directamente en el código.
 
----
-
-¿Quieres que también te arme un **ejemplo para producción** (por ejemplo, con una `VITE_BACKEND_URL=https://api.tuservicio.com`) y lo documentemos en esta misma sección?
-
-
 
 
 ## 📄 Licencia
