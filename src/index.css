@@ -24,7 +24,7 @@
   --bg-hero-pattern: url("/src/assets/hydrogen2.jpg");
   /* --bg-hero-pattern-phinix: url("/src/assets/background-phinix.webp"); */
   --bg-hero-pattern-phinix: url("/src/assets/bg-3.webp");
-  --bg-hero-pattern-econix: url("/src/assets/background-econix.jpg");
+  --bg-hero-pattern-econix: url("/src/assets/background-econix-new.jpg");
 }
 
 .bg-hero-pattern-with-opacity {
