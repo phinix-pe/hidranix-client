@@ -1,5 +1,4 @@
 import { useState } from "react";
-import clsx from "clsx";
 
 import { Module } from "../../../shared/interfaces";
 import {
@@ -139,7 +138,13 @@ export const CourseModules = ({ modules }: Props) => {
               Cronograma del Curso
             </h3>
             <div
-              className={clsx("grid gap-4", `md:grid-cols-${modules.length}`)}
+              className="grid gap-4"
+              style={{
+                gridTemplateColumns: `repeat(${Math.min(
+                  modules.length,
+                  6
+                )}, 1fr)`,
+              }}
             >
               {modules.map((module, index) => (
                 <div key={index} className="text-center">
