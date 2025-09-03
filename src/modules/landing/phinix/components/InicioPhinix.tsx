@@ -3,7 +3,10 @@ import phinixLogo from "../../../../assets/phinix_logo.png";
 
 export const InicioPhinix = () => {
   return (
-    <div className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap">
+    <div
+      id="inicio"
+      className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap"
+    >
       <AnimationComponent
         className="text-center max-w-2xl px-4  md:-mt-40"
         variants={{
@@ -11,13 +14,13 @@ export const InicioPhinix = () => {
           visible: {
             opacity: 1,
             y: 0,
-            transition: { delay: 0.3, duration: 0.8 },
+            transition: { delay: 0.3, duration: 0.6 },
           },
         }}
       >
         {/* <div className="text-center max-w-2xl px-4 -mt-40"> */}
         <h1 className="text-5xl md:text-6xl font-extrabold mb-8">
-          <span className="text-gradient bg-gradient-to-r from-primary-light to-primary-dark drop-shadow-lg">
+          <span className="text-[#f5f5f5] drop-shadow-lg">
             Impulsamos la transición energética en Perú
           </span>
         </h1>
@@ -37,7 +40,7 @@ export const InicioPhinix = () => {
           visible: {
             opacity: 1,
             y: 0,
-            transition: { delay: 0.6, duration: 1 },
+            transition: { delay: 0.3, duration: 0.6 },
           },
         }}
       >

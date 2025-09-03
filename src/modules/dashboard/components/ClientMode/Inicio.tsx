@@ -1,30 +1,34 @@
-import ConsumoDiario from './ConsumoDiario'; 
+import ConsumoHoy from './ConsumoHoy';
+import ConsumoSemanal from './ConsumoSemanal';
 
 const Inicio = () => {
+  const userId = "18f602e0-b79c-4e7f-9ea3-48d8dbc97c1d"; // ⚡️ Cambia por el userId dinámico si lo tienes en contexto
+
   return (
     <div className="mt-8 space-y-6">
       {/* Card de Consumo Diario */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-2">Consumo Diario</h3>
-        <p className="text-gray-600 mb-4 text-sm">
-          Visualización de tu consumo de hidrogeno por día. La línea representa la tendencia de tu uso a lo largo de la semana.
+      <div className="bg-white border border-primary-light shadow-lg rounded-2xl p-6 w-full">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800">
+          Consumo Diario
+        </h3>
+        <p className="text-gray-600 mb-4 text-sm sm:text-base">
+          Gráfico de las temperaturas registradas durante el día.
         </p>
-        <div className="w-full overflow-x-auto"> {/* Para evitar desbordamiento horizontal en móviles */}
-          <ConsumoDiario />
+        <div className="w-full">
+          <ConsumoHoy />
         </div>
       </div>
 
-      {/* Aquí podrías añadir otro gráfico en un card similar */}
-      {/* Ejemplo de otro gráfico (simulado) */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-2">Consumo Anual</h3>
-        <p className="text-gray-600 mb-4 text-sm">
-          Descripción concisa del segundo gráfico.
+      {/* Card de Consumo Semanal */}
+      <div className="bg-white border border-primary-light shadow-lg rounded-2xl p-6 w-full">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800">
+          Consumo Semanal
+        </h3>
+        <p className="text-gray-600 mb-4 text-sm sm:text-base">
+          Promedio diario de temperaturas en la última semana.
         </p>
-        <div className="w-full overflow-x-auto">
-          {/* <OtroGrafico /> */}
-          {/* <p className="text-gray-400 text-center py-8">Aquí iría otro gráfico...</p> */}
-          <ConsumoDiario />
+        <div className="w-full">
+          <ConsumoSemanal userId={userId} />
         </div>
       </div>
     </div>

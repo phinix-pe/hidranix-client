@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { motion } from "framer-motion"; // Usamos motion para la animación
+import { motion } from "framer-motion";
 import { CardItemContent } from "../../shared/interfaces";
 
 interface Props {
   item: CardItemContent;
-  isClickable?: boolean; // Prop opcional para controlar si es clickeable
+  isClickable?: boolean;
   animationDelay: number;
+  minWidth?: number;
+  equalHeight?: boolean;
 }
 
 const modalVariants = {
@@ -15,7 +17,7 @@ const modalVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { type: "spring", duration: 0.2, damping: 12 }, // Acelerar la animación del modal
+    transition: { type: "spring", duration: 0.2, damping: 12 },
   },
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.2 } },
 };
@@ -24,17 +26,20 @@ export const GridCardItem = ({
   item,
   animationDelay,
   isClickable = true,
+  minWidth,
+  equalHeight = false,
 }: Props) => {
-  const { date, description, imgSrc, title, chipContent } = item;
-
+  const { date, description, imgSrc, title, chipContent, descriptionCol1, descriptionCol2, twoColumns } = item;
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const safeDescription = description ?? "";
   const descriptionToShow = isClickable
-    ? description.slice(0, 100)
-    : description;
+    ? safeDescription.slice(0, 100)
+    : safeDescription;
 
   const handleOpenModal = () => {
-    setIsOpen(isClickable);
+    if (isClickable) setIsOpen(true);
   };
 
   const handleCloseModal = () => {
@@ -44,6 +49,7 @@ export const GridCardItem = ({
   return (
     <>
       <motion.div
+        id={item.id}
         variants={{
           hidden: { opacity: 0, x: 100 },
           visible: {
@@ -51,22 +57,23 @@ export const GridCardItem = ({
             x: 0,
             transition: {
               type: "spring",
-              delay: animationDelay, // Reducir el delay para acelerar la aparición
-              stiffness: 25, // Acelerar la animación
-              damping: 8, // Reducir el damping para una animación más rápida
-              duration: 0.3, // Acelerar la animación de la tarjeta
+              delay: animationDelay,
+              stiffness: 25,
+              damping: 8,
+              duration: 0.3,
             },
           },
         }}
         className={`bg-white rounded-lg shadow-md overflow-hidden ${
-          isHovered ? "scale-105 transition-transform duration-300 " : ""
+          isHovered ? "scale-105 transition-transform duration-300" : ""
         } ${isClickable ? "cursor-pointer" : ""}`}
+        style={{ minWidth: minWidth }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={handleOpenModal} // Abrir al hacer click en la tarjeta también
-        whileInView="visible" // Esto hace que la animación comience tan pronto como entre en la vista
-        initial="hidden" // Estado inicial de la animación
-        viewport={{ once: false }} // Esto asegura que la animación se repita cada vez que entra en la vista
+        onClick={handleOpenModal}
+        whileInView="visible"
+        initial="hidden"
+        viewport={{ once: false }}
       >
         {imgSrc && (
           <img
@@ -75,19 +82,34 @@ export const GridCardItem = ({
             className="w-full h-auto object-cover aspect-video"
           />
         )}
-        <div className="p-6">
+        <div className={`p-6 flex-grow ${equalHeight ? "flex flex-col" : ""}`}>
           {chipContent && (
             <span className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-3 py-1 mb-2">
               {chipContent}
             </span>
           )}
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
-          <p className="relative text-gray-700">
-            {descriptionToShow}
-            {description.length > 100 && isClickable && (
-              <span className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent"></span>
+          <h3 className="text-xl font-semibold text-phinix-teal mb-2">{title}</h3>
+
+          <div className={`text-gray-700 ${twoColumns ? "grid grid-cols-2 gap-6" : ""}`}>
+            {twoColumns && descriptionCol1 && descriptionCol2 ? (
+              <>
+                <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: descriptionCol1 }} />
+                <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: descriptionCol2 }} />
+              </>
+            ) : description?.includes('<') ? (
+              <div
+                className="whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            ) : (
+              <p className="whitespace-pre-line">
+                {descriptionToShow}
+                {safeDescription.length > 100 && isClickable && (
+                  <span className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent"></span>
+                )}
+              </p>
             )}
-          </p>
+          </div>
 
           {isClickable && (
             <div className="flex justify-center mt-4">
@@ -105,22 +127,53 @@ export const GridCardItem = ({
       {/* Modal/Ventana */}
       {isOpen && (
         <motion.div
-          className="fixed top-0 left-0 w-full h-full bg-black/75 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4"
           initial="initial"
           animate="animate"
           exit="exit"
           variants={modalVariants}
+          onClick={handleCloseModal}
         >
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 relative">
+          <div 
+            className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="absolute top-4 right-4 cursor-pointer text-primary-dark hover:text-primary-light focus:outline-none"
+              className="absolute top-4 right-4 cursor-pointer text-primary-dark hover:text-primary-light focus:outline-none z-10"
               onClick={handleCloseModal}
             >
               <IoClose className="h-6 w-6 fill-current" />
             </button>
-            <div className="p-8 grid md:grid-cols-2 gap-8">
+            <div className="p-8">
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                {title}
+              </h3>
+              {date && <p className="text-gray-600 text-sm mb-2">{date}</p>}
+              {chipContent && (
+                <span className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-3 py-1 mb-4">
+                  {chipContent}
+                </span>
+              )}
+              
+              {/* CONTENIDO DEL MODAL - MANEJA DOS COLUMNAS */}
+              <div className={`mt-4 ${twoColumns ? "grid grid-cols-1 md:grid-cols-2 gap-6" : ""}`}>
+                {twoColumns && descriptionCol1 && descriptionCol2 ? (
+                  <>
+                    <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: descriptionCol1 }} />
+                    <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: descriptionCol2 }} />
+                  </>
+                ) : description?.includes('<') ? (
+                  <div
+                    className="whitespace-pre-line"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
+                ) : (
+                  <p className="text-gray-700 whitespace-pre-line">{description}</p>
+                )}
+              </div>
+              
               {imgSrc && (
-                <div className="md:order-1">
+                <div className="mt-6">
                   <img
                     src={imgSrc}
                     alt={title}
@@ -128,18 +181,6 @@ export const GridCardItem = ({
                   />
                 </div>
               )}
-              <div className="md:order-2">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                  {title}
-                </h3>
-                {date && <p className="text-gray-600 text-sm mb-2">{date}</p>}
-                {chipContent && (
-                  <span className="inline-block bg-primary-light text-white text-xs font-semibold rounded-full px-3 py-1 mb-4">
-                    {chipContent}
-                  </span>
-                )}
-                <p className="text-gray-700">{description}</p>
-              </div>
             </div>
           </div>
         </motion.div>
