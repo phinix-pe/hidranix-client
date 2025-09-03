@@ -374,5 +374,6 @@ const courseContacts: Contact[] = [
 2. Mantener coherencia en fechas y semanas
 3. Actualizar el total de horas del curso
 
+### Trabajo futuro: [FUTURE_WORK.md](./FUTURE_WORK.md)
 
 *Última actualización: Septiembre 2025*
