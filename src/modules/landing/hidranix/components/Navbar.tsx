@@ -5,7 +5,6 @@ import AnimatedLogo from "./AnimatedLogo";
 import SimpleButton from "../../animation/SimpleButton";
 import BlurButton from "../../animation/BlurButton";
 
-
 const links = [
   { name: "Inicio", path: "#inicio" },
   { name: "Nosotros", path: "#nosotros" },
@@ -56,7 +55,7 @@ const Navbar = () => {
           >
             <AnimatedLogo
               scrollY={scrollY}
-              className="w-8 h-8 mr-2"
+              className="w-16 h-16 mr-2"
               alt="Tecnología Hidranix"
             />
             Hidranix

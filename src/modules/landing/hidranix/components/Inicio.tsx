@@ -50,7 +50,7 @@ const Inicio = () => {
               }}
             >
               <span className="text-white py-6 block font-poppins text-lg xl:text-6xl">
-                Convertimos el Agua en Fuego para Cocinar
+                Convertimos el agua en fuego para cocinar con hidrógeno verde
               </span>
             </AnimationComponent>
           </h1>

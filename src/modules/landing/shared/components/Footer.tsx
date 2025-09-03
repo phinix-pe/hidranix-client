@@ -60,7 +60,8 @@ const Footer = ({
 
           {/* Sección Redes Sociales */}
           <div className="text-center">
-            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
+            <h4 className="text-lg font-semibold mb-4">Únete a nosotros en esta transformación energética!
+              Empieza a usar el agua como combustible con nuestras cocinas del futuro</h4>
             <div className="flex justify-center items-center space-x-4">
               {socialLinks.map((link, index) => (
                 <a
