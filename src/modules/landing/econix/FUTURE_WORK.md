@@ -10,7 +10,6 @@ Este documento describe la hoja de ruta para escalar la plataforma Econix de un 
 - **Gestión Dinámica**: Administración de webinars y cursos desde panel administrativo
 - **Registro de Usuarios**: Sistema de inscripciones y seguimiento de participantes
 - **Notificaciones Automáticas**: Emails programados para recordatorios y actualizaciones
-- **Analytics**: Métricas de participación y engagement
 - **Contenido Dinámico**: CMS para gestionar contenido sin intervención técnica
 
 ## 🏗️ Arquitectura Propuesta
