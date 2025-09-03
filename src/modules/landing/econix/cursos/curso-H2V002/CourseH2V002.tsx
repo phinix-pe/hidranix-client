@@ -170,7 +170,7 @@ const courseData: CourseData = {
   investment: {
     regular: 600,
     earlyBird: 570,
-    earlyBirdDeadline: "24/08/2025",
+    earlyBirdDeadline: "09/09/2025",
   },
   instructorInfo: {
     company: "PHINIX S.A.C. e HIDRANIX",

@@ -1,5 +1,5 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
-import logoEconix from "../../../../assets/Logo_Econix.png";
+import logoEconix from "../../../../assets/Logo_Econix_white.png";
 
 export const InicioEconix = () => {
   return (
@@ -20,7 +20,7 @@ export const InicioEconix = () => {
       >
         {/* <div className="text-center max-w-2xl px-4 -mt-40"> */}
         <h1 className="text-5xl md:text-6xl font-extrabold mb-8">
-          <span className="text-gradient bg-gradient-to-r from-primary-light to-primary-dark drop-shadow-lg">
+          <span className="text-gradient bg-gradient-to-r from-primary to-primary-dark drop-shadow-lg">
             Formamos a los líderes de la energía del futuro
           </span>
         </h1>
