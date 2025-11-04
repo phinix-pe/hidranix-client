@@ -6,5 +6,5 @@ export interface CourseItemContent {
   duration: string;
   modality: string;
   schedule: string;
-  moreInfoPath: string;
+  courseCode: string;
 }

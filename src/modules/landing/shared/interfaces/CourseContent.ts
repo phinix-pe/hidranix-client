@@ -17,6 +17,7 @@ export interface CourseData {
   instructorInfo: InstructorInfo;
   benefits: string[];
   silaboPdf: string;
+  registrationLink: string;
 }
 
 export interface InstructorInfo {

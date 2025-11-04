@@ -72,15 +72,32 @@ const customContacts: Contact[] = [
 ];
 
 const courses: CourseItemContent[] = [
+  // {
+  //   name: "Hidrógeno Verde: Generación y Almacenamiento para Aplicaciones Energéticas Sostenibles",
+  //   startDate: "16/09/2025",
+  //   endDate: "28/10/2025",
+  //   duration: "36 horas",
+  //   modality: "Online",
+  //   schedule: "Martes y jueves 7:30 p.m. - 10:00 p.m.",
+  //   courseCode: "H2V002",
+  // },
   {
-    name: "Hidrógeno Verde: Generación y Almacenamiento para Aplicaciones Energéticas Sostenibles",
-    startDate: "16/09/2025",
-    endDate: "28/10/2025",
-    duration: "36 horas",
-    modality: "Online",
-    schedule: "Martes y jueves 7:30 p.m. - 10:00 p.m.",
-    moreInfoPath:
-      "/cursos/generacion-y-almacenamiento-para-aplicaciones-energeticas-sostenibles",
+    name: "Curso Especializado SSOMA: Seguridad, Prevención y Sostenibilidad",
+    startDate: "12/11/2025",
+    endDate: "13/12/2025",
+    duration: "24 horas académicas",
+    modality: "Híbrido (Virtual/Presencial)",
+    schedule: "Mié y Vie (Virtual) / Sáb (Presencial)",
+    courseCode: "SSOMA001",
+  },
+  {
+    name: "Sistemas Fotovoltaicos: Diseño, Dimensiones e Integración",
+    startDate: "25/11/2025",
+    endDate: "29/11/2025",
+    duration: "12 horas académicas",
+    modality: "Híbrido (Virtual/Presencial)",
+    schedule: "Mar y Vie (Online) / Sáb (Presencial)",
+    courseCode: "FOTO001",
   },
 ];
 export const LandingEconix = () => {

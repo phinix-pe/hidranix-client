@@ -1,23 +1,7 @@
-import { useEffect } from "react";
 import type { Contact, CourseData } from "../../../shared/interfaces";
-import { NavBarEconix } from "../../components/NavBarEconix";
-import { CourseHero } from "../components/CourseHero";
-import { CourseInfo } from "../components/CourseInfo";
-import { CourseModules } from "../components/CourseModules";
-import { CourseDetails } from "../components/CourseDetails";
-import { CourseInvestment } from "../components/CourseInvestment";
-import Footer from "../../../shared/components/Footer";
-import { WhatsAppCTAMultiple } from "../../../shared/components/WhatsAppCTAMultiple";
-import { CourseRegistration } from "../components/CourseRegistration";
 import silaboPdf from "../../../../../assets/files/Silabo_H2V_002.pdf";
-const phinixSocialLinks = {
-  facebookUrl: "https://www.facebook.com/phinix.sac",
-  instagramUrl: "https://www.instagram.com/phinix.sac",
-  linkedinUrl: "https://www.linkedin.com/company/phinix-sac/",
-  tiktokUrl: "https://www.tiktok.com/@phinix.hidranix",
-};
 
-const courseContacts: Contact[] = [
+export const courseContacts: Contact[] = [
   {
     name: "Asesor Académico",
     number: "+51916699070",
@@ -26,7 +10,7 @@ const courseContacts: Contact[] = [
   },
 ];
 
-const courseData: CourseData = {
+export const courseData: CourseData = {
   title:
     "Hidrógeno Verde: Generación y Almacenamiento para Aplicaciones Energéticas Sostenibles",
   courseCode: "H2V002",
@@ -188,28 +172,5 @@ const courseData: CourseData = {
     "Networking con profesionales del sector",
   ],
   silaboPdf: silaboPdf,
-};
-
-export const CourseH2V002 = () => {
-  useEffect(() => {
-    document.title = `${courseData.title} - Econix`;
-  }, []);
-
-  return (
-    <>
-      <NavBarEconix variantColor showTitle title={courseData.title} />
-      <CourseHero courseData={courseData} />
-      <CourseInfo courseData={courseData} />
-      <CourseModules modules={courseData.modules} />
-      <CourseDetails courseData={courseData} />
-      <CourseInvestment courseData={courseData} />
-      <CourseRegistration courseData={courseData} />
-      <Footer
-        {...phinixSocialLinks}
-        slogan="Educación, consultoría y oportunidad de nuevas innovaciones exitosas"
-        pageName="Econix"
-      />
-      <WhatsAppCTAMultiple contacts={courseContacts} />
-    </>
-  );
+  registrationLink: "",
 };

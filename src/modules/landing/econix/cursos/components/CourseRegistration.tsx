@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   FaBuilding,
   FaCheckCircle,
+  FaExternalLinkAlt,
   FaGraduationCap,
   FaMailBulk,
   FaPhone,
@@ -48,8 +49,6 @@ export const CourseRegistration = ({ courseData }: Props) => {
     const message = `Hola, me gustaría obtener más información sobre el curso de "${courseData.title}".\n\nEstos son mis datos:\n\n- Nombre: ${formData.nombre} ${formData.apellido}\n- Email: ${formData.email}\n- Teléfono: ${formData.telefono}\n- Empresa: ${formData.empresa}\n- Cargo: ${formData.cargo}\n- Experiencia: ${formData.experiencia}\n- Motivación: ${formData.motivacion}`;
 
     handleWhatsAppClick(courseData.instructorInfo.contact, message);
-
-    // Reset form after 3 seconds (para demo)
   };
 
   const handleReset = () => {
@@ -94,7 +93,37 @@ export const CourseRegistration = ({ courseData }: Props) => {
       </section>
     );
   }
+  if (courseData.registrationLink !== "") {
+    return (
+      <section className="py-20 bg-gray-50" id="registration">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-primary-dark mb-4">
+                Inscripción Abierta
+              </h2>
+            </div>
 
+            <div className="bg-white rounded-2xl p-8 shadow-xl text-center">
+              <p className="text-gray-700 text-lg mb-6">
+                Este curso se maneja a través de un formulario de inscripción
+                externo.
+              </p>
+              <a
+                href={courseData.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-dark to-primary text-white py-4 px-8 rounded-xl font-bold text-lg hover:shadow-lg transition-all transform hover:scale-[1.02]"
+              >
+                <FaExternalLinkAlt className="w-5 h-5 mr-3" />
+                Inscríbete Aquí
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="py-20 bg-gray-50" id="registration">
       <div className="container mx-auto px-4">

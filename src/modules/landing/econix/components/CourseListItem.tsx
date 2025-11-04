@@ -3,7 +3,7 @@ import { CourseItemContent } from "../../shared/interfaces";
 import { Link } from "react-router-dom"; // O Next.js Link si es el caso
 
 interface Props {
-  item: CourseItemContent;
+  item: CourseItemContent & { courseCode: string };
   animationDelay?: number;
 }
 
@@ -37,7 +37,7 @@ export const CourseListItem = ({ item, animationDelay = 0 }: Props) => {
 
         <div className="mt-4">
           <Link
-            to={item.moreInfoPath}
+            to={`/cursos/${item.courseCode}`}
             target="_blank"
             className="inline-block bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors"
           >
