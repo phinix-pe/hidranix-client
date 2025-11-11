@@ -11,10 +11,11 @@ interface Props {
   isClickable?: boolean; // Prop opcional para controlar si es clickeable
   minWidth?: number; // ancho mínimo en px
   equalHeight?: boolean; // Prop opcional para igualar alturas
+  disableHover?: boolean; // Prop opcional para desactivar hover
 }
 
 
-export const GridCard = ({ id, title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false}: Props) => {
+export const GridCard = ({ id, title, subTitle, cards, isClickable ,minWidth = 300,equalHeight = false, disableHover = false}: Props) => {
   return (
     <section
       id={id}
@@ -60,10 +61,11 @@ export const GridCard = ({ id, title, subTitle, cards, isClickable ,minWidth = 3
             <GridCardItem
               key={index}
               item={item}
-              animationDelay={0.25 + index * 0.1}
+              animationDelay={0.15 + index * 0.05}
               isClickable={isClickable}
               minWidth={minWidth}
               equalHeight={equalHeight} // Pasar la prop para igualar alturas
+              disableHover={disableHover} // Pasar la prop para desactivar hover
               
             />
           ))}

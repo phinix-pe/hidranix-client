@@ -10,6 +10,7 @@ interface Props {
   animationDelay: number;
   minWidth?: number;
   equalHeight?: boolean;
+  disableHover?: boolean;
 }
 
 const modalVariants = {
@@ -28,6 +29,7 @@ export const GridCardItem = ({
   isClickable = true,
   minWidth,
   equalHeight = false,
+  disableHover = false,
 }: Props) => {
   const { date, description, imgSrc, title, chipContent, descriptionCol1, descriptionCol2, twoColumns } = item;
   const [isHovered, setIsHovered] = useState(false);
@@ -58,18 +60,18 @@ export const GridCardItem = ({
             transition: {
               type: "spring",
               delay: animationDelay,
-              stiffness: 25,
-              damping: 8,
-              duration: 0.3,
+              stiffness: 35,
+              damping: 10,
+              duration: 0.2,
             },
           },
         }}
         className={`bg-white rounded-lg shadow-md overflow-hidden ${
-          isHovered ? "scale-105 transition-transform duration-300" : ""
-        } ${isClickable ? "cursor-pointer" : ""}`}
+          !disableHover && isHovered ? "scale-105 transition-transform duration-300" : ""
+        } ${isClickable && !disableHover ? "cursor-pointer" : ""}`}
         style={{ minWidth: minWidth }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !disableHover && setIsHovered(true)}
+        onMouseLeave={() => !disableHover && setIsHovered(false)}
         onClick={handleOpenModal}
         whileInView="visible"
         initial="hidden"

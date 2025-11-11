@@ -36,15 +36,7 @@ const NavbarPhinix = () => {
     { name: "Hidranix: Cocina con Agua", path: "/hidranix" },
     { name: "Econix: Educación y consultorías", path: "/econix" },
   ];
-  const servicios_ref = [
-    { name: "Pozo a Tierra", id: "pozo-a-tierra" },
-    { name: "Mantenimiento Eléctrico", id: "mantenimiento-electrico" },
-    { name: "Automatización Domótica", id: "automatizacion-domotica" },
-    { name: "Servicios HVAC", id: "servicios-hvac" },
-    { name: "Impresiones 3D", id: "impresiones-3d" },
-    { name: "Servicios a Terceros", id: "servicios-terceros" },
-    { name: "Inox y Soldadura", id: "inox-soldadura" },
-  ];
+  
   const [openServicios, setOpenServicios] = useState(false);
 
 
@@ -99,7 +91,17 @@ const NavbarPhinix = () => {
               <div className={`absolute left-0 top-full ${openServicios ? "block" : "hidden"}`}>
                 {/* Aquí ya puedes poner el "espacio visual" sin crear hueco de hover */}
                 <div className="pt-2">
-                  <div className="w-56 bg-white shadow-lg rounded-md z-50">
+                  <div className="w-64 bg-white shadow-lg rounded-md z-50">
+                    <a
+                      href="#servicios"
+                      className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100 font-semibold border-b"
+                      onClick={() => {
+                        setOpenServicios(false);
+                        scrollToSection("servicios");
+                      }}
+                    >
+                      Ver todos los servicios
+                    </a>
                     {servicios_link.map((item, i) => (
                       <Link
                         key={i}
@@ -109,16 +111,6 @@ const NavbarPhinix = () => {
                       >
                         {item.name}
                       </Link>
-                    ))}
-                    {servicios_ref.map((item, i) => (
-                      <a
-                        key={i}
-                        href={`#${item.id}`}
-                        className="block px-4 py-2 text-sm text-primary-dark hover:bg-gray-100"
-                        onClick={() => setOpenServicios(false)}
-                      >
-                        {item.name}
-                      </a>
                     ))}
                   </div>
                 </div>

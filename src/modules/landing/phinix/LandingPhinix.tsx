@@ -5,6 +5,7 @@ import Footer from "../shared/components/Footer";
 import { InicioPhinix } from "./components/InicioPhinix";
 import { CardItemContent, Contact } from "../shared/interfaces";
 import { GridCard } from "./components/GridCard";
+import ServicesGrid from "./components/ServicesGrid";
 
 // images
 import phinixMayo from "../../../assets/eventos/phinix_mayo.jpg";
@@ -27,7 +28,7 @@ import iconoFacebook from "../../../assets/icons/facebook.svg";
 import iconoInstagram from "../../../assets/icons/instagram.svg";
 import iconoWhatsapp from "../../../assets/icons/whatsapp.svg";
 import phinixServiciosHVAC from "../../../assets/phinix_servicios_hvac.png";
-import phinixImpresiones3D from "../../../assets/phinix_impresiones_3d.png";
+
 import phinixSponsorUnsa from "../../../assets/333.png";
 import phinixSponsorEnergizatePeru from "../../../assets/phinix_sponsor_energizate_peru.jpg";
 import phinixSponsorPeruEnergia from "../../../assets/111.jpg";
@@ -37,6 +38,30 @@ import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.png";
 import phinixServiciosTerceros from "../../../assets/phinix_servicios_terceros.png";
 import phinixInoxSoldadura from "../../../assets/phinix_inox_soldadura.png";
 import { SponsorsCircle } from "./components/SponsorsCircle";
+
+// Importar nuevas imágenes de servicios
+import phinixAlquilerBuses from "../../../assets/servicios/phinix_alquiler_buses.webp";
+import phinixAutomatizacionDigital from "../../../assets/servicios/phinix_automatizacion_digital.jpg";
+import phinixAutomatizacionIndustrial from "../../../assets/servicios/phinix_automatizacion_industrial.webp";
+import phinixDashboardIot from "../../../assets/servicios/phinix_dashboard_iot.webp";
+import phinixDistribucionEnergia from "../../../assets/servicios/phinix_distribucion_energia.png";
+import phinixDomoticaIndustrial from "../../../assets/servicios/phinix_domotica_industrial.webp";
+import phinixDrywall from "../../../assets/servicios/phinix_drywall.webp";
+import phinixELearning from "../../../assets/servicios/phinix_e_learning.webp";
+import phinixEnergiasRenovables from "../../../assets/servicios/phinix_energias_renovables.png";
+import phinixEquipoIndustrial from "../../../assets/servicios/phinix_equipo_industrial.webp";
+import phinixFabricacionInox from "../../../assets/servicios/phinix_fabricacion_inox.webp";
+import phinixImpresion3d from "../../../assets/servicios/phinix_impresion_3d.webp";
+import phinixIntegracionSeguridad from "../../../assets/servicios/phinix_integracion_seguridad.jpg";
+import phinixMantenimientoElectricoNuevo from "../../../assets/servicios/phinix_mantenimiento_electrico.webp";
+import phinixMantenimientoIntegral from "../../../assets/servicios/phinix_mantenimiento_integral.webp";
+import phinixMonitoreoDigital from "../../../assets/servicios/phinix_monitoreo_digital.jpg";
+import phinixOmElectrico from "../../../assets/servicios/phinix_om_electrico.webp";
+import phinixOutsourcing from "../../../assets/servicios/phinix_outsourcing.webp";
+import phinixPanelesSolares from "../../../assets/servicios/phinix_paneles_solares.webp";
+import phinixSeguridadInteligente from "../../../assets/servicios/phinix_seguridad_inteligente.webp";
+import phinixSistemasElectricos from "../../../assets/servicios/phinix_sistemas_electricos.jpg";
+import phinixSuministroIndustrial from "../../../assets/servicios/phinix_suministro_industrial.webp";
 const phinixSocialLinks = {
   facebookUrl: "https://www.facebook.com/phinix.sac",
   instagramUrl: "https://www.instagram.com/phinix.sac",
@@ -124,105 +149,378 @@ const novedades: CardItemContent[] = [
   },
 ];
 
-const servicios: CardItemContent[] = [
+// Reorganización de servicios por categorías
+const serviciosCategorizados = [
   {
-    id: "pozo-a-tierra",
-    title: "Pozo a Tierra + Certificado",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Previene accidentes eléctricos.
-    • Evita sanciones normativas.
-    • Protege equipos y personas.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Instalación técnica especializada.
-    • Medición con telurémetro.
-    • Reporte Técnico y planos.
-    • Certificadooficial.`,
-    twoColumns: true,
-    imgSrc: phinixPozoTierra,
+    title: "Ingeniería Eléctrica, Mantenimiento Integral y HVAC",
+    services: [
+      {
+        id: "pozo-a-tierra",
+        title: "Instalaciones Certificadas de Pozos a Tierra y Tableros Eléctricos",
+        shortTitle: "Pozos a Tierra y Tableros",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Seguridad y protección eléctrica: evita accidentes, sanciones y daños a equipos.
+        • Servicio especializado: instalación, medición, reporte y certificado oficial.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Instalación técnica especializada.
+        • Medición con telurémetro.
+        • Reporte Técnico y planos.
+        • Certificado oficial.`,
+        twoColumns: true,
+        imgSrc: phinixPozoTierra,
+      },
+      {
+        id: "instalaciones-electricas-industriales",
+        title: "Instalaciones Eléctricas Industriales y Comerciales",
+        shortTitle: "Instalaciones Eléctricas",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Soluciones eléctricas confiables: diseño e instalación para industrias y comercios.
+        • Trabajo certificado: infraestructura segura y adaptable a cada proyecto.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Diseño e instalación de sistemas eléctricos.
+        • Infraestructura segura y certificada.
+        • Adaptación a proyectos específicos.`,
+        twoColumns: true,
+        imgSrc: phinixMantenimientoElectrico,
+      },
+      {
+        id: "mantenimiento-puntual",
+        title: "Mantenimiento Puntual (Preventivo y Correctivo)",
+        shortTitle: "Mantenimiento Puntual",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Mantenimiento eléctrico seguro: previene fallas, incendios y paradas operativas.
+        • Servicio técnico completo: inspección, limpieza, reapriete e informe especializado.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Inspección de tableros eléctricos.
+        • Limpieza técnica y reapriete de conexiones.
+        • Informe técnico con recomendaciones.`,
+        twoColumns: true,
+        imgSrc: phinixMantenimientoElectrico,
+      },
+      {
+        id: "equipos-industriales-mineria",
+        title: "Equipos Industriales y de Minería",
+        shortTitle: "Equipos Industriales",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Línea amarilla, equipos subterráneos, chancado, molienda y transporte.
+        • Priorizando disponibilidad y reducción de fallas.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Mantenimiento de equipos industriales.
+        • Optimización de disponibilidad operativa.
+        • Reducción de fallas y tiempos de parada.`,
+        twoColumns: true,
+        imgSrc: phinixEquipoIndustrial,
+      },
+      {
+        id: "proyectos-hvac",
+        title: "Proyectos HVAC (Aire Acondicionado) y Confort Térmico",
+        shortTitle: "Proyectos HVAC",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Ventilación, calefacción, torres de enfriamiento, unidades splits, chillers, extractores e inyectores.
+        • Servicio HVAC integral: instalación, mantenimiento y diagnóstico especializado.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Instalación y mantenimiento de equipos HVAC.
+        • Soluciones de ventilación, calefacción y aire acondicionado.
+        • Diagnóstico técnico y recomendaciones.`,
+        twoColumns: true,
+        imgSrc: phinixServiciosHVAC,
+      },
+      {
+        id: "mantenimiento-integral",
+        title: "Mantenimiento Integral",
+        shortTitle: "Mantenimiento Integral",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Planificación estratégica de mantenimientos preventivos y correctivos.
+        • Asegurando confiabilidad, seguridad y continuidad operativa.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Planificación estratégica de mantenimientos.
+        • Servicios preventivos y correctivos.
+        • Garantía de confiabilidad operativa.`,
+        twoColumns: true,
+        imgSrc: phinixMantenimientoIntegral,
+      },
+      {
+        id: "sistemas-electricos-mecanicos",
+        title: "Sistemas Eléctricos, Mecánicos e Instrumentación",
+        shortTitle: "Sistemas Eléctricos y Mecánicos",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Soporte integral en equipos eléctricos, mecánicos y de control.
+        • Garantizando eficiencia y precisión en los procesos.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Soporte técnico en equipos eléctricos.
+        • Mantenimiento de sistemas mecánicos.
+        • Instrumentación y control de procesos.`,
+        twoColumns: true,
+        imgSrc: phinixSistemasElectricos,
+      },
+      {
+        id: "sistemas-distribucion-energia",
+        title: "Sistemas de Distribución y Entrega de Energía",
+        shortTitle: "Distribución de Energía",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Inspección, fiscalización y mantenimiento de redes de distribución.
+        • Garantizando la calidad, continuidad y seguridad en la entrega de energía.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Inspección de redes de distribución.
+        • Fiscalización y mantenimiento.
+        • Garantía de calidad y seguridad energética.`,
+        twoColumns: true,
+        imgSrc: phinixDistribucionEnergia,
+      },
+      {
+        id: "centrales-renovables",
+        title: "Centrales de Energías Renovables",
+        shortTitle: "Energías Renovables",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Soporte técnico y mantenimiento para parques solares, eólicos e hidroeléctricos.
+        • Asegurando la eficiencia energética y confiabilidad de la generación sostenible.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Mantenimiento de parques solares.
+        • Soporte técnico para sistemas eólicos.
+        • Gestión de centrales hidroeléctricas.`,
+        twoColumns: true,
+        imgSrc: phinixEnergiasRenovables,
+      },
+    ],
   },
   {
-    id: "mantenimiento-electrico",
-    title: "Mantenimiento Eléctrico para Empresas y PYMEs",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Previene fallas eléctricas.
-    • Evita apradas operativas, recalentamientos o incendios.
-    • Cumple con estándares de seguridad.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Inspección de tableros eléctricos.
-    • Limpieza técnica y reaprite de conexiones.
-    • Informe técnico con recomendaciones.`,
-    twoColumns: true,
-    imgSrc: phinixMantenimientoElectrico,
+    title: "Domótica, Automatización y Seguridad Inteligente",
+    services: [
+      {
+        id: "automatizacion-industrial",
+        title: "Automatización Industrial",
+        shortTitle: "Automatización Industrial",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Automatización industrial: programación de PLCs y SCADA para optimizar procesos.
+        • Mayor eficiencia operativa: reducción de errores y mejora en la producción.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Programación de PLCs.
+        • Implementación de sistemas SCADA.
+        • Optimización de procesos industriales.`,
+        twoColumns: true,
+        imgSrc: phinixAutomatizacionIndustrial,
+      },
+      {
+        id: "domotica-hogares",
+        title: "Domótica para Hogares, Hoteles y Oficinas",
+        shortTitle: "Domótica Residencial",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Domótica inteligente: control de luces por app o voz, compatible con Alexa/Google Home.
+        • Ambientes modernos y seguros: comodidad, ahorro energético y control total.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Instalación de control de luces por app o voz.
+        • Sensores de movimiento y cámaras.
+        • Compatibilidad con Alexa y Google Home.`,
+        twoColumns: true,
+        imgSrc: phinixDomoticaIndustrial,
+      },
+      {
+        id: "seguridad-inteligente",
+        title: "Seguridad Inteligente",
+        shortTitle: "Seguridad Inteligente",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Seguridad avanzada: cámaras, alarmas, sensores y control de accesos.
+        • Protección en tiempo real: gestión remota desde app o sistema centralizado.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Instalación de cámaras de seguridad.
+        • Sistemas de alarmas y sensores.
+        • Control de accesos remoto.`,
+        twoColumns: true,
+        imgSrc: phinixSeguridadInteligente,
+      },
+    ],
   },
   {
-    id: "automatizacion-domotica",
-    title: "Automatización Domótica (Smart Home)",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Mejora la comodidad y seguridad de tu espacio.
-    • Control remoto desde app o asistentes virtuales.
-    • Ahorro energético y modernización del ambiente`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Instalación de control de luces por app o voz.
-    • Sensores de movimiento y cámaras.
-    • Compataibilidad con Alexa y Google Home.`,
-    twoColumns: true,
-    imgSrc: phinixSmartHome,
+    title: "Desarrollo Web y Soluciones Digitales Corporativas",
+    services: [
+      {
+        id: "plataformas-monitoreo",
+        title: "Plataformas Digitales (Web/Móvil) para Monitoreo",
+        shortTitle: "Plataformas de Monitoreo",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Sistemas de monitoreo: adaptados a cada necesidad.
+        • Gestión en línea: acceso remoto y en tiempo real desde cualquier dispositivo.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Desarrollo de plataformas web y móviles.
+        • Sistemas de monitoreo personalizados.
+        • Acceso remoto en tiempo real.`,
+        twoColumns: true,
+        imgSrc: phinixMonitoreoDigital,
+      },
+      {
+        id: "integracion-sistemas-digitales",
+        title: "Integración de Sistemas Digitales y Ciberseguridad",
+        shortTitle: "Integración Digital",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Conectividad segura entre plataformas.
+        • Ciberseguridad avanzada: protección de la información y operaciones críticas.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Integración de sistemas digitales.
+        • Implementación de ciberseguridad.
+        • Protección de datos e información.`,
+        twoColumns: true,
+        imgSrc: phinixIntegracionSeguridad,
+      },
+      {
+        id: "automatizacion-digital",
+        title: "Automatización Digital y Reportes Inteligentes",
+        shortTitle: "Automatización Digital",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Procesos más ágiles con reportes inteligentes.
+        • Optimización de datos: análisis preciso para mejorar la toma de decisiones.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Automatización de procesos digitales.
+        • Generación de reportes inteligentes.
+        • Análisis de datos y métricas.`,
+        twoColumns: true,
+        imgSrc: phinixAutomatizacionDigital,
+      },
+      {
+        id: "dashboards-iot",
+        title: "Desarrollo de Dashboards IoT y Aplicaciones Empresariales",
+        shortTitle: "Dashboards IoT",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Dashboards IoT y apps empresariales: desarrollo de soluciones personalizadas.
+        • Visualización clara: control de indicadores y métricas en un solo panel.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Desarrollo de dashboards IoT.
+        • Creación de aplicaciones empresariales.
+        • Visualización de indicadores y métricas.`,
+        twoColumns: true,
+        imgSrc: phinixDashboardIot,
+      },
+      {
+        id: "plataformas-elearning",
+        title: "Plataformas de Capacitación en Línea (E-Learning)",
+        shortTitle: "E-Learning",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Entrenamiento remoto: cursos interactivos y accesibles desde cualquier lugar.
+        • Formación digital personalizada.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Desarrollo de plataformas e-learning.
+        • Creación de cursos interactivos.
+        • Acceso remoto y personalizado.`,
+        twoColumns: true,
+        imgSrc: phinixELearning,
+      },
+    ],
   },
   {
-    id: "servicios-hvac",
-    title: "Servicios HVAC",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Mejora el confort térmico.
-    • Optimiza el consumo energético.
-    • Reduce el riesgo de fallas y sobrecargas.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Instalación y mantenimiento de equipos HVAC.
-    • Soluciones de ventilación, calefaccción y aire acondicionado.
-    • Diagnóstico técnico y recomendaciones.`,
-    twoColumns: true,
-    imgSrc: phinixServiciosHVAC,
-  },
-  {
-    id: "impresiones-3d",
-    title: "Impresiones 3D en Resina",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Prototipado preciso y rápido.
-    • Alta resolución y acabados.
-    • Adaptable a multiples industrias.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Prototipado preciso y rápido.
-    • Alta resolución y acabados profesionales.
-    • Adaptable a multiples industrias.`,
-    twoColumns: true,
-    imgSrc: phinixImpresiones3D,
-  },
-  {
-    id: "servicios-terceros",
-    title: "Servicios de Terceros (Soldadura, etc.)",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Ahorra tiempo y esfuerzo delegando tares.
-    • Mejora la calidad y seguridad de tus instalaciones.
-    • Flexibilidad para proyectos pequeños o de gran escala.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Soldadura, pintura técnica, montaje estructural y más.
-    • Mano de obra calificada y herramientas especializadas.
-    • Supervisión técnica y cumplimiento normativo.`,
-    twoColumns: true,
-    imgSrc: phinixServiciosTerceros,
-  },
-  {
-    id: "inox-soldadura",
-    title: "Trabajos en Torno de Inox y Soldadura",
-    descriptionCol1: `<strong>Beneficios clave</strong>
-    • Alta precisión para piezas únicas o seriadas.
-    • Acabados limpios y resistentes a la corrosión.
-    • Ideal para aplicaciones industriales, sanitarias o decorativas.`,
-    descriptionCol2: `<strong>Incluye</strong>
-    • Torneado de acero inoxidable (ejes, pernos, casquillos, adaptadores, etc).
-    • Fabricación de piezas especiales bajo plano o muestra.
-    • Equipos calibrados y operados por técnicos expertos.`,
-    twoColumns: true,
-    imgSrc: phinixInoxSoldadura,  
+    title: "Facility & Industrial Solutions",
+    services: [
+      {
+        id: "fabricacion-mecanizado",
+        title: "Fabricación y Mecanizado de Piezas",
+        shortTitle: "Fabricación y Mecanizado",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Fabricación y mecanizado de piezas: torneado, fresado y soldadura inox.
+        • Soluciones precisas: componentes de alta calidad para la industria.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Torneado y fresado de piezas.
+        • Soldadura en acero inoxidable.
+        • Componentes de alta precisión.`,
+        twoColumns: true,
+        imgSrc: phinixFabricacionInox,
+      },
+      {
+        id: "impresiones-3d",
+        title: "Impresiones 3D en Resina",
+        shortTitle: "Impresiones 3D",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Prototipado rápido y de alta precisión para múltiples industrias.
+        • Acabados profesionales: alta resolución, resistentes y personalizados.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Prototipado preciso y rápido.
+        • Alta resolución y acabados profesionales.
+        • Adaptable a múltiples industrias.`,
+        twoColumns: true,
+        imgSrc: phinixImpresion3d,
+      },
+      {
+        id: "outsourcing-industrial",
+        title: "Outsourcing Industrial",
+        shortTitle: "Outsourcing Industrial",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Soporte especializado en mantenimiento y operaciones clave.
+        • Optimiza recursos: personal técnico experto cuando tu empresa lo necesita.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Personal técnico especializado.
+        • Mantenimiento y operaciones industriales.
+        • Soporte temporal según necesidades.`,
+        twoColumns: true,
+        imgSrc: phinixOutsourcing,
+      },
+      {
+        id: "comercializacion-equipos-industriales",
+        title: "Comercialización e Importación de Equipos Industriales y de Energía",
+        shortTitle: "Equipos Industriales",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Suministro de maquinaria, repuestos y soluciones energéticas de alta calidad.
+        • Garantía y respaldo técnico para el sector industrial y corporativo.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Suministro de maquinaria industrial.
+        • Repuestos y soluciones energéticas.
+        • Garantía y soporte técnico.`,
+        twoColumns: true,
+        imgSrc: phinixSuministroIndustrial,
+      },
+      {
+        id: "comercializacion-paneles-solares",
+        title: "Comercialización e Importación de Equipos (Paneles Solares, Sistemas de Hidrógeno, IoT)",
+        shortTitle: "Paneles Solares e IoT",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Paneles solares, sistemas de hidrógeno e IoT para proyectos innovadores.
+        • Tecnología eficiente que impulsa la transición hacia energías limpias.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Paneles solares y sistemas fotovoltaicos.
+        • Sistemas de hidrógeno verde.
+        • Soluciones IoT para proyectos sostenibles.`,
+        twoColumns: true,
+        imgSrc: phinixPanelesSolares,
+      },
+      {
+        id: "alquiler-vehiculos",
+        title: "Alquiler de Vehículos para Transporte de Personal (Tercerizados)",
+        shortTitle: "Alquiler de Vehículos",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Flota de camionetas, vans y buses para empresas e industrias.
+        • Movilidad segura, cómoda y confiable para tus operaciones diarias.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Camionetas, vans y buses.
+        • Transporte de personal corporativo.
+        • Servicio confiable y seguro.`,
+        twoColumns: true,
+        imgSrc: phinixAlquilerBuses,
+      },
+      {
+        id: "om-electrico-bombeo",
+        title: "O&M Eléctrico y Bombeo",
+        shortTitle: "O&M Eléctrico",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Alta, media y baja tensión, grupos electrógenos, UPS, tableros, pozos a tierra, auditorías energéticas.
+        • Sistemas de bombeo (periféricas, centrífugas, sumergibles, hidroneumáticos).`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Mantenimiento eléctrico de alta/media/baja tensión.
+        • Grupos electrógenos y UPS.
+        • Sistemas de bombeo especializados.`,
+        twoColumns: true,
+        imgSrc: phinixOmElectrico,
+      },
+      {
+        id: "infraestructura-servicios-generales",
+        title: "Infraestructura y Servicios Generales",
+        shortTitle: "Servicios Generales",
+        descriptionCol1: `<strong>Beneficios clave</strong>
+        • Carpintería, drywall, pintura, gasfitería, jardinería, sanitarias.
+        • Limpieza industrial especializada.`,
+        descriptionCol2: `<strong>Incluye</strong>
+        • Servicios de carpintería y drywall.
+        • Pintura, gasfitería y jardinería.
+        • Limpieza industrial y sanitarios.`,
+        twoColumns: true,
+        imgSrc: phinixDrywall,
+      },
+    ],
   },
 ];
 const customContacts: Contact[] = [
@@ -243,22 +541,25 @@ const presentacion: CardItemContent[] = [
   {
     title: "MISIÓN",
     description:
-      `Desarrollar e implementar soluciones tecnológicas innovadoras en energía, automatización y sostenibilidad, contribuyendo al desarrollo de una sociedad más eficiente, limpia y consciente. Nos enfocamos en la excelencia operativa, el compromiso con nuestros clientes y el impacto positivo en las comunidades donde operamos.`,
+      `Desarrollar e implementar soluciones tecnológicas integrales en energía, automatización, digitalización y sostenibilidad, asegurando eficiencia operativa, seguridad y valor agregado para nuestros clientes.
+
+      Contibuimos al desarrollo de mineras, corporativos y comunidades urbanas, impulsando un futuro más innovador, limpio y sostenible.
+      `,
   },
   {
     title: "VISIÓN",
     description:
-      `Ser una empresa referente en América Latina en soluciones integrales de energía renovable, automatización y sostenibilidad, liderando la transformación tecnológica hacia un futuro más verde, inteligente e inclusivo.`,
+      `Ser reconocidos en América Latina como una empresa referente en ingeniería eléctrica, energías renovables, innovación digital y servicios industriales, liderando la transformación tecnológica sostenible que conecte la mineria, la industria y las ciudades hacia un futuro verde, inteligente e inclusivo.`,
     
   },
   {
   title: "NUESTROS VALORES",
   descriptionCol1: `
     <ol class="custom-values-list">
-      <li><strong>Innovación continua:</strong> Buscamos constantemente nuevas ideas y tecnologías que nos permitan mejorar nuestros productos y servicios.</li>
-      <li><strong>Compromiso con la sostenibilidad:</strong> Actuamos con responsabilidad ambiental y promovemos el uso eficiente de los recursos.</li>
-      <li><strong>Excelencia técnica:</strong> Garantizamos calidad, precisión y seguridad en cada proyecto que desarrollamos.</li>
-      <li><strong>Ética y transparencia:</strong> Mantenemos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.</li>
+      <li><strong>Innovación continua:</strong> Impulsamos ideas disruptivas aplicadas a energías limpias, digitalización y electromovilidad.</li>
+      <li><strong>Compromiso con la sostenibilidad:</strong> Trabajamos con responsabilidad ambiental y eficiencia en el uso de recursos.</li>
+      <li><strong>Excelencia técnica:</strong> Brindamos calidad, precisión y seguridad en cada proyecto que desarrollamos.</li>
+      <li><strong>Ética y transparencia:</strong> Construimos relaciones honestas y responsables con nuestros clientes, aliados y colaboradores.</li>
     </ol>
   `,
   descriptionCol2: `
@@ -325,29 +626,23 @@ const LandingPhinix = () => {
       <NavbarPhinix />
 
       <InicioPhinix />
-      {/* Agregando cambios phinix */}
+
+
       <GridCard
         id="nosotros"
         title="Presentación de PHINIX S.A.C."
-        subTitle="Somos PHINIX S.A.C., empresa autorizada especializada en soluciones eléctricas, mantenimiento y tecnología inteligente para hogares, negocios y empresas."
+        subTitle="Somos PHINIX S.A.C., empresa especializada en soluciones eléctricas, mantenimiento integral y tecnologías inteligentes, ofreciendo proyectos de energías renovables, automatización, consultorías y servicios industriales para hogares, corporaciones y operaciones mineras."
         key="presentacion"
         cards={presentacion}
         isClickable={false} // No clickable for services
         minWidth={390}
         equalHeight={true} // Igualar alturas para presentación
+        disableHover={true} // Desactivar hover en presentación
       />
 
-      {/* Fin de cambios phinix */}
+      {/* Servicios con nuevo componente ServicesGrid */}
+      <ServicesGrid categories={serviciosCategorizados} />
 
-      <GridCard
-        title="Servicios"
-        subTitle="Dirigido a Empresas, viviendas, locales, etc. Que requieren cumplir normas eléctricas o mejorar su seguridad"
-        key="services"
-        cards={servicios}
-        isClickable={false} // No clickable for services
-        equalHeight={true} // Igualar alturas para servicios
-        minWidth={380}
-      />
       <GridCard
         title="Eventos"
         subTitle="Conoce más de nuestros eventos"
