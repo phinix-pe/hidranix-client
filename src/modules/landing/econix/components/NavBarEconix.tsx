@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SimpleButton from "../../animation/SimpleButton";
 import BlurButton from "../../animation/BlurButton";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -11,7 +11,7 @@ const links = [
   { name: "Nosotros", path: "#nosotros" },
   { name: "Webinars", path: "#webinars" },
   { name: "Cursos", path: "#cursos" },
-  // { name: "Clientes", path: "#clientes" },
+  { name: "Certificados", path: "/certificate" },
 ];
 
 export const NavBarEconix = ({
@@ -23,27 +23,38 @@ export const NavBarEconix = ({
   showTitle?: boolean;
   title?: string;
 }) => {
-  const location = useLocation(); // Para obtener la ruta actual
-  const [isOpen, setIsOpen] = useState(false); // Para controlar la visibilidad del menú móvil
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
+  // Control del scroll de la página
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Función para alternar el estado del menú
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Función para hacer scroll suave hacia las secciones y cerrar el menú móvil
+  // Función para hacer scroll a secciones
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     section?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // Cerrar el menú cuando se haga clic en un enlace
     if (isOpen) setIsOpen(false);
   };
+
+  // 🔹 Nuevo efecto: escucha si venimos con un hash (por ejemplo, #nosotros)
+  useEffect(() => {
+    if (location.hash) {
+      const section = document.getElementById(location.hash.slice(1));
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      }
+    }
+  }, [location]);
 
   return (
     <nav
@@ -57,6 +68,14 @@ export const NavBarEconix = ({
         <div className="flex items-center text-xl font-bold">
           <Link
             to="/econix"
+            onClick={(e) => {
+              e.preventDefault();
+              if (location.pathname === "/econix") {
+                scrollToSection("inicio");
+              } else {
+                navigate("/econix#inicio");
+              }
+            }}
             className={`flex items-center ${
               variantColor
                 ? scrollY > 0
@@ -100,19 +119,33 @@ export const NavBarEconix = ({
                 <Link
                   key={index}
                   to={link.path}
-                  onClick={() => scrollToSection(link.path.slice(1))}
+                  onClick={(e) => {
+                    if (link.path.startsWith("#")) {
+                      e.preventDefault();
+
+                      // Si estamos en /econix → scroll directo
+                      if (location.pathname === "/econix") {
+                        scrollToSection(link.path.slice(1));
+                      } else {
+                        // Si estamos en otra ruta → ir a /econix#section
+                        navigate(`/econix${link.path}`);
+                      }
+                    } else if (isOpen) {
+                      setIsOpen(false);
+                    }
+                  }}
                   className={`${
                     location.pathname === link.path
                       ? "text-accent border-b-2 border-accent"
                       : ""
                   } capitalize hover:text-accent transition-all 
-              ${
-                variantColor
-                  ? scrollY != 0
-                    ? "text-primary-dark"
-                    : "text-white"
-                  : "text-primary-dark"
-              } `}
+                ${
+                  variantColor
+                    ? scrollY != 0
+                      ? "text-primary-dark"
+                      : "text-white"
+                    : "text-primary-dark"
+                } `}
                 >
                   {link.name}
                 </Link>
@@ -120,7 +153,7 @@ export const NavBarEconix = ({
             </>
           )}
 
-          {/* Botones de Login y Register en Desktop */}
+          {/* Botones Login y Register */}
           <div className="flex space-x-4 ml-8">
             <SimpleButton to="/login" scrollY={1}>
               Iniciar sesión
@@ -133,7 +166,6 @@ export const NavBarEconix = ({
 
         {/* Menú móvil */}
         <div className="xl:hidden flex items-center">
-          {/* Botón móvil */}
           <button onClick={toggleMenu} className="z-20">
             {isOpen ? (
               <HiX size={30} className="text-white" />
@@ -153,7 +185,7 @@ export const NavBarEconix = ({
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Menú móvil */}
       <div
         className={`fixed inset-0 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -165,7 +197,18 @@ export const NavBarEconix = ({
             <Link
               key={index}
               to={link.path}
-              onClick={() => scrollToSection(link.path.slice(1))}
+              onClick={(e) => {
+                if (link.path.startsWith("#")) {
+                  e.preventDefault();
+                  if (location.pathname === "/econix") {
+                    scrollToSection(link.path.slice(1));
+                  } else {
+                    navigate(`/econix${link.path}`);
+                  }
+                } else {
+                  setIsOpen(false);
+                }
+              }}
               className={`${
                 location.pathname === link.path
                   ? "text-accent border-b-2 border-accent"
@@ -176,14 +219,14 @@ export const NavBarEconix = ({
             </Link>
           ))}
 
-          {/* Botones de Login y Register en Mobile */}
+          {/* Botones Login y Register móviles */}
           <div className="mt-8 flex space-x-4">
-            <Link to="/login">
+            <Link to="/login" onClick={() => setIsOpen(false)}>
               <button className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary">
                 Login
               </button>
             </Link>
-            <Link to="/register">
+            <Link to="/register" onClick={() => setIsOpen(false)}>
               <button className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary">
                 Register
               </button>

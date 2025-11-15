@@ -12,6 +12,7 @@ import LandingHidranix from "./modules/landing/hidranix/LandingHidranix";
 import DashboardPage from "./modules/dashboard/pages/DashboardPage";
 import { LandingEconix } from "./modules/landing/econix/LandingEconix";
 import { CourseDetailPage } from "./modules/landing/econix/cursos/curso-H2V002/CourseDetailPage";
+import { CertificateEconix } from "./modules/landing/econix/components/CertificateEconix";
 
 export default function App() {
   return (
@@ -28,8 +29,11 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
 
         <Route path="/dashboard/*" element={<DashboardPage />} />
+        
+        <Route path="/certificate" element={<CertificateEconix />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
+
       </Routes>
     </Router>
   );
