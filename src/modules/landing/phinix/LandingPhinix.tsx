@@ -17,7 +17,6 @@ import phinixDiaMadre from "../../../assets/eventos/phinix_dia_madre.jpg";
 import phinixCongresoInternacional from "../../../assets/eventos/phinix_congreso_internacional.jpg";
 import phinixDiaTrabajador from "../../../assets/eventos/phinix_trabajador.jpg";
 import phinixNewYear from "../../../assets/eventos/phinix_new_year.jpg";
-import phinixSmartHome from "../../../assets/phinix_smarthome.jpeg";
 import phinixPozoTierra from "../../../assets/phinix_pozo_tierra.jpg";
 import phinixMantenimientoElectrico from "../../../assets/phinix_mantenimiento-electrico.jpg";
 import phinixContacto from "../../../assets/phinix_contacto.png";
@@ -35,8 +34,7 @@ import phinixSponsorPeruEnergia from "../../../assets/111.jpg";
 import phinixSponsorFlit from "../../../assets/phinix_sponsor_flit.jpg";
 import phinixSponsorGaiaSpePeru from "../../../assets/222.png";
 import phinixSponsorPerumin from "../../../assets/phinix_sponsor_perumin.png";
-import phinixServiciosTerceros from "../../../assets/phinix_servicios_terceros.png";
-import phinixInoxSoldadura from "../../../assets/phinix_inox_soldadura.png";
+import phinixSponsorCCIAQP from "../../../assets/phinix_sponsor_cciaqp.png";
 import { SponsorsCircle } from "./components/SponsorsCircle";
 
 // Importar nuevas imágenes de servicios
@@ -53,7 +51,6 @@ import phinixEquipoIndustrial from "../../../assets/servicios/phinix_equipo_indu
 import phinixFabricacionInox from "../../../assets/servicios/phinix_fabricacion_inox.webp";
 import phinixImpresion3d from "../../../assets/servicios/phinix_impresion_3d.webp";
 import phinixIntegracionSeguridad from "../../../assets/servicios/phinix_integracion_seguridad.jpg";
-import phinixMantenimientoElectricoNuevo from "../../../assets/servicios/phinix_mantenimiento_electrico.webp";
 import phinixMantenimientoIntegral from "../../../assets/servicios/phinix_mantenimiento_integral.webp";
 import phinixMonitoreoDigital from "../../../assets/servicios/phinix_monitoreo_digital.jpg";
 import phinixOmElectrico from "../../../assets/servicios/phinix_om_electrico.webp";
@@ -617,7 +614,11 @@ const sponsors  : CardItemContent[] = [
     imgSrc: phinixSponsorPerumin , 
     description: "Arequipa, Peru"
   },
-  
+  {
+    title: "Cámara de Comercio AQP",
+    imgSrc: phinixSponsorCCIAQP ,
+    description: "Arequipa, Peru"
+  }
   ]
 const LandingPhinix = () => {
   return (

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { CardItemContent } from "../../shared/interfaces";
 import ServiceModal from "./ServiceModal";
-import { IoIosArrowUp } from "react-icons/io";
+import { FaCirclePlus } from "react-icons/fa6";
 
 interface ServicesGridProps {
   categories: {
@@ -34,7 +34,7 @@ const ServicesGrid = ({ categories }: ServicesGridProps) => {
         </p>
 
         {categories.map((category, catIndex) => (
-          <div key={catIndex} className="mb-12 flex flex-col justify-center items-center">
+          <div key={catIndex} className="mb-12 flex flex-col justify-center items-center text-center">
             <h3 className="text-2xl font-bold text-primary-dark mb-10 px-2">
               {category.title}
             </h3>
@@ -75,7 +75,7 @@ const ServicesGrid = ({ categories }: ServicesGridProps) => {
                         />
                         <div className="absolute inset-0 group-hover:bg-black/50 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                           <div className="bg-primary-light text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <IoIosArrowUp className="text-xl transform rotate-90" />
+                            <FaCirclePlus className="text-xl transform" />
                           </div>
                         </div>
                       </div>

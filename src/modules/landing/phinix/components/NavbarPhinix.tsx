@@ -49,7 +49,7 @@ const NavbarPhinix = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-primary-dark text-xl font-extrabold">
+        <div className="text-primary-dark text-xl font-extrabold hover:bg-slate-400/20 px-3 py-2 rounded-full">
           <Link to="/" className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
             }`}>
             <img
@@ -65,13 +65,13 @@ const NavbarPhinix = () => {
         <div className="hidden xl:flex items-center gap-8 font-bold">
           {/* Enlaces de secciones dentro de la pagina */}
           <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
-            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
               }`}
           >Inicio</Link>
           <Link
             to="/"
             onClick={() => scrollToSection("#nosotros".slice(1))}
-            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
               }`}
           >Nosotros</Link>
           {/* Dropdown Servicios */}
@@ -81,7 +81,7 @@ const NavbarPhinix = () => {
             onMouseLeave={() => setOpenServicios(false)} // 
           >
             <button
-              className={`cursor-pointer flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+              className={`cursor-pointer flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
                 }`}
             >
               Servicios ▾
@@ -89,7 +89,6 @@ const NavbarPhinix = () => {
 
             {openServicios && (
               <div className={`absolute left-0 top-full ${openServicios ? "block" : "hidden"}`}>
-                {/* Aquí ya puedes poner el "espacio visual" sin crear hueco de hover */}
                 <div className="pt-2">
                   <div className="w-64 bg-white shadow-lg rounded-md z-50">
                     <a
@@ -120,19 +119,10 @@ const NavbarPhinix = () => {
           <Link
             to="/"
             onClick={() => scrollToSection("#contacto".slice(1))}
-            className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-white"
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
               }`}
           >Contacto</Link>
 
-          {/* Botones de Login y Register en Desktop */}
-          <div className="flex space-x-4 ml-8">
-            <SimpleButton to="/login" scrollY={1}>
-              Iniciar sesión
-            </SimpleButton>
-            <BlurButton to="/register" scrollY={1}>
-              Registrarse
-            </BlurButton>
-          </div>
         </div>
 
         {/* Menú móvil */}
@@ -186,19 +176,6 @@ const NavbarPhinix = () => {
             Contacto
           </a>
 
-          {/* Botones de Login y Register en Mobile */}
-          <div className="mt-8 flex space-x-4">
-            <Link to="/login">
-              <button className="border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-primary-dark transition-colors duration-300">
-                Login
-              </button>
-            </Link>
-            <Link to="/register">
-              <button className="bg-white text-primary-dark px-4 py-2 rounded border-none border-transparent hover:bg-transparent hover:border-white hover:text-white cursor-pointer">
-                Register
-              </button>
-            </Link>
-          </div>
         </div>
       </div>
     </nav>

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Nosotros from "./components/Nosotros";
 import Novedades from "./components/Novedades";
 import Servicios from "./components/Servicios";
+import Videos from "./components/Videos";
 import { Contact } from "../shared/interfaces";
 import { WhatsAppCTAMultiple } from "../shared/components/WhatsAppCTAMultiple";
 
@@ -35,6 +36,7 @@ const LandingHidranix = () => {
       <Servicios />
       <Novedades />
       <Eventos />
+      <Videos />
       {/* Section: Clientes */}
       <Footer
         {...hidranixSocialLinks}
