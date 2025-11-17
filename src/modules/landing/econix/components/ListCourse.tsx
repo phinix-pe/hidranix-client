@@ -1,10 +1,7 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
 import { CourseItemContent } from "../../shared/interfaces";
 import { CourseListItem } from "./CourseListItem";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+
 interface Props {
   id?: string;
   title: string;
@@ -60,40 +57,16 @@ export const ListCourse = ({ id, title, subTitle, courses }: Props) => {
             </p>
           </AnimationComponent>
         )}
-        {courses.length > 3 ? (
-          <Swiper
-            modules={[Navigation]}
-            navigation
-            loop={true}
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-            className="w-full items-stretch"
-          >
-            {courses.map((course, index) => (
-              <SwiperSlide key={index} className="h-auto">
-                <CourseListItem item={course} animationDelay={0} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <div className={getGridClass()}>
-            {courses.map((course, index) => (
-              <CourseListItem
-                key={index}
-                item={course}
-                animationDelay={0.25 + index * 0.1}
-              />
-            ))}
-          </div>
-        )}
+
+        <div className={getGridClass()}>
+          {courses.map((course, index) => (
+            <CourseListItem
+              key={index}
+              item={course}
+              animationDelay={0.25 + index * 0.1}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

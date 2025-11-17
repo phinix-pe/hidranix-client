@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import SimpleButton from "../../animation/SimpleButton";
-import BlurButton from "../../animation/BlurButton";
+// import SimpleButton from "../../animation/SimpleButton";
+// import BlurButton from "../../animation/BlurButton";
 import phinixLogo from "../../../../assets/phinix_logo.png";
 
 const NavbarPhinix = () => {
@@ -15,7 +15,6 @@ const NavbarPhinix = () => {
   // Función para cerrar el menú en móviles cuando se hace clic en un enlace
   const closeMenu = () => setIsOpen(false);
 
-
   // Función para hacer scroll suave hacia las secciones y cerrar el menú móvil
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -24,7 +23,6 @@ const NavbarPhinix = () => {
     // Cerrar el menú cuando se haga clic en un enlace
     if (isOpen) setIsOpen(false);
   };
-
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -36,9 +34,8 @@ const NavbarPhinix = () => {
     { name: "Hidranix: Cocina con Agua", path: "/hidranix" },
     { name: "Econix: Educación y consultorías", path: "/econix" },
   ];
-  
-  const [openServicios, setOpenServicios] = useState(false);
 
+  const [openServicios, setOpenServicios] = useState(false);
 
   return (
     <nav
@@ -50,8 +47,12 @@ const NavbarPhinix = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-primary-dark text-xl font-extrabold hover:bg-slate-400/20 px-3 py-2 rounded-full">
-          <Link to="/" className={`flex items-center ${scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
-            }`}>
+          <Link
+            to="/"
+            className={`flex items-center ${
+              scrollY > 0 ? "text-primary-dark" : "text-[#ececec]"
+            }`}
+          >
             <img
               src={phinixLogo}
               alt="Phinix Logo"
@@ -64,31 +65,44 @@ const NavbarPhinix = () => {
         {/* Menú de escritorio */}
         <div className="hidden xl:flex items-center gap-8 font-bold">
           {/* Enlaces de secciones dentro de la pagina */}
-          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
-            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
-              }`}
-          >Inicio</Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#inicio".slice(1))}
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            Inicio
+          </Link>
           <Link
             to="/"
             onClick={() => scrollToSection("#nosotros".slice(1))}
-            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
-              }`}
-          >Nosotros</Link>
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            Nosotros
+          </Link>
           {/* Dropdown Servicios */}
           <div
             className="relative"
-            onMouseEnter={() => setOpenServicios(true)}  // al entrar en el div padre (botón o menú), abrir
-            onMouseLeave={() => setOpenServicios(false)} // 
+            onMouseEnter={() => setOpenServicios(true)} // al entrar en el div padre (botón o menú), abrir
+            onMouseLeave={() => setOpenServicios(false)} //
           >
             <button
-              className={`cursor-pointer flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
-                }`}
+              className={`cursor-pointer flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+                scrollY > 0 ? "text-primary-dark" : "text-white"
+              }`}
             >
               Servicios ▾
             </button>
 
             {openServicios && (
-              <div className={`absolute left-0 top-full ${openServicios ? "block" : "hidden"}`}>
+              <div
+                className={`absolute left-0 top-full ${
+                  openServicios ? "block" : "hidden"
+                }`}
+              >
                 <div className="pt-2">
                   <div className="w-64 bg-white shadow-lg rounded-md z-50">
                     <a
@@ -119,10 +133,12 @@ const NavbarPhinix = () => {
           <Link
             to="/"
             onClick={() => scrollToSection("#contacto".slice(1))}
-            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${scrollY > 0 ? "text-primary-dark" : "text-white"
-              }`}
-          >Contacto</Link>
-
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            Contacto
+          </Link>
         </div>
 
         {/* Menú móvil */}
@@ -139,20 +155,27 @@ const NavbarPhinix = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed inset-0 z-10 bg-primary-dark bg-opacity-90 transform transition-all duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex flex-col items-center justify-center h-full">
           {/* Enlaces de productos */}
 
-          <Link to="/" onClick={() => scrollToSection("#inicio".slice(1))}
+          <Link
+            to="/"
+            onClick={() => scrollToSection("#inicio".slice(1))}
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >Inicio</Link>
+          >
+            Inicio
+          </Link>
           <Link
             to="/"
             onClick={() => scrollToSection("#nosotros".slice(1))}
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
-          >Nosotros</Link>
+          >
+            Nosotros
+          </Link>
           <Link
             to="/hidranix"
             className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
@@ -175,7 +198,6 @@ const NavbarPhinix = () => {
           >
             Contacto
           </a>
-
         </div>
       </div>
     </nav>
