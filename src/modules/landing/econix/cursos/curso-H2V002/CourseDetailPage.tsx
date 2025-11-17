@@ -12,16 +12,22 @@ import {
   courseData as dataFOTOVOLTAICO001,
   courseContacts as ContactsFOTOVOLTAICO001,
 } from "./CourseFOTOVOLTAICO001";
+import {
+  courseData as dataESP32001,
+  courseContacts as ContactsESP32001,
+} from "./WorkshopESP32001";
 
 const coursesDatabase: { [key: string]: CourseData } = {
   H2V002: dataH2V002,
   SSOMA001: dataSSOMA001,
   FOTO001: dataFOTOVOLTAICO001,
+  ESP32001: dataESP32001,
 };
 const coursesContactsDatabase: { [key: string]: Contact[] } = {
   H2V002: ContactsH2V002,
   SSOMA001: ContactsSSOMA001,
   FOTO001: ContactsFOTOVOLTAICO001,
+  ESP32001: ContactsESP32001,
 };
 
 import { NavBarEconix } from "../../components/NavBarEconix";

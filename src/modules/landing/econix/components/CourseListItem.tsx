@@ -1,15 +1,16 @@
 import { AnimationComponent } from "../../animation/AnimationComponent";
 import { CourseItemContent } from "../../shared/interfaces";
-import { Link } from "react-router-dom"; // O Next.js Link si es el caso
+import { Link } from "react-router-dom";
 
 interface Props {
   item: CourseItemContent & { courseCode: string };
   animationDelay?: number;
 }
-
 export const CourseListItem = ({ item, animationDelay = 0 }: Props) => {
   return (
     <AnimationComponent
+      className="h-full"
+      viewport={{ once: true }}
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: {
@@ -19,7 +20,7 @@ export const CourseListItem = ({ item, animationDelay = 0 }: Props) => {
         },
       }}
     >
-      <div className="p-6 rounded-lg shadow-md bg-white border border-gray-400 hover:shadow-lg transition-shadow">
+      <div className="p-6 rounded-lg shadow-md bg-white border border-gray-400 hover:shadow-lg transition-shadow h-full flex flex-col">
         <h3 className="text-2xl font-semibold text-gray-900">{item.name}</h3>
         <p className="mt-2 text-gray-700">
           <strong>📅 Inicio:</strong> {item.startDate} &nbsp;|&nbsp;
@@ -35,7 +36,7 @@ export const CourseListItem = ({ item, animationDelay = 0 }: Props) => {
           <strong>🕒 Horario:</strong> {item.schedule}
         </p>
 
-        <div className="mt-4">
+        <div className="mt-auto pt-4">
           <Link
             to={`/cursos/${item.courseCode}`}
             target="_blank"

@@ -5,10 +5,16 @@ export const InicioEconix = () => {
   return (
     <div
       id="inicio"
-      className="bg-hero-pattern-with-opacity-econix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap"
+      className="relative bg-hero-pattern-with-opacity-econix w-full overflow-hidden flex items-center justify-center-safe h-[80vh] bg-cover bg-center flex-wrap"
     >
+      <div
+        className="absolute inset-0 w-full h-full bg-black/60 z-0"
+        aria-hidden="true"
+      ></div>
+
       <AnimationComponent
-        className="text-center max-w-2xl px-4  md:-mt-40"
+        viewport={{ once: true }}
+        className="relative z-10 text-center max-w-2xl px-4"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: {
@@ -18,11 +24,8 @@ export const InicioEconix = () => {
           },
         }}
       >
-        {/* <div className="text-center max-w-2xl px-4 -mt-40"> */}
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-8">
-          <span className="text-gradient bg-gradient-to-r from-primary to-primary-dark drop-shadow-lg">
-            Formamos a los líderes de la energía del futuro
-          </span>
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-8 text-white drop-shadow-lg">
+          Formamos a los líderes de la energía del futuro
         </h1>
 
         <p className="text-xl md:text-2xl font-semibold">
@@ -31,10 +34,11 @@ export const InicioEconix = () => {
             exitosas
           </span>
         </p>
-        {/* </div> */}
       </AnimationComponent>
+
       <AnimationComponent
-        className="md:-mt-20 -mt-40 md:ml-20"
+        viewport={{ once: true }}
+        className="relative z-10 md:ml-20"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: {
@@ -47,7 +51,7 @@ export const InicioEconix = () => {
         <img
           src={logoEconix}
           alt="Econix Logo"
-          className="-mt-30 w-64 md:w-80 transition-transform transform hover:scale-105"
+          className="w-64 md:w-80 transition-transform transform hover:scale-105"
         />
       </AnimationComponent>
     </div>

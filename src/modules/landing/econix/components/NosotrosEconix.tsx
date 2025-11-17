@@ -9,6 +9,7 @@ export const NosotrosEconix = () => {
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimationComponent
+          viewport={{ once: true }}
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -24,6 +25,7 @@ export const NosotrosEconix = () => {
         </AnimationComponent>
 
         <AnimationComponent
+          viewport={{ once: true }}
           variants={{
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { delay: 0.3, duration: 0.8 } },
@@ -39,6 +41,7 @@ export const NosotrosEconix = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full">
           {/* Misión */}
           <AnimationComponent
+            viewport={{ once: true }}
             variants={{
               hidden: { opacity: 0, x: -100 },
               visible: { opacity: 1, x: 0, transition: { delay: 0.4 } },
@@ -60,6 +63,7 @@ export const NosotrosEconix = () => {
 
           {/* Visión */}
           <AnimationComponent
+            viewport={{ once: true }}
             variants={{
               hidden: { opacity: 0, x: 100 },
               visible: { opacity: 1, x: 0, transition: { delay: 0.6 } },
@@ -81,6 +85,7 @@ export const NosotrosEconix = () => {
         </div>
 
         <AnimationComponent
+          viewport={{ once: true }}
           variants={{
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
