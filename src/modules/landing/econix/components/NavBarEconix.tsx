@@ -122,10 +122,12 @@ export const NavBarEconix = ({
 
           {/* Botones de Login y Register en Desktop */}
           <div className="flex space-x-4 ml-8">
-            <SimpleButton to="/login" scrollY={1}>
+            {/* Cambiado to="/login" por "/econix/login" */}
+            <SimpleButton to="/econix/login" scrollY={1}>
               Iniciar sesión
             </SimpleButton>
-            <BlurButton to="/register" scrollY={1}>
+            {/* Cambiado to="/register" por "/econix/register" */}
+            <BlurButton to="/econix/register" scrollY={1}>
               Registrate
             </BlurButton>
           </div>
@@ -178,12 +180,12 @@ export const NavBarEconix = ({
 
           {/* Botones de Login y Register en Mobile */}
           <div className="mt-8 flex space-x-4">
-            <Link to="/login">
+            <Link to="/econix/login">
               <button className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary">
                 Login
               </button>
             </Link>
-            <Link to="/register">
+            <Link to="/econix/register">
               <button className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary">
                 Register
               </button>
