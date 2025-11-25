@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from "react";
-import { AlertTriangle, UserPlus } from "lucide-react";
+import { IoAlertCircle, IoPersonAdd } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 interface RegisterScreenProps {
@@ -42,7 +42,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100 relative z-10">
         <div className="text-center mb-6">
           <div className="bg-[#006a78] w-12 h-12 rounded-lg flex items-center justify-center text-white mx-auto mb-4 shadow-lg shadow-[#006a78]/30">
-            <UserPlus size={24} />
+            <IoPersonAdd size={24} />
           </div>
           <h1 className="text-3xl font-bold text-[#043c42] tracking-tight">
             Crear Cuenta
@@ -110,7 +110,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
 
           {error && (
             <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm flex items-center gap-2">
-              <AlertTriangle size={16} /> {error}
+              <IoAlertCircle size={16} /> {error}
             </div>
           )}
 

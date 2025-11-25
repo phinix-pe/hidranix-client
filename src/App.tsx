@@ -13,6 +13,8 @@ import LandingHidranix from "./modules/landing/hidranix/LandingHidranix";
 import DashboardPage from "./modules/dashboard/pages/DashboardPage";
 import { LandingEconix } from "./modules/landing/econix/LandingEconix";
 import { CourseDetailPage } from "./modules/landing/econix/cursos/curso-H2V002/CourseDetailPage";
+import { ReportsListPage } from "./modules/reports/pages/ReportsListPage";
+import { ReportDetailPage } from "./modules/reports/pages/ReportDetailPage";
 
 //Econix LSM
 import EconixLMS from "./modules/landing/lsm/EconixLMS";
@@ -80,6 +82,10 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
 
         <Route path="/dashboard/*" element={<DashboardPage />} />
+
+        {/* Reports Routes */}
+        <Route path="/reportes" element={<ReportsListPage />} />
+        <Route path="/reportes/:id" element={<ReportDetailPage />} />
 
         {/* Econix LSM Routes */}
         <Route path="/econix/login" element={<EconixLoginWrapper />} />
