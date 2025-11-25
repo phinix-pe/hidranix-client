@@ -58,6 +58,14 @@ export const ReportDetailPage = () => {
     });
   };
 
+  // Formatear horómetro de forma segura
+  const formatHourMeter = (value: number | string | null | undefined): string => {
+    if (value === null || value === undefined) return 'N/A';
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    if (isNaN(num)) return 'N/A';
+    return num.toFixed(1);
+  };
+
   const calculateStats = () => {
     const total = checklistItems.length;
     const ok = checklistItems.filter(item => item.status === 'ok').length;
@@ -149,7 +157,7 @@ export const ReportDetailPage = () => {
                 <span className="text-sm text-gray-600 font-medium">Horómetro Inicio</span>
               </div>
               <p className="text-xl font-bold text-gray-900">
-                {report.hour_meter_start?.toFixed(1) || 'N/A'} hrs
+                {formatHourMeter(report.hour_meter_start)} hrs
               </p>
             </div>
 
@@ -161,7 +169,7 @@ export const ReportDetailPage = () => {
                 <span className="text-sm text-gray-600 font-medium">Horómetro Fin</span>
               </div>
               <p className="text-xl font-bold text-gray-900">
-                {report.hour_meter_end?.toFixed(1) || 'N/A'} hrs
+                {formatHourMeter(report.hour_meter_end)} hrs
               </p>
             </div>
           </div>
