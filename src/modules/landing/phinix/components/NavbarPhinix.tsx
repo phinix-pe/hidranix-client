@@ -56,7 +56,7 @@ const NavbarPhinix = () => {
             <img
               src={phinixLogo}
               alt="Phinix Logo"
-              className="w-8 h-8 inline-block mr-2"
+              className="w-10 h-10 inline-block mr-2 bg-white rounded-full p-1"
             />
             Phinix
           </Link>

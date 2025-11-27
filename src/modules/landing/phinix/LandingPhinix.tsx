@@ -544,8 +544,8 @@ const LandingPhinix = () => {
     const fetchData = async () => {
       try {
         const [eventosResponse, novedadesResponse] = await Promise.all([
-          fetch(`${API_BASE_URL}/get_novedades.php?plataforma=phinix&limit=3`),
-          fetch(`${API_BASE_URL}/get_novedades.php?plataforma=phinix&limit=6`)
+          fetch(`${API_BASE_URL}/get_novedades.php?plataforma=phinix&tipo=evento&limit=3`),
+          fetch(`${API_BASE_URL}/get_novedades.php?plataforma=phinix&tipo=novedad&limit=6`)
         ]);
 
         const eventosData = await eventosResponse.json();

@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *'); // Para desarrollo - cambia en producc
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-$host = 'cpanel.phinix.com.pe'; // Cambia esto por tu dominio de cPanel
+$host = 'cpanel.phinix.com.pe';
 $dbname = 'phinixco_Pruebas';
 $username = 'phinixco_christian';
 $password = 'F3F!6DK,,4!fy$zB';
