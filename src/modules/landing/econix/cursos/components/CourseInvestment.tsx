@@ -28,6 +28,8 @@ export const CourseInvestment = ({ courseData }: Props) => {
     "Soporte técnico durante el curso",
   ];
   const { investment } = courseData;
+  const showEarlyBird =
+    investment.earlyBird && investment.earlyBird < investment.regular;
 
   return (
     <section className="py-20 bg-white">
@@ -46,43 +48,49 @@ export const CourseInvestment = ({ courseData }: Props) => {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Pricing Cards */}
             <div className="space-y-6">
-              {/* Early Bird Pricing */}
-              <div className="bg-gradient-to-br from-primary-dark to-primary rounded-2xl p-8 text-white relative overflow-hidden">
-                <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">
-                  ¡Oferta!
-                </div>
+              {showEarlyBird && (
+                /* Early Bird Pricing */
+                <div className="bg-gradient-to-br from-primary-dark to-primary rounded-2xl p-8 text-white relative overflow-hidden">
+                  <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">
+                    ¡Oferta!
+                  </div>
 
-                <div className="relative z-10">
-                  <div className="flex items-center mb-6">
-                    <FaClock className="w-8 h-8 mr-3" />
-                    <div>
-                      <h3 className="text-2xl font-bold">Precio Promocional</h3>
-                      <p className="text-white/80">
-                        Hasta el {investment.earlyBirdDeadline}
+                  <div className="relative z-10">
+                    <div className="flex items-center mb-6">
+                      <FaClock className="w-8 h-8 mr-3" />
+                      <div>
+                        <h3 className="text-2xl font-bold">
+                          Precio Promocional
+                        </h3>
+                        <p className="text-white/80">
+                          Hasta el {investment.earlyBirdDeadline}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <div className="flex items-baseline mb-2">
+                        <span className="text-5xl font-bold">
+                          S/ {investment.earlyBird}
+                        </span>
+                        <span className="text-xl ml-2 text-white/80">
+                          soles
+                        </span>
+                      </div>
+                      <p className="text-white/80 line-through">
+                        Precio regular: S/ {investment.regular}
+                      </p>
+                      <p className="text-yellow-300 font-semibold">
+                        Ahorras: S/ {investment.regular - investment.earlyBird}
                       </p>
                     </div>
-                  </div>
 
-                  <div className="mb-6">
-                    <div className="flex items-baseline mb-2">
-                      <span className="text-5xl font-bold">
-                        S/ {investment.earlyBird}
-                      </span>
-                      <span className="text-xl ml-2 text-white/80">soles</span>
-                    </div>
-                    <p className="text-white/80 line-through">
-                      Precio regular: S/ {investment.regular}
-                    </p>
-                    <p className="text-yellow-300 font-semibold">
-                      Ahorras: S/ {investment.regular - investment.earlyBird}
-                    </p>
+                    <button className="w-full bg-white text-primary-dark py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors transform hover:scale-105">
+                      Aprovecha la Oferta
+                    </button>
                   </div>
-
-                  <button className="w-full bg-white text-primary-dark py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors transform hover:scale-105">
-                    Aprovecha la Oferta
-                  </button>
                 </div>
-              </div>
+              )}
 
               {/* Regular Pricing */}
               <div className="bg-white border-2 border-gray-200 rounded-2xl p-8">
@@ -93,7 +101,9 @@ export const CourseInvestment = ({ courseData }: Props) => {
                       Precio Regular
                     </h3>
                     <p className="text-gray-600">
-                      Después del {investment.earlyBirdDeadline}
+                      {showEarlyBird
+                        ? `Después del ${investment.earlyBirdDeadline}`
+                        : "Inscripción abierta"}
                     </p>
                   </div>
                 </div>
