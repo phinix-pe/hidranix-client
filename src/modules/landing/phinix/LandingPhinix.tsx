@@ -645,6 +645,7 @@ const LandingPhinix = () => {
         slogan="Unidos para optimizar el ahorro, fomentar descarbonización,usando Energías Renovables con Hidrógeno Verde."
         pageName="Phinix"
       />
+
       <WhatsAppCTAMultiple contacts={customContacts} />
     </div>
   );

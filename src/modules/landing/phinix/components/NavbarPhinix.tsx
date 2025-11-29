@@ -142,7 +142,7 @@ const NavbarPhinix = () => {
         </div>
 
         {/* Menú móvil */}
-        <div className="xl:hidden flex items-center">
+        <div className="xl:hidden flex items-center bg-white rounded-xl p-1">
           <button onClick={toggleMenu} className="z-20">
             {isOpen ? (
               <HiX size={30} className="text-white" />

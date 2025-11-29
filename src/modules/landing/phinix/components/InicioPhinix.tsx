@@ -5,7 +5,7 @@ export const InicioPhinix = () => {
   return (
     <div
       id="inicio"
-      className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap"
+      className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap md:flex-nowrap py-20 md:py-0"
     >
       <AnimationComponent
         className="text-center max-w-2xl px-4  md:-mt-40"
@@ -34,7 +34,7 @@ export const InicioPhinix = () => {
         {/* </div> */}
       </AnimationComponent>
       <AnimationComponent
-        className="md:-mt-20 -mt-40 md:ml-20"
+        className="md:-mt-20 -mt-40 md:ml-20 "
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: {
