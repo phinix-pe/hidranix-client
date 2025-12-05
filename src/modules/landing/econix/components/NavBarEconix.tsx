@@ -11,6 +11,7 @@ const links = [
   { name: "Nosotros", path: "#nosotros" },
   { name: "Webinars", path: "#webinars" },
   { name: "Cursos", path: "#cursos" },
+  { name: "Certificados", path: "#certificados" },
   // { name: "Clientes", path: "#clientes" },
 ];
 

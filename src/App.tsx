@@ -18,6 +18,7 @@ import { ReportDetailPage } from "./modules/reports/pages/ReportDetailPage";
 
 //Econix LSM
 import EconixLMS from "./modules/landing/lsm/EconixLMS";
+import ValidarCertificado from "./modules/landing/econix/components/ValidarCertificado.tsx";
 import { LoginScreen as EconixLoginScreen } from "./modules/landing/lsm/auth/LoginScreen";
 import { RegisterScreen as EconixRegisterScreen } from "./modules/landing/lsm/auth/RegisterScreen"; // Importamos el nuevo registro
 import { GlobalStyles } from "./modules/landing/lsm/components/GlobalStyles";
@@ -91,6 +92,7 @@ export default function App() {
         <Route path="/econix/login" element={<EconixLoginWrapper />} />
         <Route path="/econix/register" element={<EconixRegisterWrapper />} />
         <Route path="/econix/dashboard" element={<EconixDashboardWrapper />} />
+        <Route path="/econix/ValidarCertificado" element={<ValidarCertificado/>} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
