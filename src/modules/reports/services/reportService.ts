@@ -1,4 +1,4 @@
-import { Report, ReportDetail, ReportObservation, FullReport, ChecklistItem, ChecklistItemDefinition } from '../types';
+import { Report, ReportDetail, ReportObservation, FullReport, ChecklistItem, ChecklistItemDefinition, PaginatedReports } from '../types';
 
 // URL base de la API
 const API_BASE_URL = 'https://scooptram-backend-v1.rj.r.appspot.com/api/reports';
@@ -43,6 +43,8 @@ interface ApiReportListItem {
   id: number;
   operator_name: string;
   shift: string | null;
+  hour_meter_start: number | null;
+  hour_meter_end: number | null;
   created_at: string;
 }
 
@@ -58,23 +60,47 @@ interface ApiReportDetail {
   observations: Array<{ category_id: string; comment: string | null }>;
 }
 
-// Obtener todos los reportes desde la API
-export const getAllReports = async (): Promise<Report[]> => {
-  const response = await fetch(API_BASE_URL);
+// Obtener reportes paginados desde la API
+export const getReportsPaginated = async (page: number = 1, limit: number = 10): Promise<PaginatedReports> => {
+  const response = await fetch(`${API_BASE_URL}?page=${page}&limit=${limit}`);
   
   if (!response.ok) {
     throw new Error('Error al obtener los reportes');
   }
   
-  const data: ApiReportListItem[] = await response.json();
+  const data = await response.json();
+  
+  // Mapear la respuesta
+  return {
+    data: data.data.map((item: ApiReportListItem) => ({
+      id: item.id,
+      operator_name: item.operator_name,
+      shift: item.shift,
+      hour_meter_start: item.hour_meter_start,
+      hour_meter_end: item.hour_meter_end,
+      created_at: item.created_at
+    })),
+    pagination: data.pagination
+  };
+};
+
+// Obtener todos los reportes (legacy, para estadísticas)
+export const getAllReports = async (): Promise<Report[]> => {
+  const response = await fetch(`${API_BASE_URL}?limit=100`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener los reportes');
+  }
+  
+  const data = await response.json();
   
   // Mapear la respuesta al tipo Report
-  return data.map(item => ({
+  return data.data.map((item: ApiReportListItem) => ({
     id: item.id,
     operator_name: item.operator_name,
     shift: item.shift,
-    hour_meter_start: null, // No viene en el listado
-    hour_meter_end: null,   // No viene en el listado
+    hour_meter_start: item.hour_meter_start,
+    hour_meter_end: item.hour_meter_end,
     created_at: item.created_at
   }));
 };
