@@ -1,15 +1,17 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Report, PaginationInfo } from '../types';
-import { getReportsPaginated, getAllReports } from '../services/reportService';
+import { getReportsPaginated, getAllReports, getTopFailures, TopFailure, getCategoryLabel } from '../services/reportService';
 import { ReportCard } from '../components/ReportCard';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import phinixLogo from '../../../assets/phinix_logo.png';
 
 const COLORS = ['#0d9488', '#3b82f6', '#f59e0b', '#8b5cf6', '#ef4444', '#10b981'];
+const FAILURE_COLORS = ['#ef4444', '#f97316', '#f59e0b', '#eab308', '#84cc16', '#22c55e', '#14b8a6', '#06b6d4', '#0ea5e9', '#3b82f6'];
 
 export const ReportsListPage = () => {
   const [reports, setReports] = useState<Report[]>([]);
   const [allReports, setAllReports] = useState<Report[]>([]);
+  const [topFailures, setTopFailures] = useState<TopFailure[]>([]);
   const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -42,6 +44,19 @@ export const ReportsListPage = () => {
       }
     };
     fetchAllReports();
+  }, []);
+
+  // Cargar estadísticas de fallas
+  useEffect(() => {
+    const fetchFailures = async () => {
+      try {
+        const failures = await getTopFailures(10);
+        setTopFailures(failures);
+      } catch (err) {
+        console.error('Error al cargar fallas:', err);
+      }
+    };
+    fetchFailures();
   }, []);
 
   const stats = useMemo(() => {
@@ -160,7 +175,7 @@ export const ReportsListPage = () => {
                   <p className="text-2xl font-bold">{stats.avgHoursPerShift.toFixed(1)} hrs</p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white rounded-xl shadow-md p-6">
                   <h3 className="text-lg font-semibold mb-4">Distribucion por Turno</h3>
                   {stats.shiftChartData.length > 0 ? (
@@ -174,7 +189,70 @@ export const ReportsListPage = () => {
                     </ResponsiveContainer>
                   ) : (<p className="text-gray-500 text-center py-10">Sin datos</p>)}
                 </div>
+
+                {/* Gráfico de Top Items con Más Fallas */}
+                <div className="bg-white rounded-xl shadow-md p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-red-600">🔧 Items con Más Fallas</h3>
+                  {topFailures.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={280}>
+                      <BarChart data={topFailures} layout="vertical" margin={{ left: 10, right: 20 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" />
+                        <YAxis 
+                          type="category" 
+                          dataKey="label" 
+                          width={150} 
+                          tick={{ fontSize: 11 }}
+                          tickFormatter={(value) => value.length > 25 ? value.substring(0, 22) + '...' : value}
+                        />
+                        <Tooltip 
+                          formatter={(value: number) => [`${value} fallas`, 'Cantidad']}
+                          labelFormatter={(label) => `Item: ${label}`}
+                        />
+                        <Bar 
+                          dataKey="fail_count" 
+                          name="Fallas"
+                          radius={[0, 4, 4, 0]}
+                        >
+                          {topFailures.map((_, index) => (
+                            <Cell key={index} fill={FAILURE_COLORS[index % FAILURE_COLORS.length]} />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : (<p className="text-gray-500 text-center py-10">Sin datos de fallas</p>)}
+                </div>
               </div>
+
+              {/* Lista detallada de fallas por categoría */}
+              {topFailures.length > 0 && (
+                <div className="mt-6 bg-white rounded-xl shadow-md p-6">
+                  <h3 className="text-lg font-semibold mb-4">📊 Detalle de Fallas por Categoría</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {['pre-start', 'running', 'end-shift'].map(category => {
+                      const categoryFailures = topFailures.filter(f => f.category === category);
+                      const totalFails = categoryFailures.reduce((sum, f) => sum + f.fail_count, 0);
+                      return (
+                        <div key={category} className="border rounded-lg p-4">
+                          <h4 className="font-medium text-gray-700 mb-2">{getCategoryLabel(category)}</h4>
+                          <p className="text-2xl font-bold text-red-500 mb-2">{totalFails}</p>
+                          <p className="text-xs text-gray-500">fallas totales</p>
+                          {categoryFailures.length > 0 && (
+                            <ul className="mt-2 space-y-1">
+                              {categoryFailures.slice(0, 3).map(f => (
+                                <li key={f.item_id} className="text-xs text-gray-600 flex justify-between">
+                                  <span className="truncate mr-2">{f.label}</span>
+                                  <span className="text-red-500 font-medium">{f.fail_count}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}

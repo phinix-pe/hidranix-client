@@ -170,3 +170,66 @@ export const getObservationStatusLabel = (categoryId: string): string => {
   };
   return labels[categoryId] || categoryId;
 };
+
+// --- NUEVAS FUNCIONES DE ESTADÍSTICAS ---
+
+// Tipo para estadísticas de fallas
+export interface FailureStats {
+  total_reports: number;
+  failures_by_item: {
+    item_id: string;
+    label: string;
+    category: string;
+    fail_count: number;
+    total_checks: number;
+    fail_percentage: number;
+  }[];
+  failures_by_category: {
+    category: string;
+    fail_count: number;
+  }[];
+}
+
+// Tipo para top fallas
+export interface TopFailure {
+  item_id: string;
+  label: string;
+  category: string;
+  fail_count: number;
+}
+
+// Obtener estadísticas de fallas
+export const getFailureStats = async (): Promise<FailureStats> => {
+  const API_BASE = API_BASE_URL.replace('/reports', '');
+  const response = await fetch(`${API_BASE}/stats/failures`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener estadísticas de fallas');
+  }
+  
+  return await response.json();
+};
+
+// Obtener top items con más fallas
+export const getTopFailures = async (limit: number = 10): Promise<TopFailure[]> => {
+  const API_BASE = API_BASE_URL.replace('/reports', '');
+  const response = await fetch(`${API_BASE}/stats/top-failures?limit=${limit}`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener top fallas');
+  }
+  
+  const data = await response.json();
+  return data.data;
+};
+
+// Helper para categorías en español
+export const getCategoryLabel = (category: string): string => {
+  const labels: Record<string, string> = {
+    'pre-start': 'Antes de Arrancar',
+    'running': 'Después de Arrancar',
+    'end-shift': 'Final del Turno',
+    'unknown': 'Sin categoría'
+  };
+  return labels[category] || category;
+};
