@@ -5,6 +5,23 @@ import { ReportCard } from '../components/ReportCard';
 import { FailureStatsChart } from '../components/FailureStatsChart';
 import { CategoryStatsChart } from '../components/CategoryStatsChart';
 import phinixLogo from '../../../assets/phinix_logo.png';
+import { 
+  ResponsiveContainer, 
+  PieChart, 
+  Pie, 
+  BarChart, 
+  CartesianGrid, 
+  XAxis, 
+  YAxis, 
+  Tooltip, 
+  Legend, 
+  Bar, 
+  Cell 
+} from 'recharts';
+
+// Color constants for charts
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+const FAILURE_COLORS = ['#FF6B6B', '#EE5A6F', '#C44569', '#A8304E', '#8B2E3F', '#6E2634', '#DC143C', '#B22222', '#8B0000', '#FF4500'];
 
 export const ReportsListPage = () => {
   const [reports, setReports] = useState<Report[]>([]);
@@ -186,7 +203,6 @@ export const ReportsListPage = () => {
           </h2>
         </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
         {reports.length === 0 ? (
           <div className="bg-white rounded-xl shadow-lg p-12 text-center">
             <svg className="w-20 h-20 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -223,7 +239,7 @@ export const ReportsListPage = () => {
                   {stats.shiftChartData.length > 0 ? (
                     <ResponsiveContainer width="100%" height={280}>
                       <PieChart>
-                        <Pie data={stats.shiftChartData} cx="50%" cy="50%" outerRadius={100} dataKey="value" label={({ name, percent }) => name + ' ' + (percent * 100).toFixed(0) + '%'}>
+                        <Pie data={stats.shiftChartData} cx="50%" cy="50%" outerRadius={100} dataKey="value" label={({ name, percent }: { name: string; percent: number }) => name + ' ' + (percent * 100).toFixed(0) + '%'}>
                           {stats.shiftChartData.map((_, index) => (<Cell key={index} fill={COLORS[index % COLORS.length]} />))}
                         </Pie>
                         <Tooltip /><Legend />
@@ -245,11 +261,11 @@ export const ReportsListPage = () => {
                           dataKey="label" 
                           width={150} 
                           tick={{ fontSize: 11 }}
-                          tickFormatter={(value) => value.length > 25 ? value.substring(0, 22) + '...' : value}
+                          tickFormatter={(value: string) => value.length > 25 ? value.substring(0, 22) + '...' : value}
                         />
                         <Tooltip 
                           formatter={(value: number) => [`${value} fallas`, 'Cantidad']}
-                          labelFormatter={(label) => `Item: ${label}`}
+                          labelFormatter={(label: string) => `Item: ${label}`}
                         />
                         <Bar 
                           dataKey="fail_count" 
