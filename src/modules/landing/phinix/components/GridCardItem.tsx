@@ -32,7 +32,6 @@ export const GridCardItem = ({
   disableHover = false,
 }: Props) => {
   const { date, description, imgSrc, title, chipContent, descriptionCol1, descriptionCol2, twoColumns } = item;
-  const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const safeDescription = description ?? "";
@@ -66,12 +65,10 @@ export const GridCardItem = ({
             },
           },
         }}
-        className={`bg-white rounded-lg shadow-md overflow-hidden ${
-          !disableHover && isHovered ? "scale-105 transition-transform duration-300" : ""
+        className={`bg-white rounded-lg overflow-hidden transition-shadow duration-300 ${
+          !disableHover ? "hover:shadow-xl" : "shadow-md"
         } ${isClickable && !disableHover ? "cursor-pointer" : ""}`}
         style={{ minWidth: minWidth }}
-        onMouseEnter={() => !disableHover && setIsHovered(true)}
-        onMouseLeave={() => !disableHover && setIsHovered(false)}
         onClick={handleOpenModal}
         whileInView="visible"
         initial="hidden"

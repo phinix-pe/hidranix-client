@@ -56,7 +56,7 @@ const NavbarPhinix = () => {
             <img
               src={phinixLogo}
               alt="Phinix Logo"
-              className="w-8 h-8 inline-block mr-2"
+              className="w-10 h-10 inline-block mr-2 bg-white rounded-full p-1"
             />
             Phinix
           </Link>
@@ -142,7 +142,7 @@ const NavbarPhinix = () => {
         </div>
 
         {/* Menú móvil */}
-        <div className="xl:hidden flex items-center">
+        <div className="xl:hidden flex items-center bg-white rounded-xl p-1">
           <button onClick={toggleMenu} className="z-20">
             {isOpen ? (
               <HiX size={30} className="text-white" />
