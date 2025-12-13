@@ -22,6 +22,7 @@ import EconixLMS from "./modules/landing/lsm/EconixLMS";
 import { LoginScreen as EconixLoginScreen } from "./modules/landing/lsm/auth/LoginScreen";
 import { RegisterScreen as EconixRegisterScreen } from "./modules/landing/lsm/auth/RegisterScreen"; // Importamos el nuevo registro
 import { GlobalStyles } from "./modules/landing/lsm/components/GlobalStyles";
+import { AdminNovedades } from "./modules/novedades/AdminNovedades";
 
 const EconixLoginWrapper = () => {
   const navigate = useNavigate();
@@ -73,11 +74,12 @@ export default function App() {
     <Router>
       <Routes>
         {/* Landing pages con navbar footer */}
-        <Route element={<LandingLayout />}>
-          <Route path="/" element={<LandingPhinix />} />
-          <Route path="/hidranix" element={<LandingHidranix />} />
-          <Route path="/econix" element={<LandingEconix />} />
-        </Route>
+        {/*<Route element={<LandingLayout />}>*/}
+        <Route path="/" element={<LandingPhinix />} />
+        <Route path="/hidranix" element={<LandingHidranix />} />
+        <Route path="/econix" element={<LandingEconix />} />
+
+        <Route path="/login-novedades" element={<AdminNovedades />} />
 
         <Route path="/cursos/:courseId" element={<CourseDetailPage />} />
 

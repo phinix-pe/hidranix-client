@@ -40,3 +40,14 @@ export interface FullReport {
   details: ReportDetail[];
   observations: ReportObservation[];
 }
+
+// Tipo para la paginación de reportes
+export interface PaginatedReports {
+  data: Report[];
+  pagination: {
+    current_page: number;
+    total_pages: number;
+    total_records: number;
+    records_per_page: number;
+  };
+}

@@ -535,6 +535,19 @@ const sponsors  : CardItemContent[] = [
   }
   ]
 
+// Función helper para determinar si una URL necesita proxy
+const needsProxy = (url: string): boolean => {
+  return url ? (url.includes('linkedin.com') || url.includes('licdn.com')) : false;
+};
+
+// Función para obtener la URL con proxy si es necesario
+const getImageUrl = (url: string): string => {
+  if (needsProxy(url)) {
+    return `http://localhost:8000/proxy_image.php?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+};
+
 const LandingPhinix = () => {
   const [eventos, setEventos] = useState<CardItemContent[]>([]);
   const [novedades, setNovedades] = useState<CardItemContent[]>([]);
@@ -557,7 +570,7 @@ const LandingPhinix = () => {
           title: item.titulo,
           description: item.descripcion,
           date: item.fecha,
-          imgSrc: item.imagen,
+          imgSrc: getImageUrl(item.imagen),
           chipContent: item.categoria,
         }));
 
@@ -566,7 +579,7 @@ const LandingPhinix = () => {
           title: item.titulo,
           description: item.descripcion,
           date: item.fecha,
-          imgSrc: item.imagen,
+          imgSrc: getImageUrl(item.imagen),
           chipContent: item.categoria,
         }));
 

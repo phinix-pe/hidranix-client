@@ -1,7 +1,7 @@
-import { Report, ReportDetail, ReportObservation, FullReport, ChecklistItem, ChecklistItemDefinition } from '../types';
+import { Report, ReportDetail, ReportObservation, FullReport, ChecklistItem, ChecklistItemDefinition, PaginatedReports } from '../types';
 
-// URL base de la API
-const API_BASE_URL = 'https://scooptram-backend-v1.rj.r.appspot.com/api/reports';
+// URL base de la API PHP en cPanel
+const API_BASE_URL = 'https://phinix.com.pe/api/reportes';
 
 const checklistLabels: ChecklistItemDefinition[] = [
   // 1. Antes de Arrancar (Pre-start)
@@ -43,6 +43,8 @@ interface ApiReportListItem {
   id: number;
   operator_name: string;
   shift: string | null;
+  hour_meter_start: number | null;
+  hour_meter_end: number | null;
   created_at: string;
 }
 
@@ -58,30 +60,52 @@ interface ApiReportDetail {
   observations: Array<{ category_id: string; comment: string | null }>;
 }
 
-// Obtener todos los reportes desde la API
-export const getAllReports = async (): Promise<Report[]> => {
-  const response = await fetch(API_BASE_URL);
+// Obtener reportes paginados desde la API PHP
+export const getReportsPaginated = async (page: number = 1, limit: number = 10): Promise<PaginatedReports> => {
+  const response = await fetch(`${API_BASE_URL}/get_reports.php?page=${page}&limit=${limit}`);
   
   if (!response.ok) {
     throw new Error('Error al obtener los reportes');
   }
   
-  const data: ApiReportListItem[] = await response.json();
+  const data = await response.json();
   
-  // Mapear la respuesta al tipo Report
-  return data.map(item => ({
+  return {
+    data: data.data.map((item: ApiReportListItem) => ({
+      id: item.id,
+      operator_name: item.operator_name,
+      shift: item.shift,
+      hour_meter_start: item.hour_meter_start,
+      hour_meter_end: item.hour_meter_end,
+      created_at: item.created_at
+    })),
+    pagination: data.pagination
+  };
+};
+
+// Obtener todos los reportes (para estadísticas)
+export const getAllReports = async (): Promise<Report[]> => {
+  const response = await fetch(`${API_BASE_URL}/get_reports.php?limit=100`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener los reportes');
+  }
+  
+  const data = await response.json();
+  
+  return data.data.map((item: ApiReportListItem) => ({
     id: item.id,
     operator_name: item.operator_name,
     shift: item.shift,
-    hour_meter_start: null, // No viene en el listado
-    hour_meter_end: null,   // No viene en el listado
+    hour_meter_start: item.hour_meter_start ? parseFloat(item.hour_meter_start.toString()) : null,
+    hour_meter_end: item.hour_meter_end ? parseFloat(item.hour_meter_end.toString()) : null,
     created_at: item.created_at
   }));
 };
 
-// Obtener reporte completo con todos sus datos desde la API
+// Obtener reporte completo con todos sus datos desde la API PHP
 export const getFullReport = async (reportId: number): Promise<FullReport | null> => {
-  const response = await fetch(`${API_BASE_URL}/${reportId}`);
+  const response = await fetch(`${API_BASE_URL}/get_report.php?id=${reportId}`);
   
   if (!response.ok) {
     if (response.status === 404) {
@@ -97,8 +121,8 @@ export const getFullReport = async (reportId: number): Promise<FullReport | null
     id: data.id,
     operator_name: data.operator_name,
     shift: data.shift,
-    hour_meter_start: data.hour_meter_start,
-    hour_meter_end: data.hour_meter_end,
+    hour_meter_start: data.hour_meter_start ? parseFloat(data.hour_meter_start.toString()) : null,
+    hour_meter_end: data.hour_meter_end ? parseFloat(data.hour_meter_end.toString()) : null,
     created_at: data.created_at
   };
   
@@ -143,4 +167,65 @@ export const getObservationStatusLabel = (categoryId: string): string => {
     'end-shift': '3. Al Final del Turno'
   };
   return labels[categoryId] || categoryId;
+};
+
+// --- NUEVAS FUNCIONES DE ESTADÍSTICAS ---
+
+// Tipo para estadísticas de fallas
+export interface FailureStats {
+  total_reports: number;
+  failures_by_item: {
+    item_id: string;
+    label: string;
+    category: string;
+    fail_count: number;
+    total_checks: number;
+    fail_percentage: number;
+  }[];
+  failures_by_category: {
+    category: string;
+    fail_count: number;
+  }[];
+}
+
+// Tipo para top fallas
+export interface TopFailure {
+  item_id: string;
+  label: string;
+  category: string;
+  fail_count: number;
+}
+
+// Obtener estadísticas de fallas desde la API PHP
+export const getFailureStats = async (): Promise<FailureStats> => {
+  const response = await fetch(`${API_BASE_URL}/get_failure_stats.php`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener estadísticas de fallas');
+  }
+  
+  return await response.json();
+};
+
+// Obtener top items con más fallas desde la API PHP
+export const getTopFailures = async (limit: number = 10): Promise<TopFailure[]> => {
+  const response = await fetch(`${API_BASE_URL}/get_top_failures.php?limit=${limit}`);
+  
+  if (!response.ok) {
+    throw new Error('Error al obtener top fallas');
+  }
+  
+  const data = await response.json();
+  return data.data;
+};
+
+// Helper para categorías en español
+export const getCategoryLabel = (category: string): string => {
+  const labels: Record<string, string> = {
+    'pre-start': 'Antes de Arrancar',
+    'running': 'Después de Arrancar',
+    'end-shift': 'Final del Turno',
+    'unknown': 'Sin categoría'
+  };
+  return labels[category] || category;
 };
