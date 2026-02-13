@@ -437,7 +437,7 @@ const serviciosCategorizados = [
 const customContacts: Contact[] = [
   {
     name: "Asesor de ventas",
-    number: "+51916699070",
+    number: "+51968700773",
     message: "Hola, me gustaría solicitar una cotización de ...",
   },
   // {
@@ -543,7 +543,7 @@ const needsProxy = (url: string): boolean => {
 // Función para obtener la URL con proxy si es necesario
 const getImageUrl = (url: string): string => {
   if (needsProxy(url)) {
-    return `http://localhost:8000/proxy_image.php?url=${encodeURIComponent(url)}`;
+    return `${API_BASE_URL}/proxy_image.php?url=${encodeURIComponent(url)}`;
   }
   return url;
 };
@@ -563,7 +563,6 @@ const LandingPhinix = () => {
 
         const eventosData = await eventosResponse.json();
         const novedadesData = await novedadesResponse.json();
-
         // Mapear los datos de la API al formato CardItemContent
         const mappedEventos = eventosData.map((item: any) => ({
           id: item.id?.toString(),
@@ -572,6 +571,7 @@ const LandingPhinix = () => {
           date: item.fecha,
           imgSrc: getImageUrl(item.imagen),
           chipContent: item.categoria,
+          linkedin_url: item.linkedin_url,
         }));
 
         const mappedNovedades = novedadesData.map((item: any) => ({
@@ -581,10 +581,12 @@ const LandingPhinix = () => {
           date: item.fecha,
           imgSrc: getImageUrl(item.imagen),
           chipContent: item.categoria,
+          linkedin_url: item.linkedin_url,
         }));
 
         setEventos(mappedEventos);
         setNovedades(mappedNovedades);
+
       } catch (error) {
         console.error('Error al cargar datos:', error);
       } finally {
@@ -623,12 +625,14 @@ const LandingPhinix = () => {
       <ServicesGrid categories={serviciosCategorizados} />
 
       <GridCard
+        id="eventos"
         title="Eventos"
         subTitle="Conoce más de nuestros eventos"
         key="events"
         cards={eventos}
       />
       <GridCard
+        id="novedades"
         title="Novedades"
         subTitle="Entérate de nuestras últimas novedades"
         key="news"

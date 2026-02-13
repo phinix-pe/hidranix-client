@@ -15,7 +15,6 @@ import { LandingEconix } from "./modules/landing/econix/LandingEconix";
 import { CourseDetailPage } from "./modules/landing/econix/cursos/curso-H2V002/CourseDetailPage";
 import { ReportsListPage } from "./modules/reports/pages/ReportsListPage";
 import { ReportDetailPage } from "./modules/reports/pages/ReportDetailPage";
-import LandingLayout from "./components/LandingLayout";
 
 //Econix LSM
 import EconixLMS from "./modules/landing/lsm/EconixLMS";

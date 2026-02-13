@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { API_BASE_URL } from '../../services/config';
+import linkedinBaseImage from '../../../assets/linkedin-base.webp';
+import { MdError } from "react-icons/md";
+
 
 interface NovedadFormData {
+  id?: number;
   titulo: string;
   descripcion: string;
   fecha: string;
@@ -9,11 +13,16 @@ interface NovedadFormData {
   imagen: string;
   tipo: 'novedad' | 'evento';
   plataforma: 'phinix' | 'hidranix';
+  linkedin_url: string;
 }
 
 interface NovedadesFormProps {
   onLogout: () => void;
   user: any;
+  novedadId?: number;
+  novedadData?: NovedadFormData;
+  onSuccess?: () => void;
+  isEditing?: boolean;
 }
 
 // Función helper para determinar si una URL necesita proxy
@@ -24,26 +33,49 @@ const needsProxy = (url: string): boolean => {
 // Función para obtener la URL con proxy si es necesario
 const getImageUrl = (url: string): string => {
   if (needsProxy(url)) {
-    return `http://localhost:8000/proxy_image.php?url=${encodeURIComponent(url)}`;
+    return `${API_BASE_URL}/proxy_image.php?url=${encodeURIComponent(url)}`;
   }
   return url;
 };
 
-export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
-  const [formData, setFormData] = useState<NovedadFormData>({
-    titulo: '',
-    descripcion: '',
-    fecha: new Date().toISOString().split('T')[0],
-    categoria: '',
-    imagen: '',
-    tipo: 'novedad',
-    plataforma: 'phinix',
+export const NovedadesForm = ({ 
+  onLogout, 
+  user, 
+  novedadId, 
+  novedadData,
+  onSuccess,
+  isEditing = false 
+}: NovedadesFormProps) => {
+  const [formData, setFormData] = useState<NovedadFormData>(() => {
+    if (novedadData) {
+      return {
+        titulo: novedadData.titulo || '',
+        descripcion: novedadData.descripcion || '',
+        fecha: novedadData.fecha || new Date().toISOString().split('T')[0],
+        categoria: novedadData.categoria || '',
+        imagen: novedadData.imagen || '',
+        tipo: (novedadData.tipo as 'novedad' | 'evento') || 'novedad',
+        plataforma: (novedadData.plataforma as 'phinix' | 'hidranix') || 'phinix',
+        linkedin_url: novedadData.linkedin_url || '',
+      };
+    }
+    return {
+      titulo: '',
+      descripcion: '',
+      fecha: new Date().toISOString().split('T')[0],
+      categoria: '',
+      imagen: '',
+      tipo: 'novedad',
+      plataforma: 'phinix',
+      linkedin_url: '',
+    };
   });
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [imagePreview, setImagePreview] = useState<string>(novedadData?.imagen ? getImageUrl(novedadData.imagen) : '');
+  const [imageLoadError, setImageLoadError] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -51,9 +83,14 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Actualizar vista previa de imagen
+    // Actualizar vista previa de imagen en tiempo real
     if (name === 'imagen') {
-      setImagePreview(value ? getImageUrl(value) : '');
+      setImageLoadError(false);
+      if (value.trim()) {
+        setImagePreview(getImageUrl(value));
+      } else {
+        setImagePreview('');
+      }
     }
   };
 
@@ -64,34 +101,65 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/insert_novedad.php`, {
+      const endpoint = isEditing && novedadId 
+        ? `${API_BASE_URL}/update_novedad.php`
+        : `${API_BASE_URL}/insert_novedad.php`;
+
+      const payload = isEditing && novedadId
+        ? { 
+            id: novedadId,
+            titulo: formData.titulo,
+            descripcion: formData.descripcion,
+            fecha: formData.fecha,
+            categoria: formData.categoria,
+            imagen: formData.imagen,
+            tipo: formData.tipo,
+            plataforma: formData.plataforma,
+            linkedin_url: formData.linkedin_url
+          }
+        : formData;
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al crear la novedad');
+        throw new Error(data.error || 'Error al guardar la novedad');
       }
 
       if (data.success) {
-        setSuccess('¡Novedad creada exitosamente!');
-        // Resetear formulario
-        setFormData({
-          titulo: '',
-          descripcion: '',
-          fecha: new Date().toISOString().split('T')[0],
-          categoria: '',
-          imagen: '',
-          tipo: 'novedad',
-          plataforma: 'phinix',
-        });
+        const mensaje = isEditing ? '¡Novedad actualizada exitosamente!' : '¡Novedad creada exitosamente!';
+        setSuccess(mensaje);
+        
+        if (!isEditing) {
+          // Resetear formulario solo si es creación
+          setFormData({
+            titulo: '',
+            descripcion: '',
+            fecha: new Date().toISOString().split('T')[0],
+            categoria: '',
+            imagen: '',
+            tipo: 'novedad',
+            plataforma: 'phinix',
+            linkedin_url: '',
+          });
+          setImagePreview('');
+          setImageLoadError(false);
+        }
+        
         // Ocultar mensaje después de 3 segundos
-        setTimeout(() => setSuccess(''), 3000);
+        setTimeout(() => {
+          setSuccess('');
+          if (onSuccess) {
+            onSuccess();
+          }
+        }, 3000);
       }
     } catch (err: any) {
       setError(err.message || 'Error al conectar con el servidor');
@@ -106,12 +174,14 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">Nueva Novedad</h1>
+            <h1 className="text-2xl font-bold text-gray-800">
+              {isEditing ? 'Editar Novedad' : 'Nueva Novedad'}
+            </h1>
             <p className="text-gray-600 mt-1">Bienvenido, {user.nombre_completo}</p>
           </div>
           <button
             onClick={onLogout}
-            className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+            className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition cursor-pointer"
           >
             Cerrar Sesión
           </button>
@@ -240,9 +310,25 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
               />
               {needsProxy(formData.imagen) && (
                 <p className="text-sm text-amber-600 mt-1">
-                  ⚠️ Imagen de LinkedIn detectada - se usará proxy para mostrarla correctamente
+                  Imagen de LinkedIn detectada
                 </p>
               )}
+            </div>
+
+            {/* URL de LinkedIn */}
+            <div>
+              <label htmlFor="linkedin_url" className="block text-sm font-medium text-gray-700 mb-2">
+                URL de LinkedIn (opcional)
+              </label>
+              <input
+                id="linkedin_url"
+                type="url"
+                name="linkedin_url"
+                value={formData.linkedin_url}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                placeholder="https://www.linkedin.com/posts/..."
+              />
             </div>
 
             {/* Vista previa de imagen */}
@@ -251,20 +337,22 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Vista Previa
                 </label>
-                <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 relative">
                   <img
                     src={imagePreview}
                     alt="Vista previa"
                     className="max-w-full h-auto max-h-64 rounded-lg shadow-md mx-auto block"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const errorMsg = document.createElement('p');
-                      errorMsg.textContent = 'Error al cargar la imagen. Verifica la URL.';
-                      errorMsg.className = 'text-red-600 text-center py-4';
-                      target.parentElement?.appendChild(errorMsg);
+                      setImageLoadError(true);
+                      target.src = linkedinBaseImage;
                     }}
                   />
+                  {imageLoadError && (
+                    <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-amber-700 text-sm">
+                      <MdError className="inline mr-1" /> Error al cargar imagen. Se muestra imagen por defecto. Verifica la URL.
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -286,9 +374,9 @@ export const NovedadesForm = ({ onLogout, user }: NovedadesFormProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
-              {loading ? 'Guardando...' : 'Publicar Novedad'}
+              {loading ? (isEditing ? 'Actualizando...' : 'Guardando...') : (isEditing ? 'Actualizar Novedad' : 'Publicar Novedad')}
             </button>
           </form>
         </div>
