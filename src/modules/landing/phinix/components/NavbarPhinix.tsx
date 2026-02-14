@@ -56,7 +56,7 @@ const NavbarPhinix = () => {
             <img
               src={phinixLogo}
               alt="Phinix Logo"
-              className="w-8 h-8 inline-block mr-2"
+              className="w-10 h-10 inline-block mr-2 bg-white rounded-full p-1"
             />
             Phinix
           </Link>
@@ -132,6 +132,24 @@ const NavbarPhinix = () => {
           </div>
           <Link
             to="/"
+            onClick={() => scrollToSection("eventos")}
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            Eventos
+          </Link>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("novedades")}
+            className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
+              scrollY > 0 ? "text-primary-dark" : "text-white"
+            }`}
+          >
+            Novedades
+          </Link>
+          <Link
+            to="/"
             onClick={() => scrollToSection("#contacto".slice(1))}
             className={`flex items-center hover:bg-slate-400/20 px-3 py-2 rounded-full transition-all duration-200 ${
               scrollY > 0 ? "text-primary-dark" : "text-white"
@@ -142,7 +160,7 @@ const NavbarPhinix = () => {
         </div>
 
         {/* Menú móvil */}
-        <div className="xl:hidden flex items-center">
+        <div className="xl:hidden flex items-center bg-white rounded-xl p-1">
           <button onClick={toggleMenu} className="z-20">
             {isOpen ? (
               <HiX size={30} className="text-white" />
@@ -189,6 +207,20 @@ const NavbarPhinix = () => {
             onClick={closeMenu} // Cerrar el menú al hacer clic
           >
             Econix
+          </Link>
+          <Link
+            to="/"
+            onClick={() => { scrollToSection("eventos"); closeMenu(); }}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >
+            Eventos
+          </Link>
+          <Link
+            to="/"
+            onClick={() => { scrollToSection("novedades"); closeMenu(); }}
+            className="text-white py-4 text-2xl capitalize hover:text-accent transition-all"
+          >
+            Novedades
           </Link>
           {/* Enlace al Consultoría en versión móvil */}
           <a

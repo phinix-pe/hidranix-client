@@ -9,4 +9,5 @@ export interface CardItemContent {
   twoColumns?: boolean;//
   descriptionCol1?: string; // 
   descriptionCol2?: string; // 
+  linkedin_url?: string;
 }

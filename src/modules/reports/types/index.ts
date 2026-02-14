@@ -7,6 +7,22 @@ export interface Report {
   created_at: string;
 }
 
+// Interfaz para paginación
+export interface PaginationInfo {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+}
+
+// Respuesta paginada de reportes
+export interface PaginatedReports {
+  data: Report[];
+  pagination: PaginationInfo;
+}
+
 export interface ReportDetail {
   id: number;
   report_id: number;

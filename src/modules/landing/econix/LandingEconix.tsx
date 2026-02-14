@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { InicioEconix } from "./components/InicioEconix";
 import { NavBarEconix } from "./components/NavBarEconix";
+import Buscador from "./components/BuscadorCertificados";
 import { NosotrosEconix } from "./components/NosotrosEconix";
 import {
   Contact,
@@ -123,12 +124,18 @@ export const LandingEconix = () => {
         title="Webinars"
         subTitle="Únete a nuestros webinars"
       /> */}
+
       <ListCourse
         id="cursos"
         title="Nuestros Cursos"
         subTitle="Capacítate con nuestros programas especializados"
         courses={courses}
       />
+
+      <div className="mb-20">
+        <Buscador />
+      </div>
+
       <NosotrosEconix />
 
       {/* Footer */}

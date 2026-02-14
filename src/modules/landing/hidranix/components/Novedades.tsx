@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-
-import imagen1 from "../../../../assets/novedades/1may2025.jpeg";
-import imagen2 from "../../../../assets/novedades/24abr2025.jpeg";
-import imagen3 from "../../../../assets/novedades/21abr2025.jpeg";
+import { useState, useEffect } from "react";
+import { API_BASE_URL } from "../../../services/config";
 
 import produccionImage from "../../../../assets/ministerio_de_la_produccion_logo.png";
 import proinnovateImage from "../../../../assets/proinnovate_logo.png";
@@ -19,32 +17,16 @@ interface Post {
   image: string;
 }
 
-const companyPosts: Post[] = [
-  {
-    title: "Día del Trabajo: La Energía que Mueve el Cambio",
-    date: "1 de mayo de 2025",
-    description:
-      "Hoy reconocemos a quienes, con esfuerzo y pasión, hacen posible cada avance. En Hidranix creemos que el trabajo con propósito transforma no solo empresas, sino también el mundo. ¡Feliz Día del Trabajo! Gracias por ser parte de esta energía que mueve el cambio ⚡🌱 #DíaDelTrabajo #Hidranix #EnergíaConPropósito #Sostenibilidad #HidrógenoVerde #FuturoLimpio",
-    category: "Informativo",
-    image: imagen1,
-  },
-  {
-    title: "¿Quién Liderará el Hidrógeno Verde en Latinoamérica en 2030?",
-    date: "27 de febrero de 2025",
-    description:
-      "🌎 Latinoamérica tiene todo para ser un actor clave en esta nueva era energética: recursos renovables, electricidad barata ⚡ y cada vez más proyectos en marcha. Pero… ¿qué país logrará producir hidrógeno verde al menor costo? 💰 Chile, Argentina, Perú, Colombia, México y Brasil compiten en esta carrera hacia un futuro limpio y sostenible. Descúbrelo en nuestra infografía y dinos: ¿cuál tiene la ventaja? 🚀 #HidranixInformativo #HidrógenoVerde #Sostenibilidad #Innovación #Agenda2030 #EnergíaLimpia #Latinoamérica",
-    category: "Informativo",
-    image: imagen2,
-  },
-  {
-    title: "Día Mundial de la Innovación: Impulsando un Futuro Sostenible",
-    date: "21 de abril de 2025",
-    description:
-      "¡Hoy celebramos el poder de las ideas! 💡 En el Día Mundial de la Innovación, reconocemos la creatividad que impulsa soluciones sostenibles. En Hidranix creemos que un futuro más limpio comienza con innovación energética ⚡🌱 ¿Y tú, qué estás haciendo hoy que podría cambiar el mañana? #DíaDeLaInnovación #InnovaciónSostenible #HidrógenoVerde #EnergíaLimpia #IdeasQueTransforman #FuturoVerde #Hidranix",
-    category: "Informativo",
-    image: imagen3,
-  },
-];
+const getImageUrl = (url: string): string => {
+  if (!url) return "";
+  const needsProxy = (u: string) =>
+    u?.includes("external") || u?.includes("wp-content");
+
+  if (needsProxy(url)) {
+    return `${API_BASE_URL}/proxy_image.php?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+};
 
 const aliados = [
   { name: "Ministerio de la Producción", location: "Perú", logo: produccionImage },
@@ -54,6 +36,47 @@ const aliados = [
 ];
 
 const Novedades = () => {
+  const [novedades, setNovedades] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/get_novedades.php?plataforma=hidranix&tipo=novedad&limit=6`);
+        const data = await response.json();
+
+        const mappedNovedades = data.map((item: any) => ({
+          title: item.titulo,
+          date: item.fecha,
+          description: item.descripcion,
+          category: item.categoria,
+          image: getImageUrl(item.imagen),
+        }));
+
+        setNovedades(mappedNovedades);
+      } catch (error) {
+        console.error('Error al cargar novedades:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section
+        id="novedades"
+        className="w-full py-20 md:py-32 bg-gradient-to-b from-blue-50 to-white overflow-x-hidden"
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-gray-600">Cargando novedades...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="novedades"
@@ -141,7 +164,7 @@ const Novedades = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
-          {companyPosts.map((post, index) => (
+          {novedades.map((post, index) => (
             <motion.div
               key={index}
               variants={{

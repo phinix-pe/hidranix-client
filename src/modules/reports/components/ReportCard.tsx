@@ -17,6 +17,13 @@ export const ReportCard = ({ report }: ReportCardProps) => {
     });
   };
 
+  // Formatear horómetro (puede venir como string o number)
+  const formatHourMeter = (value: number | string | null | undefined): string => {
+    if (value === null || value === undefined) return 'N/A';
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    return isNaN(num) ? 'N/A' : num.toFixed(1);
+  };
+
   return (
     <Link to={`/reportes/${report.id}`}>
       <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 hover:border-blue-500 cursor-pointer">
@@ -53,13 +60,13 @@ export const ReportCard = ({ report }: ReportCardProps) => {
           <div>
             <p className="text-xs text-gray-500 mb-1">Horómetro Inicio</p>
             <p className="text-lg font-bold text-gray-800">
-              {report.hour_meter_start?.toFixed(1) || 'N/A'}
+              {formatHourMeter(report.hour_meter_start)}
             </p>
           </div>
           <div>
             <p className="text-xs text-gray-500 mb-1">Horómetro Fin</p>
             <p className="text-lg font-bold text-gray-800">
-              {report.hour_meter_end?.toFixed(1) || 'N/A'}
+              {formatHourMeter(report.hour_meter_end)}
             </p>
           </div>
         </div>

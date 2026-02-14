@@ -5,7 +5,7 @@ export const InicioPhinix = () => {
   return (
     <div
       id="inicio"
-      className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap"
+      className="bg-hero-pattern-with-opacity-phinix w-full overflow-hidden flex items-center justify-center-safe min-h-screen bg-cover bg-center flex-wrap md:flex-nowrap py-20 md:py-0"
     >
       <AnimationComponent
         className="text-center max-w-2xl px-4  md:-mt-40"
@@ -19,13 +19,13 @@ export const InicioPhinix = () => {
         }}
       >
         {/* <div className="text-center max-w-2xl px-4 -mt-40"> */}
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-8">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-8">
           <span className="text-[#f5f5f5] drop-shadow-lg">
             Impulsamos la transición energética en Perú
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl font-semibold">
+        <p className="text-lg md:text-2xl font-semibold">
           <span className="text-white drop-shadow-lg">
             Especialistas en hidrógeno verde, electromovilidad y automatización
             inteligente
@@ -34,7 +34,7 @@ export const InicioPhinix = () => {
         {/* </div> */}
       </AnimationComponent>
       <AnimationComponent
-        className="md:-mt-20 -mt-40 md:ml-20"
+        className="md:-mt-20 -mt-40 md:ml-20 "
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: {
@@ -47,7 +47,7 @@ export const InicioPhinix = () => {
         <img
           src={phinixLogo}
           alt="Phinix Logo"
-          className="w-64 md:w-80 transition-transform transform hover:scale-105"
+          className="w-48 md:w-80 transition-transform transform bg-white rounded-full p-4 md:p-6 shadow-lg"
         />
       </AnimationComponent>
     </div>
