@@ -58,6 +58,14 @@ Al completar satisfactoriamente todos los módulos de un curso, el sistema gener
 
 Actualmente, el módulo **Vista Estudiante** se encuentra finalizado y funcional. Las próximas fases de desarrollo se centrarán en los roles administrativos y de gestión académica.
 
+---
+
+## 4. Servidor del LMS (Backend)
+
+El código fuente, la base de datos y la configuración del servidor se encuentran alojados en la carpeta [servidor_lms](./servidor_lms).
+
+---
+
 ### Próximos Entregables (To-Do List)
 
 #### Fase 1: Panel de Administración (Admin View)
