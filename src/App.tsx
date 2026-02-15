@@ -19,7 +19,7 @@ import { ReportsListPage } from "./modules/reports/pages/ReportsListPage";
 import { ReportDetailPage } from "./modules/reports/pages/ReportDetailPage";
 
 //Econix LSM
-import EconixLMS from "./modules/landing/lsm/EconixLMS";
+import EconixLMS from "./modules/landing/lsm/lms";
 import ValidarCertificado from "./modules/landing/econix/components/ValidarCertificado.tsx";
 import { LoginScreen as EconixLoginScreen } from "./modules/landing/lsm/auth/LoginScreen";
 import { RegisterScreen as EconixRegisterScreen } from "./modules/landing/lsm/auth/RegisterScreen"; // Importamos el nuevo registro
@@ -36,10 +36,19 @@ const EconixLoginWrapper = () => {
   }
 
   // Manejador para cuando el login es exitoso
+  // Manejador para cuando el login es exitoso
   const handleLoginSuccess = (token: string, user: any) => {
+    // PROTECCIÓN: Solo guardar si el usuario y el token existen de verdad
+    if (!user || !token) {
+      console.error("Intento de login con datos vacíos");
+      console.log("Token recibido:", token);
+      console.log("Usuario recibido:", user);
+      return;
+    }
+
     localStorage.setItem("econixToken", token);
     localStorage.setItem("econixUser", JSON.stringify(user));
-    localStorage.setItem("isEconixAuthenticated", "true"); // Para compatibilidad si usas esto en otros lados
+    localStorage.setItem("isEconixAuthenticated", "true");
     navigate("/econix/dashboard");
   };
 
@@ -125,7 +134,10 @@ export default function App() {
         <Route path="/econix/login" element={<EconixLoginWrapper />} />
         <Route path="/econix/register" element={<EconixRegisterWrapper />} />
         <Route path="/econix/dashboard" element={<EconixDashboardWrapper />} />
-        <Route path="/econix/ValidarCertificado" element={<ValidarCertificado/>} />
+        <Route
+          path="/econix/ValidarCertificado"
+          element={<ValidarCertificado />}
+        />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

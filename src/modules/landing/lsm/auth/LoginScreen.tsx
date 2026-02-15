@@ -1,24 +1,58 @@
 import React, { useState, FormEvent } from "react";
-import { BookOpen, AlertTriangle } from "lucide-react";
+import { BookOpen, AlertTriangle, Loader2 } from "lucide-react"; // Asegúrate de tener Loader2 o quítalo si no usas lucide-react actualizado
 import { Link } from "react-router-dom";
 
+// Definimos los tipos para la respuesta del backend
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  role: string;
+  bio: string;
+}
+
 interface LoginScreenProps {
-  onLogin: () => void;
+  // AHORA onLogin ACEPTA ARGUMENTOS
+  onLogin: (token: string, user: User) => void;
+  onNavigateToRegister?: () => void; // Opcional, por compatibilidad
 }
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if (email === "bmaldonadoc@unsa.edu.pe" && password === "12345") {
-      localStorage.setItem("isEconixAuthenticated", "true");
-      localStorage.setItem("econixUserName", "Brayan Maldonado");
-      onLogin();
-    } else {
-      setError("Credenciales incorrectas. Intenta nuevamente.");
+    setError("");
+    setLoading(true);
+
+    try {
+      // 1. CONEXIÓN REAL AL BACKEND
+      const response = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al iniciar sesión");
+      }
+
+      // 2. PASAR DATOS REALES A APP.TSX
+      // App.tsx guardará esto en localStorage
+      onLogin(data.token, data.user);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error de conexión con el servidor");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,9 +107,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-[#006a78] text-white rounded-lg font-bold hover:bg-[#043c42] transition-colors shadow-lg"
+            disabled={loading}
+            className="w-full py-3 bg-[#006a78] text-white rounded-lg font-bold hover:bg-[#043c42] transition-colors shadow-lg disabled:opacity-50 flex justify-center gap-2"
           >
-            Iniciar Sesión
+            {loading ? "Conectando..." : "Iniciar Sesión"}
           </button>
 
           <div className="text-center mt-4">

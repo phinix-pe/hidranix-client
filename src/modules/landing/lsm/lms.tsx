@@ -781,6 +781,7 @@ const CoursePlayer: React.FC<CoursePlayerProps> = ({
 
       showNotification("Entrega eliminada. Puedes subir otra.");
     } catch (error) {
+      console.error(error);
       showNotification("Error al borrar la entrega");
     }
   };
@@ -1409,12 +1410,20 @@ export default function EconixLMS() {
     const savedToken = localStorage.getItem("econixToken");
     const savedUser = localStorage.getItem("econixUser");
 
-    if (savedToken && savedUser) {
+    // VALIDACIÓN ROBUSTA: Verificamos que no sea null, ni "undefined", ni cadena vacía
+    if (savedToken && savedUser && savedUser !== "undefined") {
       setToken(savedToken);
-      setUser(JSON.parse(savedUser));
+      try {
+        // Intentamos parsear. Si falla, el catch lo captura
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Error al leer usuario del storage:", error);
+        // Si el JSON está roto, forzamos logout para limpiar
+        handleLogout();
+      }
     } else {
-      // Si no hay sesión, el Wrapper de tu App.tsx principal lo redirigirá,
-      // pero por seguridad:
+      // Si falta token o usuario, o dice "undefined", mandamos al login
       navigate("/econix/login");
     }
     setLoadingApp(false);

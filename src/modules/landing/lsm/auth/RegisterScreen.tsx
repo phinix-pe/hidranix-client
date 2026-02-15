@@ -1,9 +1,22 @@
 import React, { useState, FormEvent } from "react";
+// Si usas react-icons
 import { IoAlertCircle, IoPersonAdd } from "react-icons/io5";
+// O si prefieres lucide-react (como en el login), cambia los iconos aquí
 import { Link } from "react-router-dom";
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  role: string;
+  bio: string;
+}
+
 interface RegisterScreenProps {
-  onRegister: () => void;
+  // AHORA onRegister ACEPTA ARGUMENTOS
+  onRegister: (token: string, user: User) => void;
+  onNavigateToLogin?: () => void;
 }
 
 export const RegisterScreen: React.FC<RegisterScreenProps> = ({
@@ -14,12 +27,12 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = (e: FormEvent) => {
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
-    // Validación simple
     if (password.length < 5) {
       setError("La contraseña debe tener al menos 5 caracteres.");
       return;
@@ -30,11 +43,32 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
       return;
     }
 
-    // Simulación de registro exitoso
-    // Aquí guardaríamos el token en el futuro
-    localStorage.setItem("isEconixAuthenticated", "true");
-    localStorage.setItem("econixUserName", name); // Guardamos el nombre para mostrarlo luego
-    onRegister();
+    setLoading(true);
+
+    try {
+      // 1. PETICIÓN REAL AL BACKEND
+      const response = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al registrarse");
+      }
+
+      // 2. PASAR DATOS A APP.TSX
+      onRegister(data.token, data.user);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Error al conectar con el servidor");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,9 +150,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({
 
           <button
             type="submit"
-            className="w-full py-3 bg-[#006a78] text-white rounded-lg font-bold hover:bg-[#043c42] transition-colors shadow-lg"
+            disabled={loading}
+            className="w-full py-3 bg-[#006a78] text-white rounded-lg font-bold hover:bg-[#043c42] transition-colors shadow-lg disabled:opacity-50"
           >
-            Registrarse
+            {loading ? "Creando cuenta..." : "Registrarse"}
           </button>
 
           <div className="text-center mt-4">
